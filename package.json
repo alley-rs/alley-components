@@ -1,0 +1,38 @@
+{
+  "name": "alley-components",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
+  },
+  "peerDependencies": {
+    "solid-js": "^1.8.15"
+  },
+  "dependencies": {
+    "solid-icons": "^1.1.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-typescript": "^11.1.6",
+    "sass": "^1.71.1",
+    "solid-js": "^1.8.15",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2",
+    "vite": "^5.1.4",
+    "vite-plugin-solid": "^2.10.1"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "./lib/alley.umd.cjs",
+  "module": "./lib/alley.js",
+  "typings": "./lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": "./lib/alley.js",
+      "require": "./lib/alley.umd.cjs"
+    }
+  }
+}

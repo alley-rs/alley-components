@@ -1,0 +1,104 @@
+$base: 'alley-input';
+
+.#{$base} {
+  --alley-input-padding-block: 4px;
+  --alley-input-padding-block-sm: 0px;
+  --alley-input-padding-block-lg: 7px;
+  --alley-input-padding-inline: 11px;
+  --alley-input-padding-inline-sm: 7px;
+  --alley-input-padding-inline-lg: 11px;
+  --alley-input-addon-bg: rgba(0, 0, 0, 0.02);
+  --alley-input-active-border-color: var(--color-primary);
+  --alley-input-hover-border-color: var(--color-hover);
+  --alley-input-active-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
+  --alley-input-error-active-shadow: 0 0 0 2px rgba(255, 38, 5, 0.06);
+  --alley-input-warning-active-shadow: 0 0 0 2px rgba(255, 215, 5, 0.1);
+  --alley-input-hover-bg: #ffffff;
+  --alley-input-active-bg: #ffffff;
+  --alley-input-input-font-size: 14px;
+  --alley-input-input-font-size-lg: 16px;
+  --alley-input-input-font-size-sm: 14px;
+
+  width: 100%;
+  text-overflow: ellipsis;
+  background: var(--colot-bg-container);
+  border-width: var(--line-width);
+  border-style: var(--line-type);
+  border-color: var(--color-border);
+  margin: 0;
+  padding: var(--alley-input-padding-block) var(--alley-input-padding-inline);
+  color: var(--color-text);
+  font-size: var(--alley-input-input-font-size);
+  line-height: var(--line-height);
+  list-style: none;
+  position: relative;
+  display: inline-block;
+  min-width: 0;
+  border-radius: var(--border-radius);
+  transition: var(--motion-duration-mid);
+  box-sizing: border-box;
+
+  &:hover:not([disabled]) {
+    border-color: var(--alley-input-hover-border-color);
+    background-color: var(--alley-input-hover-bg);
+  }
+
+  &:focus,
+  &:focus-within {
+    border-color: var(--alley-input-active-border-color);
+    outline: 0;
+    background-color: var(--alley-input-active-bg);
+    filter: var(--filter-sm);
+  }
+
+  &-disabled {
+    color: var(--color-text-disabled);
+    background-color: var(--color-bg-container-disabled);
+    border-color: var(--color-border);
+    filter: none;
+    cursor: not-allowed;
+    opacity: 1;
+  }
+
+  &-small {
+    padding: var(--alley-input-padding-block-sm) var(--alley-input-padding-inline-sm);
+    font-size: var(--alley-input-input-font-size-sm);
+    border-radius: var(--border-radius-sm);
+
+    &::placeholder {
+      font-size: 12px;
+    }
+  }
+
+  &-large {
+    padding: var(--alley-input-padding-block-lg) var(--alley-input-padding-inline-lg);
+    font-size: var(--alley-input-input-font-size-lg);
+    border-radius: var(--border-radius-lg);
+  }
+
+  &-compact-item {
+    &:hover {
+      z-index: 2;
+    }
+
+    &:not(.#{$base}-compact-last-item) {
+      margin-inline-end: calc(var(--line-width) * -1);
+
+      &.#{$base}-compact-first-item {
+        border-start-end-radius: 0;
+        border-end-end-radius: 0;
+      }
+    }
+  }
+}
+
+.dark .alley-input {
+  --alley-input-addon-bg: rgba(255, 255, 255, 0.04);
+  // --alley-input-active-border-color: #1668dc;
+  // --alley-input-hover-border-color: #3c89e8;
+  --alley-input-active-shadow: 0 0 0 2px rgba(0, 60, 180, 0.15);
+  --alley-input-error-active-shadow: 0 0 0 2px rgba(238, 38, 56, 0.11);
+  --alley-input-warning-active-shadow: 0 0 0 2px rgba(173, 107, 0, 0.15);
+  --alley-input-hover-bg: #141414;
+  --alley-input-active-bg: #141414;
+}

@@ -1,0 +1,56 @@
+$base: 'alley-progress-circle';
+
+.#{$base} {
+  --pi: 3.1415926;
+  --radius: calc(var(--size) / 2 - var(--track-width) / 2);
+  --circumference: calc(var(--radius) * var(--pi) * 2);
+  display: inline-block;
+
+  &-content {
+    position: relative;
+    margin: auto;
+    width: var(--size);
+    height: var(--size);
+
+    .#{$base}-svg {
+      width: 100%;
+      height: 100%;
+
+      >.#{$base}-fill,
+      >#{$base}-track {
+        stroke-width: var(--track-width);
+        r: var(--radius);
+        cx: calc(var(--size) / 2);
+        cy: calc(var(--size) / 2);
+        transform: rotate(-90deg);
+        transform-origin: 50% 50%;
+      }
+
+      >.#{$base}-track {
+        stroke: var(--track-color);
+      }
+
+      >.#{$base}-fill {
+        transition: stroke-dashoffset 0.35s;
+        stroke: var(--fill-color);
+        stroke-dasharray: var(--circumference);
+        stroke-dashoffset: calc(var(--circumference) * (1 - var(--percent) / 100));
+        stroke-linecap: round;
+      }
+    }
+  }
+
+  &-info {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    left: 50%;
+    text-align: center;
+    transform: translate(-50%, -50%);
+    font-size: var(--font-size);
+  }
+
+  &-text {
+    margin-top: 20px;
+  }
+}

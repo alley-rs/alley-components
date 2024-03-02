@@ -1,0 +1,100 @@
+$base: 'alley-alert';
+
+.#{$base} {
+  --alley-alert-with-description-icon-size: 24px;
+  --alley-alert-default-padding: 8px 12px;
+  --alley-alert-with-description-padding: 20px 24px;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--alley-alert-default-padding);
+  color: var(--alley-color-text, --color-text);
+  font-size: var(--alley-font-size, --font-size);
+  line-height: var(--alley-line-height, --line-height);
+  list-style: none;
+  // font-family: var(--alley-font-family);
+  position: relative;
+  display: flex;
+  align-items: center;
+  word-wrap: break-word;
+  border-radius: var(--alley-border-radius-lg, --border-radius-lg);
+  text-align: start;
+  transition: all 0.2s ease-in-out;
+
+  &-closing {
+    animation: close var(--#{$base}-close-speed) forwards;
+  }
+
+  &-icon {
+    margin-inline-end: var(--alley-margin-xs);
+    line-height: 0;
+  }
+
+  &-content {
+    flex: 1;
+    min-width: 0;
+
+    .#{$base}-message {
+      color: var(--alley-color-text-heading);
+    }
+  }
+
+  &-close-icon.alley-button {
+    margin-inline-start: var(--alley-margin-xs);
+    padding: 0;
+    overflow: hidden;
+    font-size: var(--alley-font-size-icon);
+    line-height: var(--alley-font-size-icon);
+    border-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    color: rgba(0, 0, 0, 0.45);
+  }
+
+  &-success {
+    background: var(--alley-color-success-bg, --color-success-bg);
+    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-success-border, --color-success-border);
+
+    .#{$base}-icon {
+      color: var(--alley-color-success);
+    }
+  }
+
+  &-info {
+    background: var(--alley-color-info-bg, --color-info-bg);
+    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-info-border, --color-info-border);
+
+    .#{$base}-icon {
+      color: var(--alley-color-info);
+    }
+  }
+
+  &-warning {
+    background: var(--alley-color-warning-bg, --color-warning-bg);
+    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-warning-border, --color-warning-border);
+
+    .#{$base}-icon {
+      color: var(--alley-color-warning);
+    }
+  }
+
+  &-error {
+    background: var(--alley-color-error-bg, --color-error-bg);
+    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-error-border, --color-error-border);
+
+    .#{$base}-icon {
+      color: var(--alley-color-error);
+    }
+  }
+
+  @keyframes close {
+    0% {
+      transform: translateX(0);
+    }
+
+    100% {
+      transform: translateX(-100%);
+    }
+  }
+}

@@ -1,0 +1,32 @@
+.alley-spinner {
+  display: inline-block;
+  border-color: currentColor;
+  border-style: solid;
+  border-radius: 99999px;
+  border-width: var(--alley-spinner-thickness);
+  border-bottom-color: var(--alley-spinner-empty-color);
+  border-left-color: var(--alley-spinner-empty-color);
+  animation: spin var(--alley-spinner-animation-speed) linear infinite;
+  width: 1rem;
+  height: 1rem;
+
+  &-small {
+    width: 0.6rem;
+    height: 0.6rem;
+  }
+
+  &-large {
+    width: 2rem;
+    height: 2rem;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
