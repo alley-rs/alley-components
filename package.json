@@ -9,15 +9,14 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "solid-js": "^1.8.15"
-  },
-  "dependencies": {
+    "solid-js": "^1.8.15",
     "solid-icons": "^1.1.0"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
     "sass": "^1.71.1",
     "solid-js": "^1.8.15",
+    "solid-icons": "^1.1.0",
     "tslib": "^2.6.2",
     "typescript": "^5.2.2",
     "vite": "^5.1.4",
