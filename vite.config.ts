@@ -2,6 +2,7 @@ import { defineConfig } from "vite";
 import path from "path";
 import solid from "vite-plugin-solid";
 import typescript from "@rollup/plugin-typescript";
+import externalGlobals from "rollup-plugin-external-globals";
 
 function resolve(str: string) {
   return path.resolve(__dirname, str);
@@ -11,7 +12,7 @@ export default defineConfig({
   plugins: [
     solid(),
     typescript({
-      target: "es5",
+      target: "es2020",
       rootDir: resolve("packages/"),
       declaration: true,
       declarationDir: resolve("lib"),
@@ -19,6 +20,10 @@ export default defineConfig({
       allowSyntheticDefaultImports: true,
     }),
   ],
+
+  optimizeDeps: {
+    exclude: ["solid-js", "solid-icons"],
+  },
 
   build: {
     cssCodeSplit: true,
@@ -37,7 +42,20 @@ export default defineConfig({
     },
     rollupOptions: {
       // 确保外部化处理那些你不想打包进库的依赖
-      external: ["solid-js", "solid-icons", /node_modules/],
+      external: [
+        "solid-js",
+        "solid-js/web",
+        "solid-icons/ai",
+        "solid-icons/vs",
+        "solid-icons/tb",
+        "tslib",
+      ],
+      // plugins: [
+      //   externalGlobals({
+      //     "solid-js": "solid-js",
+      //     "solid-icons": "solid-icons",
+      //   }),
+      // ],
       input: ["packages/index.ts"],
       output: [
         {

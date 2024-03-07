@@ -9,17 +9,16 @@
     "preview": "vite preview"
   },
   "peerDependencies": {
-    "solid-js": "^1.8.15",
-    "solid-icons": "^1.1.0"
+    "solid-icons": "^1.1.0",
+    "solid-js": "^1.8.15"
   },
   "devDependencies": {
     "@rollup/plugin-typescript": "^11.1.6",
+    "rollup-plugin-external-globals": "^0.9.2",
     "sass": "^1.71.1",
-    "solid-js": "^1.8.15",
-    "solid-icons": "^1.1.0",
     "tslib": "^2.6.2",
-    "typescript": "^5.2.2",
-    "vite": "^5.1.4",
+    "typescript": "^5.4.2",
+    "vite": "^5.1.5",
     "vite-plugin-solid": "^2.10.1"
   },
   "files": [
