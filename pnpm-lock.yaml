@@ -31,6 +31,9 @@ devDependencies:
   vite:
     specifier: ^5.1.5
     version: 5.1.5(sass@1.71.1)
+  vite-plugin-lib-inject-css:
+    specifier: ^2.0.0
+    version: 2.0.0(vite@5.1.5)
   vite-plugin-solid:
     specifier: ^2.10.1
     version: 2.10.1(solid-js@1.8.15)(vite@5.1.5)
@@ -1174,6 +1177,16 @@ packages:
 
   /validate-html-nesting@1.2.2:
     resolution: {integrity: sha512-hGdgQozCsQJMyfK5urgFcWEqsSSrK63Awe0t/IMR0bZ0QMtnuaiHzThW81guu3qx9abLi99NEuiaN6P9gVYsNg==}
+    dev: true
+
+  /vite-plugin-lib-inject-css@2.0.0(vite@5.1.5):
+    resolution: {integrity: sha512-5RK9eP2biW340FEbpI8eHZQfeqIz0+Glbkk4U1fZ1QKOvyaYy5K6TmW43KuhmGLizk2Vd4Nv7OwGpxq2wXclyQ==}
+    peerDependencies:
+      vite: '*'
+    dependencies:
+      magic-string: 0.30.8
+      picocolors: 1.0.0
+      vite: 5.1.5(sass@1.71.1)
     dev: true
 
   /vite-plugin-solid@2.10.1(solid-js@1.8.15)(vite@5.1.5):

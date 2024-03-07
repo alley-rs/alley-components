@@ -24,6 +24,9 @@
   "files": [
     "lib"
   ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "main": "./lib/alley.umd.cjs",
   "module": "./lib/alley.js",
   "typings": "./lib/index.d.ts",

@@ -9,6 +9,12 @@ function resolve(str: string) {
 }
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      "~/": `${resolve("packages")}/`,
+    },
+  },
+
   plugins: [
     solid(),
     typescript({
@@ -33,7 +39,11 @@ export default defineConfig({
     // cssTarget: "chrome61",
     lib: {
       // 组件库源码的入口文件
-      entry: resolve("packages/index.ts"),
+      // entry: resolve("packages/index.ts"),
+      entry: {
+        index: "packages/index.ts",
+        alert: "packages/alert/index.tsx",
+      },
       // 组件库名称
       // name: "alley-components",
       // 文件名称, 打包结果举例: my-packages.umd.cjs
