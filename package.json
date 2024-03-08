@@ -1,6 +1,6 @@
 {
   "name": "alley-components",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "repository": "https://github.com/alley-rs/alley-components",
   "author": "thepoy <thepoy@163.com>",
   "type": "module",

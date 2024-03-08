@@ -22,7 +22,7 @@ $base: "alley-alert";
   transition: all 0.2s ease-in-out;
 
   &-closing {
-    animation: close var(--#{$base}-close-speed) forwards;
+    animation: close var(--#{$base}-close-speed) ease-in;
   }
 
   &-icon {
