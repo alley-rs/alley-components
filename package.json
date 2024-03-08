@@ -28,13 +28,11 @@
   "sideEffects": [
     "**/*.css"
   ],
-  "main": "./lib/alley.umd.cjs",
-  "module": "./lib/alley.js",
+  "module": "./lib/index.js",
   "typings": "./lib/index.d.ts",
   "exports": {
     ".": {
-      "import": "./lib/alley.js",
-      "require": "./lib/alley.umd.cjs"
+      "import": "./lib/index.js"
     }
   }
 }
