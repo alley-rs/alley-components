@@ -7,6 +7,7 @@ import {
   Flex,
   Link,
   Switch,
+  SpaceCompact,
 } from "../packages";
 
 const App = () => {
@@ -16,7 +17,7 @@ const App = () => {
         <InputNumber value={10} />
         <Input value="some words" />
         <Input disabled />
-        <Switch checked setChecked={() => { }} />
+        <Switch checked setChecked={() => {}} />
         <Link href="#">链接</Link>
       </Space>
 
@@ -27,6 +28,11 @@ const App = () => {
         <Button size="small">小按钮</Button>
         <Button size="large">大按钮</Button>
       </Space>
+
+      <SpaceCompact size="small">
+        <Input />
+        <Button>OK</Button>
+      </SpaceCompact>
 
       <Alert message="点击也没啥用" type="info" showIcon isClosable />
     </Flex>

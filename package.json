@@ -30,10 +30,5 @@
     "**/*.css"
   ],
   "module": "./lib/index.js",
-  "typings": "./lib/index.d.ts",
-  "exports": {
-    ".": {
-      "import": "./lib/index.js"
-    }
-  }
+  "typings": "./lib/index.d.ts"
 }
