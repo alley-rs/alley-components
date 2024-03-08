@@ -10,7 +10,7 @@ export interface CardProps extends BaseComponentProps {
   onHeaderClick?: () => void;
 }
 
-const baseClassName = "card";
+const baseClassName = "alley-card";
 
 const Card = (props: CardProps) => {
   return (
