@@ -1,15 +1,91 @@
-name: Publish Package
-
+name: "publish"
 on:
-  release:
-    types: [published]
+  push:
+    branches:
+      - release
 
 jobs:
+  create-release:
+    permissions:
+      contents: write
+    runs-on: ubuntu-22.04
+    outputs:
+      release_id: ${{ steps.create-release.outputs.result }}
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: setup node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: get version
+        run: echo "PACKAGE_VERSION=$(node -p "require('./package.json').version")" >> $GITHUB_ENV
+
+      - name: check latest version
+        uses: actions/github-script@v7
+        id: latest-version
+        with:
+          script: |
+            try {
+              const { data } = await github.request(
+                'GET /repos/{owner}/{repo}/releases/latest', 
+                {
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  headers: {
+                    'X-GitHub-Api-Version': '2022-11-28'
+                  }
+                }
+              )
+
+              const latesVersion = data.tag_name.slice(1)
+
+              if (latesVersion === process.env.PACKAGE_VERSION) throw new Error("当前要发布的版本号与 latest 版本号相同")
+
+              return latesVersion
+            } catch (e) {
+              return
+            }
+
+      - name: build changelog
+        id: github_release_changelog
+        uses: mikepenz/release-changelog-builder-action@v3
+        with:
+          configuration: ".github/changelog-configuration.json"
+          toTag: "refs/heads/main"
+          failOnError: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: create release
+        id: create-release
+        uses: actions/github-script@v7
+        env:
+          changelog: ${{ steps.github_release_changelog.outputs.changelog }}
+        with:
+          script: |
+            const { data } = await github.rest.repos.createRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: `v${process.env.PACKAGE_VERSION}`,
+              name: `v${process.env.PACKAGE_VERSION}`,
+              body: process.env.changelog,
+              draft: true,
+              prerelease: process.env.PACKAGE_VERSION.indexOf('alpha') >= 0,
+            })
+            return data.id
+
   publish:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    needs: [create-release]
+
     steps:
       - name: Checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set node version to 20
         uses: actions/setup-node@v4
@@ -27,3 +103,17 @@ jobs:
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+
+      - name: publish release
+        id: publish-release
+        uses: actions/github-script@v7
+        env:
+          release_id: ${{ needs.create-release.outputs.release_id }}
+        with:
+          script: |
+            github.rest.repos.updateRelease({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              release_id: process.env.release_id,
+              draft: false,
+            })
