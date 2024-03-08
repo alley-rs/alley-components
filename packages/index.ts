@@ -69,3 +69,5 @@ export { default as Tooltip } from "~/components/tooltip";
 export type { TooltipProps } from "~/components/tooltip";
 
 export { addClassNames } from "~/utils";
+
+export { default as useDark } from "~/hooks/useDark";
