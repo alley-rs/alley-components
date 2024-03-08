@@ -1,6 +1,9 @@
 :root {
   --alley-color-text: rgba(0, 0, 0, 0.88);
   --alley-color-text-heading: rgba(0, 0, 0, 0.88);
+  --alley-color-text-disabled: #c4c4c4;
+  --alley-color-text-reverse: #fff;
+  --alley-color-text-description: rgba(0, 0, 0, 0.45);
 
   --alley-color-success: #52c41a;
   --alley-color-success-bg: #f6ffed;
@@ -17,6 +20,7 @@
   --alley-color-error: #ff4d4f;
   --alley-color-error-bg: #fff2f0;
   --alley-color-error-border: #ffccc7;
+  --alley-color-danger: var(--alley-color-error);
 
   --alley-blue-1: #e6f4ff;
   --alley-blue-2: #bae0ff;
@@ -40,9 +44,47 @@
   --alley-green-9: #135200;
   --alley-green-10: #092b00;
 
+  --alley-purple-1: #f9f0ff;
+  --alley-purple-2: #efdbff;
+  --alley-purple-3: #d3adf7;
+  --alley-purple-4: #b37feb;
+  --alley-purple-5: #9254de;
+  --alley-purple-6: #722ed1;
+  --alley-purple-7: #531dab;
+  --alley-purple-8: #391085;
+  --alley-purple-9: #22075e;
+  --alley-purple-10: #120338;
+
+  --alley-color-primary: var(--alley-purple-5);
+
+  --alley-color-hover: var(--alley-color-primary);
+  --alley-color-hover-text: var(--alley-color-hover);
+
+  --alley-color-hover-danger: var(--alley-color-danger);
+  --alley-color-hover-filter: #646cffaa;
+  --alley-color-hover-danger-filter: rgba(255, 48, 64, 0.76);
+
+  --alley-color-bg: #fff;
+  --alley-color-bg-elevated: #fff;
+  --alley-color-bg-container: #fff;
+  --alley-color-bg-container-disabled: rgba(0, 0, 0, 0.04);
+
+  --alley-color-border: #eee;
+
   --alley-font-size: 14px;
   --alley-font-size-icon: 12px;
 
+  --alley-motion-duration-fast: 0.1s;
+  --alley-motion-duration-mid: 0.2s;
+  --alley-motion-duration-slow: 0.3s;
+
+  --alley-filter: drop-shadow(0 0 1em var(--alley-color-hover-filter));
+  --alley-filter-lg: drop-shadow(0 0 0.7em var(--alley-color-hover-filter));
+  --alley-filter-sm: drop-shadow(0 0 0.4em var(--alley-color-hover-filter));
+
+  --alley-border-radius-lg: 8px;
+  --alley-border-radius: 6px;
+  --alley-border-radius-sm: 4px;
   --alley-border-radius-lg: 8px;
 
   --alley-line-width: 1px;
@@ -50,4 +92,15 @@
   --alley-line-height: 1.5714285714285714;
 
   --alley-margin-xs: 8px;
+
+  --alley-padding-xxs: 4px;
+
+  --alley-box-shadow-secondary: rgba(0, 0, 0, 0.08) 0px 6px 16px 0px,
+    rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px;
+
+  --alley-control-height-sm: 24px;
+  --alley-control-height-lg: 40px;
+  --alley-control-padding-horizontal: 12px;
+  --alley-control-item-bg-hover: var(--alley-color-primary);
+  --alley-control-item-text-hover: #fff;
 }

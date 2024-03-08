@@ -2,7 +2,7 @@ import { defineConfig } from "vite";
 import path from "path";
 import solid from "vite-plugin-solid";
 import typescript from "@rollup/plugin-typescript";
-import externalGlobals from "rollup-plugin-external-globals";
+import fs from "fs";
 
 function resolve(str: string) {
   return path.resolve(__dirname, str);
@@ -25,11 +25,37 @@ export default defineConfig({
       exclude: resolve("node_modules/**"),
       allowSyntheticDefaultImports: true,
     }),
+
+    {
+      name: "vite:import-css",
+      apply: "build",
+      enforce: "post",
+      renderChunk(code, chunk) {
+        const { fileName, name, imports } = chunk;
+        if (
+          fileName === "index.js" ||
+          (fileName.startsWith("components/") && !name.endsWith(".scss"))
+        ) {
+          const importedCss = imports.filter((s) => s.indexOf("scss") > -1);
+          if (importedCss.length === 0) {
+            return;
+          }
+
+          const cssName = path.basename(importedCss[0]).split(".")[0];
+
+          const importCode = `import "./${cssName}.css"`;
+
+          const addedCssCode = importCode + "\n" + code;
+
+          return { code: addedCssCode, map: null };
+        }
+      },
+    },
   ],
 
-  optimizeDeps: {
-    exclude: ["solid-js", "solid-icons"],
-  },
+  // optimizeDeps: {
+  //   exclude: ["solid-js", "solid-icons"],
+  // },
 
   build: {
     cssCodeSplit: true,
@@ -39,11 +65,7 @@ export default defineConfig({
     // cssTarget: "chrome61",
     lib: {
       // 组件库源码的入口文件
-      // entry: resolve("packages/index.ts"),
-      entry: {
-        index: "packages/index.ts",
-        alert: "packages/alert/index.tsx",
-      },
+      entry: resolve("packages/index.ts"),
       // 组件库名称
       // name: "alley-components",
       // 文件名称, 打包结果举例: my-packages.umd.cjs

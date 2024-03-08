@@ -1,7 +1,7 @@
-$base: 'switch';
+$base: "switch";
 
 .#{$base} {
-  --checked-color: var(--color-primary);
+  --checked-color: var(--alley-color-primary);
   --height: 31px;
   --height-sm: 23px;
   --width: 51px;
@@ -56,13 +56,13 @@ $base: 'switch';
     height: var(--height);
     box-sizing: border-box;
     border-radius: 31px;
-    background: var(--color-border);
+    background: var(--alley-color-border);
     z-index: 0;
     overflow: hidden;
     line-height: var(--height);
 
     &:before {
-      content: ' ';
+      content: " ";
       position: absolute;
       left: var(--border-width);
       top: var(--border-width);
@@ -70,7 +70,7 @@ $base: 'switch';
       height: calc(var(--height) - 2 * var(--border-width));
       border-radius: calc(var(--height) - 2 * var(--border-width));
       box-sizing: border-box;
-      background: var(--color-background);
+      background: var(--alley-color-bg);
       z-index: 1;
       transition: all 200ms;
       transform: scale(1);

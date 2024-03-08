@@ -1,4 +1,4 @@
-$base: 'alley-alert';
+$base: "alley-alert";
 
 .#{$base} {
   --alley-alert-with-description-icon-size: 24px;
@@ -8,16 +8,16 @@ $base: 'alley-alert';
   box-sizing: border-box;
   margin: 0;
   padding: var(--alley-alert-default-padding);
-  color: var(--alley-color-text, --color-text);
-  font-size: var(--alley-font-size, --font-size);
-  line-height: var(--alley-line-height, --line-height);
+  color: var(--alley-color-text, --alley-color-text);
+  font-size: var(--alley-font-size, --alley-font-size);
+  line-height: var(--alley-line-height, --alley-line-height);
   list-style: none;
   // font-family: var(--alley-font-family);
   position: relative;
   display: flex;
   align-items: center;
   word-wrap: break-word;
-  border-radius: var(--alley-border-radius-lg, --border-radius-lg);
+  border-radius: var(--alley-border-radius-lg, --alley-border-radius-lg);
   text-align: start;
   transition: all 0.2s ease-in-out;
 
@@ -53,8 +53,8 @@ $base: 'alley-alert';
   }
 
   &-success {
-    background: var(--alley-color-success-bg, --color-success-bg);
-    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-success-border, --color-success-border);
+    background: var(--alley-color-success-bg, --alley-color-success-bg);
+    border: var(--alley-line-width, --alley-line-width) var(--alley-line-type, --alley-line-type) var(--alley-color-success-border, --alley-color-success-border);
 
     .#{$base}-icon {
       color: var(--alley-color-success);
@@ -62,8 +62,8 @@ $base: 'alley-alert';
   }
 
   &-info {
-    background: var(--alley-color-info-bg, --color-info-bg);
-    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-info-border, --color-info-border);
+    background: var(--alley-color-info-bg, --alley-color-info-bg);
+    border: var(--alley-line-width, --alley-line-width) var(--alley-line-type, --alley-line-type) var(--alley-color-info-border, --alley-color-info-border);
 
     .#{$base}-icon {
       color: var(--alley-color-info);
@@ -71,8 +71,8 @@ $base: 'alley-alert';
   }
 
   &-warning {
-    background: var(--alley-color-warning-bg, --color-warning-bg);
-    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-warning-border, --color-warning-border);
+    background: var(--alley-color-warning-bg, --alley-color-warning-bg);
+    border: var(--alley-line-width, --alley-line-width) var(--alley-line-type, --alley-line-type) var(--alley-color-warning-border, --alley-color-warning-border);
 
     .#{$base}-icon {
       color: var(--alley-color-warning);
@@ -80,8 +80,8 @@ $base: 'alley-alert';
   }
 
   &-error {
-    background: var(--alley-color-error-bg, --color-error-bg);
-    border: var(--alley-line-width, --line-width) var(--alley-line-type, --line-type) var(--alley-color-error-border, --color-error-border);
+    background: var(--alley-color-error-bg, --alley-color-error-bg);
+    border: var(--alley-line-width, --alley-line-width) var(--alley-line-type, --alley-line-type) var(--alley-color-error-border, --alley-color-error-border);
 
     .#{$base}-icon {
       color: var(--alley-color-error);

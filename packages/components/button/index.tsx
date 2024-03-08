@@ -18,7 +18,7 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-    BaseSizeComponentProps {
+  BaseSizeComponentProps {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
@@ -41,9 +41,9 @@ const Button = (props: ButtonProps) => {
     !merged.filter || merged.filter === true
       ? merged.style
       : {
-          "--filter-scale": merged.filter.scale,
-          ...merged.style,
-        };
+        "--filter-scale": merged.filter.scale,
+        ...merged.style,
+      };
 
   // 保存 compact 样式
   const [classList, setClassList] = createSignal<string[]>([]);
@@ -109,7 +109,13 @@ const Button = (props: ButtonProps) => {
       <Show when={!merged.isLoading} fallback={<Spinner size={merged.size} />}>
         {children}
         <Show when={merged.type !== "plain"}>
-          <Ripple></Ripple>
+          <Ripple
+            color={
+              merged.danger
+                ? "var(--alley-color-button-ripple-danger)"
+                : undefined
+            }
+          />
         </Show>
       </Show>
     </button>

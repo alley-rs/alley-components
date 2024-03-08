@@ -1,8 +1,13 @@
-$class-name: 'alley-button';
+$class-name: "alley-button";
 
 .#{$class-name} {
   --filter-scale: 1;
   --alley-button-content-line-height-sm: 1.5714285714285714;
+  --alley-color-button-backgroud: #f9f9f9;
+  --alley-color-button-text: #213547;
+  --alley-color-button-hover: var(--alley-color-hover-text);
+  --alley-color-button-ripple: rgb(100 108 255 / 55%);
+  --alley-color-button-ripple-danger: #ffa4a6;
 
   position: relative;
   border-radius: 8px;
@@ -11,10 +16,10 @@ $class-name: 'alley-button';
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--color-button-backgroud);
+  background-color: var(--alley-color-button-backgroud);
   cursor: pointer;
   transition: all 0.2s ease-in-out;
-  color: var(--color-button-text);
+  color: var(--alley-color-button-text);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -22,18 +27,18 @@ $class-name: 'alley-button';
   will-change: filter;
 
   &:not(.disabled):hover {
-    border-color: var(--color-button-hover);
-    color: var(--color-hover);
+    border-color: var(--alley-color-button-hover);
+    color: var(--alley-color-hover);
   }
 
   &-filter:not(.disabled):hover {
-    filter: drop-shadow(0 0 1em var(--color-hover-filter));
+    filter: drop-shadow(0 0 1em var(--alley-color-hover-filter));
     transform: scale(var(--filter-scale));
   }
 
   &:focus,
   &:focus-visible {
-    outline: 4px auto var(--color-hover);
+    outline: none;
   }
 
   &.block {
@@ -43,7 +48,7 @@ $class-name: 'alley-button';
 
   &.disabled {
     cursor: not-allowed;
-    color: var(--color-text-disabled);
+    color: var(--alley-color-text-disabled);
   }
 
   &.circle {
@@ -71,30 +76,35 @@ $class-name: 'alley-button';
   &-danger:not(.disabled) {
     &:not(.plain) {
       color: #fff;
-      background-color: var(--color-danger);
+      background-color: var(--alley-color-danger);
     }
 
     // &.plain {
-    //   color: var(--color-text);
+    //   color: var(--alley-color-text);
     // }
 
     &.#{$class-name}-filter:not(.disabled):hover {
-      border-color: var(--color-hover-danger-hover);
-      background-color: var(--color-hover-danger-hover);
-      filter: drop-shadow(0 0 8px var(--color-hover-danger-filter));
+      border-color: var(--alley-color-hover-danger);
+      background-color: var(--alley-color-hover-danger);
+      filter: drop-shadow(0 0 8px var(--alley-color-hover-danger-filter));
       transform: scale(var(--filter-scale));
     }
 
     &.plain.#{$class-name}-filter:not(.disabled):hover {
-      filter: drop-shadow(0 0 10px var(--color-danger));
+      filter: drop-shadow(0 0 10px var(--alley-color-danger));
       transform: scale(var(--filter-scale));
-      color: var(--color-danger);
+      color: var(--alley-color-danger);
       background-color: transparent;
+    }
+
+    &:focus,
+    &:focus-visible {
+      outline: none;
     }
   }
 
   &-danger:not(.disabled):hover {
-    border-color: var(--color-danger);
+    border-color: var(--alley-color-danger);
     color: #fff;
   }
 
@@ -115,7 +125,7 @@ $class-name: 'alley-button';
   }
 
   &-compact-item {
-    border: var(--line-width) var(--line-type) var(--color-border);
+    border: var(--alley-line-width) var(--alley-line-type) var(--alley-color-border);
 
     &:not([disabled]) {
       &:hover {

@@ -1,6 +1,7 @@
 .progress {
-  --border-radius: 2px;
-  --fill-color: var(--color-primary);
+  --alley-border-radius: 2px;
+  --fill-color: var(--alley-color-primary);
+
   width: calc(100% - 10px);
   height: 4px;
 
@@ -20,25 +21,25 @@
     background: var(--fill-color);
     height: 100%;
     position: relative;
-    border-radius: var(--border-radius);
+    border-radius: var(--alley-border-radius);
 
     &::after {
       content: attr(data-percent) "%";
-      color: var(--color-progress-text);
+      color: var(--alley-color-progress-text);
       position: absolute;
       right: 0;
       top: -5px;
       z-index: 99;
       padding: 0 2px;
-      background-color: var(--color-primary);
+      background-color: var(--alley-color-primary);
       border-radius: 5px;
-      font-size: var(--font-size-1);
+      font-size: var(--alley-font-size-1);
     }
   }
 
   &-fill-success {
-    border-radius: var(--border-radius);
-    background-color: var(--color-success);
+    border-radius: var(--alley-border-radius);
+    background-color: var(--alley-color-success);
     height: 100%;
     transition: width 0.3s;
   }

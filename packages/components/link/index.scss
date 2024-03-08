@@ -1,16 +1,16 @@
 .link {
-  color: var(--color-text);
+  color: var(--alley-color-text);
   cursor: pointer;
-  font-family: var(--font-monospace);
+  font-family: var(--alley-font-monospace);
   text-decoration: underline;
 
   &:hover {
-    color: var(--color-primary);
+    color: var(--alley-color-primary);
     text-decoration: none;
   }
 
   &-filter:hover {
-    text-shadow: 0 0 1px var(--color-hover-filter);
+    text-shadow: 0 0 1px var(--alley-color-hover-filter);
     word-break: break-all;
   }
 

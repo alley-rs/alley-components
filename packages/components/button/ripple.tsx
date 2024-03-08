@@ -4,8 +4,8 @@ import {
   createSignal,
   mergeProps,
   onCleanup,
-} from 'solid-js';
-import type { JSXElement } from 'solid-js';
+} from "solid-js";
+import type { JSXElement } from "solid-js";
 
 interface RippleContainerProps {
   children: JSXElement;
@@ -16,8 +16,8 @@ interface RippleContainerProps {
 
 const RippleContainer = (props: RippleContainerProps) => {
   const style = () => ({
-    '--alley-button-ripple-container': props.color,
-    '--alley-button-ripple-duration': `${props.duration}ms`,
+    "--alley-button-ripple-container": props.color,
+    "--alley-button-ripple-duration": `${props.duration}ms`,
   });
 
   return (
@@ -83,7 +83,7 @@ const Ripple = (props: RippleProps) => {
   return (
     <RippleContainer
       duration={merged.duration ?? 500}
-      color={merged.color ?? 'var(--color-button-ripple)'}
+      color={merged.color ?? "var(--alley-color-button-ripple)"}
       onMouseDown={addRipple}
     >
       <For each={rippleArray()}>

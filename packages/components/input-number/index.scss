@@ -1,4 +1,4 @@
-$base: 'alley-input-number';
+$base: "alley-input-number";
 
 .#{$base} {
   --alley-input-number-padding-block: 4px;
@@ -8,8 +8,8 @@ $base: 'alley-input-number';
   --alley-input-number-padding-inline-sm: 7px;
   --alley-input-number-padding-inline-lg: 11px;
   --alley-input-number-addon-bg: rgba(0, 0, 0, 0.02);
-  --alley-input-number-active-border-color: var(--color-hover);
-  --alley-input-number-hover-border-color: var(--color-hover);
+  --alley-input-number-active-border-color: var(--alley-color-hover);
+  --alley-input-number-hover-border-color: var(--alley-color-hover);
   --alley-input-number-active-shadow: 0 0 0 2px rgba(5, 145, 255, 0.1);
   --alley-input-number-error-active-shadow: 0 0 0 2px rgba(255, 38, 5, 0.06);
   --alley-input-number-warning-active-shadow: 0 0 0 2px rgba(255, 215, 5, 0.1);
@@ -25,26 +25,26 @@ $base: 'alley-input-number';
   --alley-input-number-handle-active-bg: rgba(0, 0, 0, 0.02);
   --alley-input-number-handle-bg: #ffffff;
   --alley-input-number-filled-handle-bg: #f0f0f0;
-  --alley-input-number-handle-hover-color: var(--color-hover);
+  --alley-input-number-handle-hover-color: var(--alley-color-hover);
   --alley-input-number-handle-border-color: #d9d9d9;
   --alley-input-number-handle-opacity: 0;
 
-  background-color: var(--color-bg-container);
-  border-width: var(--line-width);
-  border-style: var(--line-type);
-  border-color: var(--color-border);
+  background-color: var(--alley-color-bg-container);
+  border-width: var(--alley-line-width);
+  border-style: var(--alley-line-type);
+  border-color: var(--alley-color-border);
   margin: 0;
   padding: 0;
-  color: var(--color-text);
+  color: var(--alley-color-text);
   font-size: var(--alley-input-number-input-font-size);
-  line-height: var(--line-height);
+  line-height: var(--alley-line-height);
   list-style: none;
   position: relative;
   display: inline-block;
   width: var(--alley-input-number-control-width);
   min-width: 0;
-  border-radius: var(--border-radius);
-  transition: all var(--motion-duration-mid);
+  border-radius: var(--alley-border-radius);
+  transition: all var(--alley-motion-duration-mid);
 
   &:hover:not([disabled]) {
     border-color: var(--alley-input-number-hover-border-color);
@@ -60,20 +60,20 @@ $base: 'alley-input-number';
     border-color: var(--alley-input-number-active-border-color);
     outline: 0;
     background-color: var(--alley-input-number-active-bg);
-    filter: var(--filter-sm);
+    filter: var(--alley-filter-sm);
   }
 
   &-disabled {
-    color: var(--color-text-disabled);
-    background-color: var(--color-bg-container-disabled);
-    border-color: var(--color-border);
+    color: var(--alley-color-text-disabled);
+    background-color: var(--alley-color-bg-container-disabled);
+    border-color: var(--alley-color-border);
     filter: none;
     cursor: not-allowed;
     opacity: 1;
 
     &:hover:not([disable]) {
-      border-color: var(--color-border);
-      background-color: var(--color-bg-container-disabled);
+      border-color: var(--alley-color-border);
+      background-color: var(--alley-color-bg-container-disabled);
     }
 
     .#{$base}-handler-wrap {
@@ -89,49 +89,49 @@ $base: 'alley-input-number';
   &-large {
     padding: 0;
     font-size: var(--alley-input-number-input-font-size-lg);
-    line-height: var(--line-height-lg);
-    border-radius: var(--border-radius-lg);
-    font-size: var(--font-size-lg);
+    line-height: var(--alley-line-height-lg);
+    border-radius: var(--alley-border-radius-lg);
+    font-size: var(--alley-font-size-lg);
 
     & .#{$base}-handler-wrap {
-      border-start-end-radius: var(--border-radius-lg);
-      border-end-end-radius: var(--border-radius-lg);
+      border-start-end-radius: var(--alley-border-radius-lg);
+      border-end-end-radius: var(--alley-border-radius-lg);
     }
 
     & .#{$base}-handler-up {
-      border-start-end-radius: var(--border-radius-lg);
+      border-start-end-radius: var(--alley-border-radius-lg);
     }
 
     & .#{$base}-handler-down {
-      border-end-end-radius: var(--border-radius-lg);
+      border-end-end-radius: var(--alley-border-radius-lg);
     }
 
     input.#{$base}-input {
-      height: calc(var(--control-height-lg) - var(--line-width) * 2);
+      height: calc(var(--alley-control-height-lg) - var(--alley-line-width) * 2);
       padding: var(--alley-input-number-padding-block-lg) var(--alley-input-number-padding-inline-lg);
     }
   }
 
   &-small {
     padding: 0;
-    border-radius: var(--border-radius-sm);
-    height: calc(var(--control-height-sm) - 2px);
+    border-radius: var(--alley-border-radius-sm);
+    height: calc(var(--alley-control-height-sm) - 2px);
 
     & .#{$base}-handler-wrap {
-      border-start-end-radius: var(--border-radius-sm);
-      border-end-end-radius: var(--border-radius-sm);
+      border-start-end-radius: var(--alley-border-radius-sm);
+      border-end-end-radius: var(--alley-border-radius-sm);
     }
 
     & .#{$base}-handler-up {
-      border-start-end-radius: var(--border-radius-sm);
+      border-start-end-radius: var(--alley-border-radius-sm);
     }
 
     & .#{$base}-handler-down {
-      border-end-end-radius: var(--border-radius-sm);
+      border-end-end-radius: var(--alley-border-radius-sm);
     }
 
     input.#{$base}-input {
-      height: calc(var(--control-height-sm) - var(--line-width) * 2);
+      height: calc(var(--alley-control-height-sm) - var(--alley-line-width) * 2);
       padding: var(--alley-input-number-padding-block-sm) var(--alley-input-number-padding-inline-sm);
 
       &::placeholder {
@@ -146,15 +146,15 @@ $base: 'alley-input-number';
     justify-content: center;
     flex: auto;
     height: 40%;
-    border-start-end-radius: var(--border-radius);
+    border-start-end-radius: var(--alley-border-radius);
     overflow: hidden;
-    color: var(--color-text-description);
+    color: var(--alley-color-text-description);
     font-weight: bold;
     line-height: 0;
     text-align: center;
     cursor: pointer;
-    border-inline-start: var(--line-width) var(--line-type) var(--alley-input-number-handle-border-color);
-    transition: all var(--motion-duration-mid) linear;
+    border-inline-start: var(--alley-line-width) var(--alley-line-type) var(--alley-input-number-handle-border-color);
+    transition: all var(--alley-motion-duration-mid) linear;
 
     &:hover {
       height: 60%;
@@ -171,14 +171,14 @@ $base: 'alley-input-number';
       font-size: var(--alley-input-number-handle-font-size);
       display: inline-flex;
       align-items: center;
-      color: var(--color-text-description);
+      color: var(--alley-color-text-description);
       font-style: normal;
       line-height: 0;
       text-align: center;
       text-transform: none;
       vertical-align: -0.125rem;
       text-rendering: optimizeLegibility;
-      transition: all var(--motion-duration-mid) linear;
+      transition: all var(--alley-motion-duration-mid) linear;
 
       >* {
         line-height: 1;
@@ -190,13 +190,13 @@ $base: 'alley-input-number';
     }
 
     &-up {
-      border-start-end-radius: var(--border-radius);
+      border-start-end-radius: var(--alley-border-radius);
     }
 
     &-down {
-      border-block-start: var(--line-width) var(--line-type) var(--alley-input-number-handle-border-color);
+      border-block-start: var(--alley-line-width) var(--alley-line-type) var(--alley-input-number-handle-border-color);
       border-start-end-radius: 0;
-      border-end-end-radius: var(--border-radius);
+      border-end-end-radius: var(--alley-border-radius);
     }
   }
 
@@ -207,14 +207,14 @@ $base: 'alley-input-number';
     width: var(--alley-input-number-handle-width);
     height: 100%;
     border-start-start-radius: 0;
-    border-start-end-radius: var(--border-radius);
-    border-end-end-radius: var(--border-radius);
+    border-start-end-radius: var(--alley-border-radius);
+    border-end-end-radius: var(--alley-border-radius);
     border-end-start-radius: 0;
     opacity: var(--alley-input-number-handle-opacity);
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    transition: opacity var(--motion-duration-mid) linear var(--motion-duration-mid);
+    transition: opacity var(--alley-motion-duration-mid) linear var(--alley-motion-duration-mid);
     background-color: var(--alley-input-number-handle-bg);
   }
 
@@ -222,17 +222,17 @@ $base: 'alley-input-number';
     box-sizing: border-box;
     margin: 0;
     padding: var(--alley-input-number-padding-block) var(--alley-input-number-padding-inline);
-    color: var(--color-text);
+    color: var(--alley-color-text);
     font-size: inherit;
-    line-height: var(--line-height);
+    line-height: var(--alley-line-height);
     list-style: none;
     width: 100%;
     text-align: start;
     background-color: transparent;
     border: 0;
-    border-radius: var(--border-radius);
+    border-radius: var(--alley-border-radius);
     outline: 0;
-    transition: all var(--motion-duration-mid) linear;
+    transition: all var(--alley-motion-duration-mid) linear;
     appearance: textfield;
   }
 
@@ -242,7 +242,7 @@ $base: 'alley-input-number';
     }
 
     &:not(.#{$base}-compact-last-item) {
-      margin-inline-end: calc(var(--line-width) * -1);
+      margin-inline-end: calc(var(--alley-line-width) * -1);
 
       &.#{$base}-compact-first-item {
         border-start-end-radius: 0;

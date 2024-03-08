@@ -1,4 +1,4 @@
-$base: 'alley-progress-circle';
+$base: "alley-progress-circle";
 
 .#{$base} {
   --pi: 3.1415926;
@@ -47,7 +47,7 @@ $base: 'alley-progress-circle';
     left: 50%;
     text-align: center;
     transform: translate(-50%, -50%);
-    font-size: var(--font-size);
+    font-size: var(--alley-font-size);
   }
 
   &-text {
