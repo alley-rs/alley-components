@@ -2,6 +2,8 @@
   "name": "alley-components",
   "private": true,
   "version": "0.0.1",
+  "repository": "https://github.com/alley-rs/alley-components",
+  "author": "thepoy <thepoy@163.com>",
   "type": "module",
   "scripts": {
     "dev": "vite",
