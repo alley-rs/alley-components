@@ -6,8 +6,8 @@ $class-name: "alley-button";
   --alley-color-button-backgroud: #f9f9f9;
   --alley-color-button-text: #213547;
   --alley-color-button-hover: var(--alley-color-hover-text);
-  --alley-color-button-ripple: rgb(146 84 222 / 55%);
-  --alley-color-button-ripple-danger: #ffa4a6;
+  --alley-color-button-ripple: var(--alley-slate-blue-2);
+  --alley-color-button-ripple-danger: #ffccc7;
 
   position: relative;
   border-radius: 8px;
@@ -76,7 +76,7 @@ $class-name: "alley-button";
   &-danger:not(.disabled) {
     &:not(.plain) {
       color: #fff;
-      background-color: var(--alley-color-danger);
+      background-color: var(--alley-color-error);
     }
 
     // &.plain {
@@ -172,5 +172,12 @@ $class-name: "alley-button";
         transform: scale(2);
       }
     }
+  }
+}
+
+.dark {
+  .#{$class-name} {
+    --alley-color-button-backgroud: #1a1a1a;
+    --alley-color-button-text: var(--alley-color-text);
   }
 }
