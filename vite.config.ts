@@ -2,11 +2,28 @@ import { defineConfig } from "vite";
 import path from "path";
 import solid from "vite-plugin-solid";
 import typescript from "@rollup/plugin-typescript";
-import fs from "fs";
+import { exec } from "node:child_process";
 
 function resolve(str: string) {
   return path.resolve(__dirname, str);
 }
+
+const tscAlias = () => {
+  return {
+    name: "tsAlias",
+    writeBundle: (): Promise<void> => {
+      return new Promise((resolve, reject) => {
+        exec("tsc-alias", function callback(error, _, stderr) {
+          if (stderr || error) {
+            reject(stderr || error);
+          } else {
+            resolve();
+          }
+        });
+      });
+    },
+  };
+};
 
 export default defineConfig({
   resolve: {
@@ -25,6 +42,8 @@ export default defineConfig({
       exclude: resolve("node_modules/**"),
       allowSyntheticDefaultImports: true,
     }),
+
+    tscAlias(),
 
     {
       name: "vite:import-css",
