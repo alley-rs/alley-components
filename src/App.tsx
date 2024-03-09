@@ -6,7 +6,8 @@ import {
   InputNumber,
   Flex,
   Link,
-  SpaceCompact,
+  Progress,
+  CircleProgress,
 } from "../packages";
 import DarkSwitch from "./DarkSwitch";
 
@@ -47,6 +48,9 @@ const App = () => {
       <Alert message="点击也没啥用" type="warning" showIcon isClosable />
       <Alert message="点击也没啥用" type="error" showIcon isClosable />
       <Alert message="点击也没啥用" type="success" showIcon isClosable />
+
+      <Progress percent={74.5} />
+      <CircleProgress percent={74.5} />
     </Space>
   );
 };
