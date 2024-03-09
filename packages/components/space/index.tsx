@@ -3,6 +3,7 @@ import type { JSX } from "solid-js";
 import { addClassNames } from "~/utils";
 import "./index.scss";
 import type { BaseOnClickComponentProps } from "~/interface";
+import Compact from "./compact";
 
 const baseClassName = "space";
 
@@ -53,5 +54,7 @@ const Space = (props: SpaceProps) => {
     </div>
   );
 };
+
+Space.Compact = Compact;
 
 export default Space;

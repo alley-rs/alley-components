@@ -1,4 +1,4 @@
-$base: '.space';
+$base: ".space";
 
 #{$base} {
   display: inline-flex;
@@ -57,7 +57,11 @@ $base: '.space';
     flex-direction: row;
 
     >#{$base}-item {
-      margin-right: var(--gap-horizontal);
+
+      // 无子元素时右外边距为 0
+      &:has(*) {
+        margin-right: var(--gap-horizontal);
+      }
 
       &:last-child {
         margin-right: 0;
@@ -69,7 +73,11 @@ $base: '.space';
     flex-direction: column;
 
     >#{$base}-item {
-      margin-bottom: var(--gap-vertical);
+
+      // 无子元素时下外边距为 0
+      &:has(*) {
+        margin-bottom: var(--gap-vertical);
+      }
 
       &:last-child {
         margin-bottom: 0;

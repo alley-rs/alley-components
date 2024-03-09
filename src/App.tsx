@@ -6,7 +6,8 @@ import {
   InputNumber,
   Flex,
   Link,
-  SpaceCompact,
+  Progress,
+  CircleProgress,
 } from "../packages";
 import DarkSwitch from "./DarkSwitch";
 
@@ -33,20 +34,23 @@ const App = () => {
         <Button type="plain">文本按钮</Button>
       </Space>
 
-      <SpaceCompact>
+      <Space.Compact>
         <Input />
         <Button>OK</Button>
-      </SpaceCompact>
+      </Space.Compact>
 
-      <SpaceCompact size="small">
+      <Space.Compact size="small">
         <Input />
         <Button>OK</Button>
-      </SpaceCompact>
+      </Space.Compact>
 
       <Alert message="点击也没啥用" type="info" showIcon isClosable />
       <Alert message="点击也没啥用" type="warning" showIcon isClosable />
       <Alert message="点击也没啥用" type="error" showIcon isClosable />
       <Alert message="点击也没啥用" type="success" showIcon isClosable />
+
+      <Progress percent={74.5} />
+      <CircleProgress percent={74.5} />
     </Space>
   );
 };
