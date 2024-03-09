@@ -25,7 +25,12 @@ const App = () => {
           <InputNumber value={count()} onChange={setCount} />
           <Input value="some words" />
           <Input disabled />
-          <Link href="#">链接</Link>
+          <Link
+            href="https://github.com/alley-rs/alley-components"
+            target="_blank"
+          >
+            链接
+          </Link>
         </Space>
 
         <DarkSwitch />
