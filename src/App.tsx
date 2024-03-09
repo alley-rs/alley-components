@@ -80,15 +80,19 @@ const App = () => {
 
       <Space gap={16}>
         <Tooltip text="这是一条文字提示" placement="top">
-          <Button>上</Button>
+          <Button shape="circle">上</Button>
         </Tooltip>
 
         <Tooltip text="这是一条文字提示" placement="bottom">
-          <Button>下</Button>
+          <Button shape="circle" size="small">
+            下
+          </Button>
         </Tooltip>
 
         <Tooltip text="这是一条文字提示" placement="left">
-          <Button>左</Button>
+          <Button shape="circle" size="large">
+            左
+          </Button>
         </Tooltip>
 
         <Tooltip text="这是一条文字提示" placement="right">
