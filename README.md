@@ -2,6 +2,11 @@
 
 solidjs 简单组件库。
 
+参考了一些 React 组件库的实现，包括：
+
+- antd
+- mui
+
 ## 1 安装
 
 ```bash
