@@ -2,6 +2,16 @@
   "name": "alley-components",
   "version": "0.0.7",
   "repository": "https://github.com/alley-rs/alley-components",
+  "keywords": [
+    "solid",
+    "solidjs",
+    "solid-js",
+    "component",
+    "components",
+    "framework",
+    "frontend",
+    "ui"
+  ],
   "author": "thepoy <thepoy@163.com>",
   "type": "module",
   "scripts": {
