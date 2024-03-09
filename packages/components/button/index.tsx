@@ -18,7 +18,7 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-  BaseSizeComponentProps {
+    BaseSizeComponentProps {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
@@ -41,9 +41,9 @@ const Button = (props: ButtonProps) => {
     !merged.filter || merged.filter === true
       ? merged.style
       : {
-        "--filter-scale": merged.filter.scale,
-        ...merged.style,
-      };
+          "--filter-scale": merged.filter.scale,
+          ...merged.style,
+        };
 
   // 保存 compact 样式
   const [classList, setClassList] = createSignal<string[]>([]);
@@ -95,7 +95,12 @@ const Button = (props: ButtonProps) => {
         {merged.icon}&nbsp;{merged.children}
       </>
     ) : (
-      merged.icon || merged.children
+      merged.icon ||
+      (typeof merged.children === "string"
+        ? merged.children.length === 2 && isChineseChars(merged.children)
+          ? addSpace(merged.children)
+          : merged.children
+        : merged.children)
     );
 
   return (
@@ -120,6 +125,14 @@ const Button = (props: ButtonProps) => {
       </Show>
     </button>
   );
+};
+
+const addSpace = (text: string): string => text[0] + " " + text[1];
+
+const isChineseChars = (text: string): boolean => {
+  const regex = /^[\u4E00-\u9FA5]+$/;
+
+  return regex.test(text);
 };
 
 export default Button;

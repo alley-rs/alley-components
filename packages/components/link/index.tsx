@@ -17,6 +17,7 @@ interface BaseLinkProps {
   children: JSXElement;
   wrap?: boolean;
   filter?: boolean;
+  target?: "_blank" | "_self" | "_parent" | "_top";
 }
 
 export type LinkProps =
@@ -39,6 +40,7 @@ const Link = (props: LinkProps) => {
       class={classNames()}
       href={"href" in merged ? merged.href : undefined}
       onClick={"onClick" in merged ? merged.onClick : undefined}
+      target={merged.target}
     >
       {merged.children}
     </a>

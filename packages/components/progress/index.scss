@@ -1,4 +1,5 @@
 .progress {
+  --alley-color-progress-text: #fff;
   --alley-border-radius: 2px;
   --fill-color: var(--alley-color-primary);
 
@@ -42,5 +43,11 @@
     background-color: var(--alley-color-success);
     height: 100%;
     transition: width 0.3s;
+  }
+}
+
+.dark {
+  .progress {
+    --alley-color-progress-text: var(--alley-color-light);
   }
 }

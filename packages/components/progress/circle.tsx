@@ -21,7 +21,11 @@ const baseClassName = "alley-progress-circle";
 
 const CircleProgress = (props: CircleProgressProps) => {
   const merged = mergeProps(
-    { trackWidth: 6, trackColor: "#2b2b2b", fillColor: "var(--color-primary)" },
+    {
+      trackWidth: 6,
+      trackColor: "#2b2b2b",
+      fillColor: "var(--alley-color-primary)",
+    },
     props,
   );
 

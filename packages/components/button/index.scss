@@ -11,8 +11,9 @@ $class-name: "alley-button";
 
   position: relative;
   border-radius: 8px;
+  height: var(--alley-control-height);
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: var(--alley-padding-xs) var(--alley-padding-xxl);
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -54,22 +55,36 @@ $class-name: "alley-button";
   &.circle {
     border-radius: 50%;
     padding: 0.6rem;
+    height: var(--alley-control-height);
+    width: var(--alley-control-height);
   }
 
   &-small {
-    font-size: var(--alley-font-size);
+    font-size: var(--alley-font-size-4);
     line-height: var(--alley-button-content-line-height-sm);
-    height: var(--control-height-sm);
+    height: var(--alley-control-height-sm);
     padding: 0 7px;
     border-radius: 4px;
 
     &.circle {
       padding: 0.3rem;
-      width: var(--control-height-sm);
+      width: var(--alley-control-height-sm);
+      height: var(--alley-control-height-sm);
     }
 
     &.plain {
       height: var(--alley-font-size);
+    }
+  }
+
+  &-large {
+    font-size: var(--alley-font-size-8);
+    height: var(--alley-control-height-lg);
+
+    &.circle {
+      padding: 0.8rem;
+      width: var(--alley-control-height-lg);
+      height: var(--alley-control-height-lg);
     }
   }
 
