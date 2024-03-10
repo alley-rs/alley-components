@@ -176,9 +176,10 @@ const App = () => {
         </Card>
       </Flex>
 
-      <FloatButton.Group
-        options={[{ onClick: () => { }, tooltip: "回到主页" }]}
-      />
+      <FloatButton.Group>
+        <FloatButton.BackTop visibilityHeight={100} />
+        <FloatButton />
+      </FloatButton.Group>
     </>
   );
 };

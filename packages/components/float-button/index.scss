@@ -12,13 +12,12 @@
     bottom: var(--bottom);
   }
 
-  &:is(.group-item):not(:first-child) {
-    margin-top: 5px;
-  }
-
   &-group {
     position: fixed;
     right: var(--right);
     bottom: var(--bottom);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
   }
 }

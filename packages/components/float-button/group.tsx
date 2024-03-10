@@ -1,6 +1,7 @@
-import { For } from "solid-js";
+import { createContext } from "solid-js";
 import type { FloatGroupProps } from "./interface";
-import FloatButton from "./button";
+
+export const FloatGroupContext = createContext<{ class: string }>();
 
 const FloatGroup = (props: FloatGroupProps) => {
   return (
@@ -11,9 +12,9 @@ const FloatGroup = (props: FloatGroupProps) => {
         "--bottom": `${props.bottom ?? 20}px`,
       }}
     >
-      <For each={props.options}>
-        {(option) => <FloatButton {...option} class="group-item" />}
-      </For>
+      <FloatGroupContext.Provider value={{ class: "group-item" }}>
+        {props.children}
+      </FloatGroupContext.Provider>
     </div>
   );
 };
