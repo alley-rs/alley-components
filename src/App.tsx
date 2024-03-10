@@ -50,7 +50,15 @@ const App = () => {
           <Button type="plain">文本按钮</Button>
         </Space>
 
+        <Button block filter size="small">
+          块按钮
+        </Button>
+
         <Button block filter>
+          块按钮
+        </Button>
+
+        <Button block filter size="large">
           块按钮
         </Button>
 
