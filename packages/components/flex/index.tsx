@@ -11,6 +11,7 @@ export interface FlexProps extends BaseComponentProps {
   flex?: number;
   direction?: "horizontal" | "vertical";
   inline?: boolean;
+  gap?: "small" | "middle" | "large" | number;
 }
 
 const baseClassName = "flex";
@@ -25,13 +26,24 @@ const Flex = (props: FlexProps) => {
       props.direction
         ? `${baseClassName}__${props.direction}`
         : `${baseClassName}__horizontal`,
+      props.gap !== undefined &&
+      typeof props.gap === "string" &&
+      `${baseClassName}-gap-${props.gap}`,
       props.class || "",
     );
 
-  const style = (): JSX.CSSProperties | undefined =>
-    props.flex
-      ? { ...props.style, flex: `${props.flex} ${props.flex} auto` }
-      : props.style;
+  const style = (): JSX.CSSProperties | undefined => {
+    const stl = { ...props.style };
+
+    if (props.flex) stl.flex = props.flex;
+
+    if (props.gap) {
+      stl["row-gap"] = `${props.gap}px`;
+      stl["column-gap"] = `${props.gap}px`;
+    }
+
+    return stl;
+  };
 
   return (
     <div class={className()} style={style()}>
