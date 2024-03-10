@@ -1,0 +1,52 @@
+$base: "alley-typography";
+
+.#{$base} {
+
+  &+h1.#{$base},
+  &+h2.#{$base},
+  &+h3.#{$base},
+  &+h4.#{$base},
+  &+h5.#{$base} {
+    margin-top: var(--alley-typography-title-margin-top);
+  }
+}
+
+h1.#{$base} {
+  margin-bottom: var(--alley-typography-title-margin-bottom);
+  color: var(--alley-color-text-heading);
+  font-weight: var(--alley-font-weight-strong);
+  font-size: var(--alley-font-size-heading-1);
+  line-height: var(--alley-line-height-heading-1);
+}
+
+h2.#{$base} {
+  margin-bottom: var(--alley-typography-title-margin-bottom);
+  color: var(--alley-color-text-heading);
+  font-weight: var(--alley-font-weight-strong);
+  font-size: var(--alley-font-size-heading-2);
+  line-height: var(--alley-line-height-heading-2);
+}
+
+h3.#{$base} {
+  margin-bottom: var(--alley-typography-title-margin-bottom);
+  color: var(--alley-color-text-heading);
+  font-weight: var(--alley-font-weight-strong);
+  font-size: var(--alley-font-size-heading-3);
+  line-height: var(--alley-line-height-heading-3);
+}
+
+h4.#{$base} {
+  margin-bottom: var(--alley-typography-title-margin-bottom);
+  color: var(--alley-color-text-heading);
+  font-weight: var(--alley-font-weight-strong);
+  font-size: var(--alley-font-size-heading-4);
+  line-height: var(--alley-line-height-heading-4);
+}
+
+h5.#{$base} {
+  margin-bottom: var(--alley-typography-title-margin-bottom);
+  color: var(--alley-color-text-heading);
+  font-weight: var(--alley-font-weight-strong);
+  font-size: var(--alley-font-size-heading-5);
+  line-height: var(--alley-line-height-heading-5);
+}

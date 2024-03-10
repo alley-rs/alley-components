@@ -1,6 +1,6 @@
 export const addClassNames = (
   base: string,
-  ...others: (string | undefined | false)[]
+  ...others: (string | undefined | false | null | 0)[]
 ): string => {
   const names = Array.from(new Set(others.filter((s) => s && s !== "")));
   return [base, ...names].join(" ");

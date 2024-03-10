@@ -106,6 +106,7 @@
   --alley-color-bg-container-disabled: rgba(0, 0, 0, 0.04);
 
   --alley-color-border: #eee;
+  --alley-color-border-secondary: #f0f0f0;
 
   --alley-color-mask: rgba(255, 255, 255, 0.8);
 
@@ -122,11 +123,22 @@
 
   --alley-font-size: var(--alley-font-size-6);
   --alley-font-size-icon: var(--alley-font-size-4);
+  --alley-font-size-lg: var(--alley-font-size-8);
+
+  --alley-font-size-heading-1: 38px;
+  --alley-font-size-heading-2: 30px;
+  --alley-font-size-heading-3: 24px;
+  --alley-font-size-heading-4: 20px;
+  --alley-font-size-heading-5: 16px;
+
+  --alley-font-weight-strong: 600;
 
   --alley-font-monospace: "Luxi Mono", "Monaco", "Consolas", "Cascadia Mono",
     "Courier New", monospace, -apple-system, BlinkMacSystemFont, "Segoe UI",
     Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
     "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+
+  --alley-font-family-code: var(--alley-font-monospace);
 
   --alley-motion-duration-fast: 0.1s;
   --alley-motion-duration-mid: 0.2s;
@@ -143,20 +155,30 @@
 
   --alley-line-width: 1px;
   --alley-line-type: solid;
+
   --alley-line-height: 1.5714285714285714;
+  --alley-line-height-heading-1: 1.2105263157894737;
+  --alley-line-height-heading-2: 1.2666666666666666;
+  --alley-line-height-heading-3: 1.3333333333333333;
+  --alley-line-height-heading-4: 1.4;
+  --alley-line-height-heading-5: 1.5;
 
   --alley-margin-xs: 8px;
 
   --alley-padding-xxs: 4px;
-  --alley-padding-xs: 6px;
+  --alley-padding-xs: 8px;
   --alley-padding-s: 8px;
-  --alley-padding: 10px;
+  --alley-padding: 16px;
   --alley-padding-l: 12px;
   --alley-padding-xl: 14px;
-  --alley-padding-xxl: 16px;
+  --alley-padding-xxl: 24px;
+
+  --alley-padding-lg: 24px;
 
   --alley-box-shadow-secondary: rgba(0, 0, 0, 0.08) 0px 6px 16px 0px,
     rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px;
+  --alley-box-shadow-tertiary: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
 
   --alley-control-height-sm: 24px;
   --alley-control-height: 32px;
@@ -184,6 +206,7 @@
 
 .dark {
   --alley-color-text: var(--alley-color-light);
+  --alley-color-text-heading: rgba(255, 255, 255, 0.85);
   --alley-color-text-reverse: #1a1a1a;
   --alley-color-text-disabled: #6a6a6a;
   --alley-color-text-description: rgba(255, 255, 255, 0.45);

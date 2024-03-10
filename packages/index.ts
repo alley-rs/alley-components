@@ -68,6 +68,8 @@ export type { SwitchProps } from "~/components/switch";
 export { default as Tooltip } from "~/components/tooltip";
 export type { TooltipProps } from "~/components/tooltip";
 
+export { default as Typography } from "~/components/typography";
+
 export { addClassNames } from "~/utils";
 
 export { default as useDark } from "~/hooks/useDark";

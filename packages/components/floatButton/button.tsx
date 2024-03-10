@@ -1,15 +1,17 @@
-import Button from "../button";
-import Tooltip from "../tooltip";
 import "./index.scss";
 import { classNames } from "~/utils/class";
 import { TbHome } from "solid-icons/tb";
 import type { FloatButtonProps } from "./interface";
+import { lazy } from "solid-js";
+
+const LazyButton = lazy(() => import("../button"));
+const LazyTooltip = lazy(() => import("../tooltip"));
 
 const FloatButton = (props: FloatButtonProps) => {
   const className = classNames("float-button", props.class);
 
   const button = (
-    <Button
+    <LazyButton
       {...props}
       icon={props.icon ?? <TbHome />}
       onClick={props.onClick}
@@ -26,7 +28,7 @@ const FloatButton = (props: FloatButtonProps) => {
       }}
     >
       {props.tooltip ? (
-        <Tooltip text={props.tooltip}>{button}</Tooltip>
+        <LazyTooltip text={props.tooltip}>{button}</LazyTooltip>
       ) : (
         button
       )}
