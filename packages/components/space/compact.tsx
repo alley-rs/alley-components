@@ -1,7 +1,14 @@
-import { children, createEffect } from "solid-js";
+import { createContext } from "solid-js";
 import { addClassNames } from "~/utils";
-import type { BaseSizeComponentProps } from "~/interface";
+import type { BaseSizeComponentProps, SizeType } from "~/interface";
 import "./index.scss";
+
+interface SpaceCompactContextType {
+  childClass: string;
+  size?: SizeType;
+}
+
+export const SpaceCompactContext = createContext<SpaceCompactContextType>();
 
 const baseClassName = "space-compact";
 
@@ -14,31 +21,7 @@ export interface SpaceCompactProps extends BaseSizeComponentProps {
 }
 
 const Compact = (props: SpaceCompactProps) => {
-  const childNodes = children(() => props.children);
-
-  createEffect(() => {
-    childNodes.toArray().forEach((e, i) => {
-      if (!e) return;
-
-      const node = e as HTMLElement;
-      const componentName = node.classList[0] ?? node.tagName.toLowerCase();
-
-      const sizeClassName = `${componentName}-${props.size}`;
-
-      const classNames: string[] = [
-        sizeClassName,
-        `${componentName}-compact-item`,
-      ];
-
-      if (i === 0) classNames.push(`${componentName}-compact-first-item`);
-      else if (i === childNodes.toArray().length - 1)
-        classNames.push(`${componentName}-compact-last-item`);
-
-      node.classList.add(...classNames);
-    });
-  });
-
-  const clx = () =>
+  const classes = () =>
     addClassNames(
       baseClassName,
       props.block && `${baseClassName}-block`,
@@ -51,8 +34,12 @@ const Compact = (props: SpaceCompactProps) => {
   });
 
   return (
-    <div class={clx()} style={style()}>
-      {childNodes()}
+    <div class={classes()} style={style()}>
+      <SpaceCompactContext.Provider
+        value={{ childClass: `${baseClassName}-item`, size: props.size }}
+      >
+        {props.children}
+      </SpaceCompactContext.Provider>
     </div>
   );
 };

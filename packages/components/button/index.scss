@@ -138,7 +138,7 @@ $class-name: "alley-button";
     }
   }
 
-  &-compact-item {
+  &-space-compact-item {
     border: var(--alley-line-width) var(--alley-line-type) var(--alley-color-border);
 
     &:not([disabled]) {
@@ -152,8 +152,8 @@ $class-name: "alley-button";
       }
     }
 
-    &:not(.#{$class-name}-compact-first-item) {
-      &.#{$class-name}-compact-last-item {
+    &:not(:first-child) {
+      &:last-child {
         border-start-start-radius: 0;
         border-end-start-radius: 0;
       }
