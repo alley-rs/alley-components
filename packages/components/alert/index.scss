@@ -4,6 +4,7 @@ $base: "alley-alert";
   --alley-alert-with-description-icon-size: 24px;
   --alley-alert-default-padding: 8px 12px;
   --alley-alert-with-description-padding: 20px 24px;
+  --alley-alert-close-button-color: rgba(0, 0, 0, 0.45);
 
   box-sizing: border-box;
   margin: 0;
@@ -73,7 +74,7 @@ $base: "alley-alert";
     border: none;
     outline: none;
     cursor: pointer;
-    color: rgba(0, 0, 0, 0.45);
+    color: var(--alley-alert-close-button-color);
   }
 
   &-success {
@@ -120,5 +121,11 @@ $base: "alley-alert";
     100% {
       transform: translateX(-100%);
     }
+  }
+}
+
+.dark {
+  .#{$base} {
+    --alley-alert-close-button-color: rgba(255, 255, 255, 0.45);
   }
 }
