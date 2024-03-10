@@ -1,6 +1,8 @@
 # Alley Components
 
-solidjs 简单组件库。
+一个专门为桌面软件写的 solidjs 简单组件库。
+
+本框架应用于使用 [tauri](https://github.com/tauri-apps/tauri)、[electron](https://github.com/electron/electron) 开发的桌面软件，所以当前未实现`message`、`notification`、`modal`等反馈组件，这些组件可通过桌面开发框架调用系统 API 或创建多窗口实现。
 
 参考了一些 React 组件库的实现，包括：
 
@@ -42,3 +44,15 @@ const LazyButton = lazy(() => import("alley-components/lib/components/button"))
 ```
 
 懒加载能够将`Button`组件单独打包到一个 js 文件中，避免打包产物体积过大。
+
+## 3 示例和开发
+
+克隆本仓库并安装依赖后执行：
+
+```bash
+pnpm dev
+```
+
+在任意浏览器中打开`http://127.0.0.1:5173`可查看组件运行效果，如图：
+
+![example](./docs/images/example.avif)
