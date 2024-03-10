@@ -89,8 +89,9 @@ const Alert = (props: AlertProps) => {
   const classes = () =>
     addClassNames(
       baseClassName,
-      `${baseClassName}-${merged.type}`,
       merged.class,
+      `${baseClassName}-${merged.type}`,
+      merged.description && `${baseClassName}-with-description`,
     );
 
   const style = () => ({
@@ -120,8 +121,14 @@ const Alert = (props: AlertProps) => {
         </Show>
 
         <div class={`${baseClassName}-content`}>
-          <Show when={merged.message}>{merged.message}</Show>
-          <Show when={merged.description}>{merged.description}</Show>
+          <Show when={merged.message}>
+            <div class={`${baseClassName}-message`}>{merged.message}</div>
+          </Show>
+          <Show when={merged.description}>
+            <div class={`${baseClassName}-description`}>
+              {merged.description}
+            </div>
+          </Show>
         </div>
 
         <CloseIconNode

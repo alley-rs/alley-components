@@ -12,7 +12,6 @@ $base: "alley-alert";
   font-size: var(--alley-font-size, --alley-font-size);
   line-height: var(--alley-line-height, --alley-line-height);
   list-style: none;
-  // font-family: var(--alley-font-family);
   position: relative;
   display: flex;
   align-items: center;
@@ -20,6 +19,11 @@ $base: "alley-alert";
   border-radius: var(--alley-border-radius-lg, --alley-border-radius-lg);
   text-align: start;
   transition: all 0.2s ease-in-out;
+
+  & [class^="alley-alert"],
+  & [class*=" alley-alert"] {
+    box-sizing: border-box;
+  }
 
   &-closing {
     animation: close var(--#{$base}-close-speed) ease-in;
@@ -36,6 +40,26 @@ $base: "alley-alert";
 
     .#{$base}-message {
       color: var(--alley-color-text-heading);
+    }
+  }
+
+  .#{$base}-description {
+    display: none;
+    font-size: var(--alley-font-size);
+    line-height: var(--alley-line-height);
+  }
+
+  &-with-description {
+    .#{$base}-message {
+      display: block;
+      margin-bottom: var(--alley-margin-xs);
+      color: var(--alley-color-text-heading);
+      font-size: var(--alley-font-size-lg);
+    }
+
+    .#{$base}-description {
+      display: block;
+      color: var(--alley-color-text);
     }
   }
 
