@@ -68,6 +68,14 @@ const App = () => {
         <Alert message="点击也没啥用" type="error" showIcon isClosable />
         <Alert message="点击也没啥用" type="success" showIcon isClosable />
 
+        <Alert
+          message="信息"
+          description="点击也没啥用"
+          type="info"
+          showIcon
+          isClosable
+        />
+
         <Progress percent={74.5} />
 
         <Space gap={20}>
