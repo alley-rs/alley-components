@@ -103,8 +103,9 @@ const Alert = (props: AlertProps) => {
     e: MouseEvent & { currentTarget: HTMLButtonElement },
   ) => {
     e.currentTarget.parentElement?.classList.add(`${baseClassName}-closing`);
-    setTimeout(() => {
+    const tid = setTimeout(() => {
       setClosed(true);
+      clearTimeout(tid);
     }, merged.closeSpeed);
     merged.onClose?.(e);
   };
