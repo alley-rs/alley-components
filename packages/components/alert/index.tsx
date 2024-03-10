@@ -84,7 +84,7 @@ export interface AlertProps
 const Alert = (props: AlertProps) => {
   const [closed, setClosed] = createSignal(false);
 
-  const merged = mergeProps({ closeSpeed: 500 }, props);
+  const merged = mergeProps({ closeSpeed: 240 }, props);
 
   const classes = () =>
     addClassNames(
