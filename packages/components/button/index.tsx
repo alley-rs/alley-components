@@ -18,7 +18,7 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-    BaseSizeComponentProps {
+  BaseSizeComponentProps {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
@@ -27,6 +27,7 @@ export interface ButtonProps
   filter?: boolean | Filter;
   danger?: boolean;
   isLoading?: boolean;
+  rippleDuration?: number;
 }
 
 const baseClassName = "alley-button";
@@ -41,9 +42,9 @@ const Button = (props: ButtonProps) => {
     !merged.filter || merged.filter === true
       ? merged.style
       : {
-          "--filter-scale": merged.filter.scale,
-          ...merged.style,
-        };
+        "--filter-scale": merged.filter.scale,
+        ...merged.style,
+      };
 
   // 保存 compact 样式
   const [classList, setClassList] = createSignal<string[]>([]);
@@ -120,6 +121,7 @@ const Button = (props: ButtonProps) => {
                 ? "var(--alley-color-button-ripple-danger)"
                 : undefined
             }
+            duration={merged.rippleDuration}
           />
         </Show>
       </Show>
