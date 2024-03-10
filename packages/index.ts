@@ -21,12 +21,12 @@ export type { EmptyProps } from "~/components/empty";
 export { default as Flex } from "~/components/flex";
 export type { FlexProps } from "~/components/flex";
 
-export { default as FloatButton } from "~/components/floatButton";
-export { default as FloatButtonGroup } from "~/components/floatButton/group";
+export { default as FloatButton } from "~/components/float-button";
+export { default as FloatButtonGroup } from "~/components/float-button/group";
 export type {
   FloatGroupProps,
   FloatButtonProps,
-} from "~/components/floatButton/interface";
+} from "~/components/float-button/interface";
 
 export { default as Input } from "~/components/input";
 export { default as InputPassword } from "~/components/input/password";
