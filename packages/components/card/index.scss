@@ -1,5 +1,75 @@
-.alley-card {
-  &__title {
-    font-weight: bold;
+$base: "alley-card";
+
+.#{$base} {
+  --alley-card-header-bg: transparent;
+  --alley-card-header-font-size: 16px;
+  --alley-card-header-font-size-sm: 14px;
+  --alley-card-header-height: 56px;
+  --alley-card-header-height-sm: 38px;
+  --alley-card-actions-bg: #ffffff;
+  --alley-card-actions-li-margin: 12px 0;
+  --alley-card-tabs-margin-bottom: -17px;
+  --alley-card-extra-color: rgba(0, 0, 0, 0.88);
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--alley-color-text);
+  font-size: var(--alley-font-size);
+  line-height: var(--alley-line-height);
+  list-style: none;
+  font-family: var(--alley-font-family);
+  position: relative;
+  background: var(--alley-color-bg-container);
+  border-radius: var(--alley-border-radius-lg);
+
+  & [class^="alley-card"],
+  & [class*=" alley-card"] {
+    box-sizing: border-box;
+  }
+
+  &:not(.#{base}-bordered) {
+    box-shadow: var(--alley-box-shadow-tertiary);
+  }
+
+  &-head {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    min-height: var(--alley-card-header-height);
+    margin-bottom: -1px;
+    padding: 0 var(--alley-card-padding);
+    color: var(--alley-color-text-heading);
+    font-weight: var(--alley-font-weight-strong);
+    font-size: var(--alley-card-header-font-size);
+    background: var(--alley-card-header-bg);
+    border-bottom: var(--alley-line-width) var(--alley-line-type) var(--alley-color-border-secondary);
+    border-radius: var(--alley-border-radius-lg) var(--alley-border-radius-lg) 0 0;
+
+    &-wrapper {
+      width: 100%;
+      display: flex;
+      align-items: center;
+    }
+
+    &-title {
+      display: inline-block;
+      flex: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+
+    &-extra {
+      margin-inline-start: auto;
+      color: var(--alley-card-extra-color);
+      font-weight: normal;
+      font-size: var(--alley-font-size);
+    }
+  }
+
+  &-body {
+    padding: var(--alley-card-padding);
+    border-radius: 0 0 var(--alley-border-radius-lg) var(--alley-border-radius-lg);
   }
 }

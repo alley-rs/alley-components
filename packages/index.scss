@@ -106,6 +106,7 @@
   --alley-color-bg-container-disabled: rgba(0, 0, 0, 0.04);
 
   --alley-color-border: #eee;
+  --alley-color-border-secondary: #f0f0f0;
 
   --alley-color-mask: rgba(255, 255, 255, 0.8);
 
@@ -165,15 +166,19 @@
   --alley-margin-xs: 8px;
 
   --alley-padding-xxs: 4px;
-  --alley-padding-xs: 6px;
+  --alley-padding-xs: 8px;
   --alley-padding-s: 8px;
-  --alley-padding: 10px;
+  --alley-padding: 16px;
   --alley-padding-l: 12px;
   --alley-padding-xl: 14px;
-  --alley-padding-xxl: 16px;
+  --alley-padding-xxl: 24px;
+
+  --alley-padding-lg: 24px;
 
   --alley-box-shadow-secondary: rgba(0, 0, 0, 0.08) 0px 6px 16px 0px,
     rgba(0, 0, 0, 0.12) 0px 3px 6px -4px, rgba(0, 0, 0, 0.05) 0px 9px 28px 8px;
+  --alley-box-shadow-tertiary: 0 1px 2px 0 rgba(0, 0, 0, 0.03),
+    0 1px 6px -1px rgba(0, 0, 0, 0.02), 0 2px 4px 0 rgba(0, 0, 0, 0.02);
 
   --alley-control-height-sm: 24px;
   --alley-control-height: 32px;

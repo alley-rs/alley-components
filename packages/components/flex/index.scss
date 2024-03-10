@@ -1,6 +1,18 @@
 .flex {
   display: flex;
 
+  &-gap-small {
+    gap: var(--alley-padding-xs);
+  }
+
+  &-gap-middle {
+    gap: var(--alley-padding);
+  }
+
+  &-gap-large {
+    gap: var(--alley-padding-lg);
+  }
+
   &-inline {
     display: inline-flex;
   }

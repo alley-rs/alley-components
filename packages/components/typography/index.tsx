@@ -7,7 +7,9 @@ export interface TypographyProps extends BaseComponentProps { }
 
 export const baseClassName = "alley-typography";
 
-const Typography = (props: TypographyProps) => { };
+const Typography = (props: TypographyProps) => {
+  return props.children;
+};
 
 Typography.Title = Title;
 Typography.Text = Text;

@@ -49,17 +49,17 @@ const Col = (props: ColProps) => {
   const style = () =>
     props.gutter
       ? {
-          ...props.style,
-          "padding-left": props.gutter + "px",
-          "padding-right": props.gutter + "px",
-        }
+        ...props.style,
+        "padding-left": props.gutter + "px",
+        "padding-right": props.gutter + "px",
+      }
       : props.style;
 
   return (
     <div class={className()} style={style()}>
       <Flex
         inline
-        style={{ height: "100%", "max-width": "100%" }}
+        style={{ height: "100%", "max-width": "100%", width: "100%" }}
         align={props.align}
         justify={props.justify}
       >
