@@ -1,0 +1,10 @@
+.alley-typography {
+  --alley-typography-title-margin-top: 1.2em;
+  --alley-typography-title-margin-bottom: 0.5em;
+
+  color: var(--alley-color-text);
+  word-break: break-word;
+  line-height: var(--alley-line-height);
+  font-size: var(--alley-font-size);
+  box-sizing: border-box;
+}

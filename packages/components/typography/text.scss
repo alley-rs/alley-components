@@ -1,0 +1,70 @@
+$base: "alley-typography";
+
+.#{$base} {
+  &.#{$base}-secondary {
+    color: var(--alley-color-text-description);
+  }
+
+  &.#{$base}-success {
+    color: var(--alley-color-success);
+  }
+
+  &.#{$base}-warning {
+    color: var(--alley-color-warning);
+  }
+
+  &.#{$base}-danger {
+    color: var(--alley-color-danger);
+  }
+
+  &.#{$base}-disabled {
+    color: var(--alley-color-text-disabled);
+    cursor: not-allowed;
+    user-select: none;
+  }
+
+  mark {
+    padding: 0;
+    background-color: #ffe58f;
+  }
+
+  code {
+    margin: 0 0.2em;
+    padding-inline: 0.4em;
+    padding-block: 0.2em 0.1em;
+    font-size: 85%;
+    font-family: var(--alley-font-family-code);
+    background: rgba(150, 150, 150, 0.1);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    border-radius: 3px;
+  }
+
+  kbd {
+    margin: 0 0.2em;
+    padding-inline: 0.4em;
+    padding-block: 0.15em 0.1em;
+    font-size: 90%;
+    font-family: var(--alley-font-family-code);
+    background: rgba(150, 150, 150, 0.06);
+    border: 1px solid rgba(100, 100, 100, 0.2);
+    border-bottom-width: 2px;
+    border-radius: 3px;
+  }
+
+  u {
+    text-decoration: underline;
+    text-decoration-skip-ink: auto;
+  }
+
+  del {
+    text-decoration: line-through;
+  }
+
+  strong {
+    font-weight: 600;
+  }
+
+  i {
+    font-style: italic;
+  }
+}
