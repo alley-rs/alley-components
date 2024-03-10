@@ -21,6 +21,7 @@ const { Title, Text } = Typography;
 
 const App = () => {
   const [count, setCount] = createSignal(10);
+  const [percent, setPercent] = createSignal(0);
 
   return (
     <>
@@ -85,12 +86,24 @@ const App = () => {
           isClosable
         />
 
-        <Progress percent={74.5} />
+        <Progress percent={percent()} />
 
         <Space gap={20}>
-          <CircleProgress percent={74.5} size="small" />
-          <CircleProgress percent={74.5} />
-          <CircleProgress percent={74.5} size="large" />
+          <CircleProgress percent={percent()} size="small" />
+          <CircleProgress percent={percent()} />
+          <CircleProgress percent={percent()} size="large" />
+          <Button
+            onClick={() => setPercent((prev) => prev + 2.5)}
+            disabled={percent() === 100}
+          >
+            +
+          </Button>
+          <Button
+            onClick={() => setPercent((prev) => prev - 2.5)}
+            disabled={percent() === 0}
+          >
+            -
+          </Button>
         </Space>
 
         <Space gap={20}>
