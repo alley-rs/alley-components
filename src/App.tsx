@@ -112,10 +112,6 @@ const App = () => {
             <Button>右</Button>
           </Tooltip>
         </Space>
-
-        <FloatButton.Group
-          options={[{ onClick: () => { } }]}
-        ></FloatButton.Group>
       </Space>
 
       <Title>一级标题</Title>
@@ -142,6 +138,7 @@ const App = () => {
 
       <Flex
         gap={20}
+        align="center"
         style={{ padding: "20px", "background-color": "rgb(240, 242, 245)" }}
       >
         <Card title="卡片标题" padding={10} style={{ width: "300px" }}>
@@ -178,6 +175,10 @@ const App = () => {
           <p>卡片内容</p>
         </Card>
       </Flex>
+
+      <FloatButton.Group
+        options={[{ onClick: () => { }, tooltip: "回到主页" }]}
+      />
     </>
   );
 };
