@@ -72,8 +72,8 @@ const Ripple = (props: RippleProps) => {
 
     const size = width > height ? width : height;
 
-    const x = e.pageX - rectX - size / 2;
-    const y = e.pageY - rectY - size / 2;
+    const x = e.clientX - rectX - size / 2;
+    const y = e.clientY - rectY - size / 2;
 
     const ripple = { x, y, size };
 
