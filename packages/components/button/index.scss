@@ -133,12 +133,12 @@ $base: "alley-button";
   }
 
   &-danger:not(.#{$base}-disabled) {
-    &:not(.plain) {
+    &:not(.#{$base}-plain) {
       color: #fff;
       background-color: var(--alley-color-error);
     }
 
-    // &.plain {
+    // &.#{$base}-plain {
     //   color: var(--alley-color-text);
     // }
 
@@ -149,7 +149,7 @@ $base: "alley-button";
       transform: scale(var(--filter-scale));
     }
 
-    &.plain.#{$base}-filter:not(.#{$base}-disabled):hover {
+    &.#{$base}-plain.#{$base}-filter:not(.#{$base}-disabled):hover {
       filter: drop-shadow(0 0 10px var(--alley-color-danger));
       transform: scale(var(--filter-scale));
       color: var(--alley-color-danger);
