@@ -69,7 +69,7 @@ const CircleProgress = (props: CircleProgressProps) => {
     "--percent": merged.percent.toString(),
     "--track-color": merged.trackColor,
     "--fill-color":
-      merged.percent === 100 ? "var(--color-success)" : merged.fillColor,
+      merged.percent === 100 ? "var(--alley-color-success)" : merged.fillColor,
   });
 
   return (
