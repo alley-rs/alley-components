@@ -206,6 +206,7 @@
   background-color: var(--alley-color-bg);
 
   /* 桌面端默认禁止文本选择 */
+  -webkit-user-select: none;
   user-select: none;
 }
 
