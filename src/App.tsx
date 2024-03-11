@@ -1,5 +1,5 @@
 import { createSignal, lazy } from "solid-js";
-import { FloatButton, Layout, useDark } from "../packages";
+import { FloatButton, Layout } from "../packages";
 import { Dynamic } from "solid-js/web";
 import DarkSwitchButton from "./DarkSwitch";
 
@@ -19,7 +19,6 @@ const menus = ["按钮", "输入", "文字提示", "进度条", "加载中", "�
 
 const App = () => {
   const [index, setIndex] = createSignal(0);
-  const [isDark, setIsDark] = useDark();
 
   return (
     <>
