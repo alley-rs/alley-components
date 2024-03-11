@@ -1,4 +1,4 @@
-import { Show, mergeProps, useContext } from "solid-js";
+import { Show, children, mergeProps, useContext } from "solid-js";
 import type { JSXElement } from "solid-js";
 import { addClassNames } from "~/utils/class";
 import "./index.scss";
@@ -64,7 +64,7 @@ const Button = (props: ButtonProps) => {
       spaceCompactItemClass && `${baseClassName}-${spaceCompactItemClass}`,
     );
 
-  const children =
+  const resolved = children(() =>
     merged.icon && merged.children ? (
       <>
         {merged.icon}&nbsp;{merged.children}
@@ -76,7 +76,8 @@ const Button = (props: ButtonProps) => {
           ? addSpace(merged.children)
           : merged.children
         : merged.children)
-    );
+    ),
+  );
 
   return (
     <button
@@ -86,7 +87,7 @@ const Button = (props: ButtonProps) => {
       style={style()}
     >
       <Show when={!merged.isLoading} fallback={<Spinner size={merged.size} />}>
-        {children}
+        {resolved()}
         <Show when={merged.type !== "plain"}>
           <Ripple
             color={
