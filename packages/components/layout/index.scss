@@ -9,7 +9,9 @@
   }
 
   &-content {
+    display: flex;
     padding: var(--alley-layout-content-padding);
     flex: 1;
+    overflow-y: scroll;
   }
 }
