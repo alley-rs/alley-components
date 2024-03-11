@@ -1,8 +1,9 @@
-import { createSignal, onMount } from "solid-js";
 import { VsChevronDown, VsChevronUp } from "solid-icons/vs";
 import { addClassNames } from "~/utils";
 import "./index.scss";
 import type { BaseSizeComponentProps } from "~/interface";
+import { useContext } from "solid-js";
+import { SpaceCompactContext } from "../space/compact";
 
 export interface InputNumberProps extends BaseSizeComponentProps {
   max?: number;
@@ -16,49 +17,24 @@ export interface InputNumberProps extends BaseSizeComponentProps {
 const baseClassName = "alley-input-number";
 
 const InputNumber = (props: InputNumberProps) => {
-  // ref 用来获取 compact 样式
-  let ref: HTMLInputElement | undefined;
+  const { childClass: spaceCompactItemClass, size: spaceCompactItemSize } =
+    useContext(SpaceCompactContext) ?? {};
 
-  // 保存 compact 样式
-  const [classList, setClassList] = createSignal<string[]>([]);
-
-  onMount(() => {
-    const arr: string[] = [];
-    ref!.classList.forEach((v) => arr.push(v));
-
-    setClassList(arr);
-  });
+  const size = () => spaceCompactItemSize ?? props.size;
 
   const className = () => {
-    // 之前有 compact 样式时只修改 disabled
-    if (
-      classList().length &&
-      classList().includes(`${baseClassName}-compact-item`)
-    ) {
-      const disabledClass = `${baseClassName}-disabled`;
-      if (!props.disabled && classList().includes(disabledClass)) {
-        setClassList((prev) => {
-          const idx = prev.indexOf(disabledClass);
-
-          return [...prev.slice(0, idx), ...prev.slice(idx + 1)];
-        });
-      } else if (props.disabled && !classList().includes(disabledClass)) {
-        setClassList((prev) => [...prev, disabledClass]);
-      }
-
-      return classList().join(" ");
-    }
-
     return addClassNames(
       baseClassName,
-      props.size && `${baseClassName}-${props.size}`,
+      size() && `${baseClassName}-${size()}`,
       props.disabled && `${baseClassName}-disabled`,
+      spaceCompactItemClass,
+      spaceCompactItemClass && `${baseClassName}-${spaceCompactItemClass}`,
       props.class,
     );
   };
 
   return (
-    <div class={className()} ref={ref}>
+    <div class={className()}>
       <div class={`${baseClassName}-handler-wrap`}>
         <span
           class={`${baseClassName}-handler ${baseClassName}-handler-up`}
