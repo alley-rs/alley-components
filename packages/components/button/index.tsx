@@ -1,4 +1,11 @@
-import { Show, children, mergeProps, useContext } from "solid-js";
+import {
+  Show,
+  children,
+  createMemo,
+  lazy,
+  mergeProps,
+  useContext,
+} from "solid-js";
 import type { JSXElement } from "solid-js";
 import { addClassNames } from "~/utils/class";
 import "./index.scss";
@@ -7,11 +14,13 @@ import type {
   BaseOnClickComponentProps,
   BaseSizeComponentProps,
 } from "~/interface";
-import Spinner from "../spinner";
 import { SpaceCompactContext } from "../space/compact";
 
-type ButtonType = "default" | "plain";
-type ButtonShape = "square" | "circle";
+const LazySpace = lazy(() => import("~/components/space"));
+const LazySpinner = lazy(() => import("~/components/spinner"));
+
+type ButtonType = "default" | "plain" | "primary";
+type ButtonShape = "square" | "circle" | "round";
 
 interface Filter {
   scale: number;
@@ -19,7 +28,7 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-  BaseSizeComponentProps {
+    BaseSizeComponentProps {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
@@ -37,27 +46,35 @@ const Button = (props: ButtonProps) => {
   const { childClass: spaceCompactItemClass, size: spaceCompactItemSize } =
     useContext(SpaceCompactContext) ?? {};
 
-  const merged = mergeProps({ filter: { scale: 1.1 } }, props);
+  const merged = mergeProps({ filter: true }, props);
+
+  const disabled = createMemo(() => merged.isLoading || merged.disabled);
+  const iconOnly = createMemo(() => merged.icon && !merged.children);
 
   const size = () => spaceCompactItemSize ?? props.size;
+
+  const spaceGap = createMemo(() =>
+    size() === "small" ? 4 : size() === "large" ? 8 : 6,
+  );
 
   const style = () =>
     !merged.filter || merged.filter === true
       ? merged.style
       : {
-        "--filter-scale": merged.filter.scale,
-        ...merged.style,
-      };
+          "--filter-scale": merged.filter.scale,
+          ...merged.style,
+        };
 
   const className = () =>
     addClassNames(
       baseClassName,
       merged.class,
-      merged.block && "block",
-      (merged.isLoading || merged.disabled) && "disabled",
-      merged.shape,
-      merged.type,
+      merged.block && `${baseClassName}-block`,
+      disabled() && `${baseClassName}-disabled`,
+      merged.shape && `${baseClassName}-${merged.shape}`,
+      merged.type && `${baseClassName}-${merged.type}`,
       size() && `${baseClassName}-${size()}`,
+      iconOnly() && `${baseClassName}-icon-only`,
       merged.filter && `${baseClassName}-filter`,
       merged.danger && `${baseClassName}-danger`,
       spaceCompactItemClass,
@@ -66,9 +83,10 @@ const Button = (props: ButtonProps) => {
 
   const resolved = children(() =>
     merged.icon && merged.children ? (
-      <>
-        {merged.icon}&nbsp;{merged.children}
-      </>
+      <LazySpace align="center" gap={spaceGap()}>
+        {merged.isLoading ? null : merged.icon}
+        {merged.children}
+      </LazySpace>
     ) : (
       merged.icon ||
       (typeof merged.children === "string"
@@ -79,27 +97,55 @@ const Button = (props: ButtonProps) => {
     ),
   );
 
+  const ripple = children(() => (
+    <Show when={merged.type !== "plain"}>
+      <Ripple
+        color={
+          merged.danger ? "var(--alley-color-button-ripple-danger)" : undefined
+        }
+        duration={merged.rippleDuration}
+      />
+    </Show>
+  ));
+
   return (
     <button
       class={className()}
       onClick={merged.onClick}
-      disabled={merged.isLoading || merged.disabled}
+      disabled={disabled()}
       style={style()}
     >
-      <Show when={!merged.isLoading} fallback={<Spinner size={merged.size} />}>
+      <Show
+        when={!merged.isLoading}
+        fallback={
+          <Loading size={merged.size} gap={spaceGap()} iconOnly={!!iconOnly()}>
+            {resolved()}
+          </Loading>
+        }
+      >
         {resolved()}
-        <Show when={merged.type !== "plain"}>
-          <Ripple
-            color={
-              merged.danger
-                ? "var(--alley-color-button-ripple-danger)"
-                : undefined
-            }
-            duration={merged.rippleDuration}
-          />
-        </Show>
+
+        {ripple()}
       </Show>
     </button>
+  );
+};
+
+interface LoadingProps extends BaseSizeComponentProps {
+  iconOnly: boolean;
+  gap: number;
+}
+
+const Loading = (props: LoadingProps) => {
+  const resolved = children(() => props.children);
+
+  return (
+    <Show when={!props.iconOnly} fallback={<LazySpinner size={props.size} />}>
+      <LazySpace gap={props.gap} align="center">
+        <LazySpinner size={props.size} />
+        {resolved()}
+      </LazySpace>
+    </Show>
   );
 };
 

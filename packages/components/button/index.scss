@@ -1,19 +1,38 @@
-$class-name: "alley-button";
+$base: "alley-button";
 
-.#{$class-name} {
+.#{$base} {
   --filter-scale: 1;
   --alley-button-content-line-height-sm: 1.5714285714285714;
   --alley-color-button-backgroud: #f9f9f9;
   --alley-color-button-text: #213547;
   --alley-color-button-hover: var(--alley-color-hover-text);
   --alley-color-button-ripple: var(--alley-slate-blue-2);
-  --alley-color-button-ripple-danger: #ffccc7;
+  --alley-color-button-ripple-danger: #ff7875;
+  --alley-button-primary-color: #fff;
+  --alley-button-padding-inline: 15px;
+  --alley-button-padding-inline-lg: 15px;
+  --alley-button-padding-inline-sm: 7px;
+  --alley-button-only-icon-size: 16px;
+  --alley-button-only-icon-size-sm: 14px;
+  --alley-button-only-icon-size-lg: 18px;
+  --alley-button-content-font-size: 14px;
+  --alley-button-content-font-size-sm: 14px;
+  --alley-button-content-font-size-lg: 16px;
+  --alley-button-content-line-height: 1.5714285714285714;
+  --alley-button-content-line-height-sm: 1.5714285714285714;
+  --alley-button-content-line-height-lg: 1.5;
+  --alley-button-padding-block: 4px;
+  --alley-button-padding-block-sm: 0;
+  --alley-button-padding-block-lg: 7px;
+  --alley-button-plain-hover-bg: rgba(0, 0, 0, 0.06);
+
+  --alley-button-ripple-container: #d7d9ff;
 
   position: relative;
   border-radius: 8px;
   height: var(--alley-control-height);
   border: 1px solid transparent;
-  padding: var(--alley-padding-xs) var(--alley-padding-xxl);
+  padding: var(--alley-button-padding-block) var(--alley-button-padding-inline);
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
@@ -27,12 +46,12 @@ $class-name: "alley-button";
   // 强制浏览器提前渲染 filter 属性, 防止 transition 中 filter 与 transform 一起使用时不生效
   will-change: filter;
 
-  &:not(.disabled):hover {
+  &:not(.#{$base}-disabled, .#{$base}-primary):hover {
     border-color: var(--alley-color-button-hover);
     color: var(--alley-color-hover);
   }
 
-  &-filter:not(.disabled):hover {
+  &-filter:not(.#{$base}-disabled):hover {
     filter: drop-shadow(0 0 1em var(--alley-color-hover-filter));
     transform: scale(var(--filter-scale));
   }
@@ -42,52 +61,78 @@ $class-name: "alley-button";
     outline: none;
   }
 
-  &.block {
+  &-primary {
+    --alley-button-ripple-container: #9ca1ff;
+
+    color: var(--alley-button-primary-color);
+    background: var(--alley-color-primary);
+    box-shadow: var(--alley-button-primary-shadow);
+  }
+
+  &-block {
     width: 100%;
   }
 
-  &.disabled {
+  &-disabled {
     cursor: not-allowed;
     color: var(--alley-color-text-disabled);
+    background: var(--alley-color-bg-container-disabled);
+    box-shadow: none;
   }
 
-  &.circle {
-    border-radius: 50%;
-    padding: 0.6rem;
-    height: var(--alley-control-height);
+  &.#{$base}-icon-only {
     width: var(--alley-control-height);
+    padding-inline-start: 0;
+    padding-inline-end: 0;
+
+    &.#{$base}-round {
+      width: auto;
+    }
+  }
+
+  &.#{$base}-round {
+    border-radius: var(--alley-control-height);
+    padding-inline-start: calc(var(--alley-control-height) / 2);
+    padding-inline-end: calc(var(--alley-control-height) / 2);
   }
 
   &-small {
-    font-size: var(--alley-font-size-4);
+    font-size: var(--alley-button-content-font-size-sm);
     line-height: var(--alley-button-content-line-height-sm);
     height: var(--alley-control-height-sm);
-    padding: 0 7px;
-    border-radius: 4px;
+    padding: var(--alley-button-padding-block-sm) var(--alley-button-padding-inline-sm);
+    border-radius: var(--alley-border-radius-sm);
 
-    &.circle {
-      padding: 0.3rem;
+    &.#{$base}-icon-only {
       width: var(--alley-control-height-sm);
-      height: var(--alley-control-height-sm);
     }
 
-    &.plain {
-      height: var(--alley-font-size);
+    &.#{$base}-round {
+      border-radius: var(--alley-control-height-sm);
+      padding-inline-start: calc(var(--alley-control-height-sm) / 2);
+      padding-inline-end: calc(var(--alley-control-height-sm) / 2);
     }
   }
 
   &-large {
-    font-size: var(--alley-font-size-8);
+    font-size: var(--alley-button-content-font-size-lg);
+    line-height: var(--alley-button-content-line-height-lg);
     height: var(--alley-control-height-lg);
+    padding: var(--alley-button-padding-block-lg) var(--alley-button-padding-inline-lg);
+    border-radius: var(--alley-border-radius-lg);
 
-    &.circle {
-      padding: 0.8rem;
+    &.#{$base}-icon-only {
       width: var(--alley-control-height-lg);
-      height: var(--alley-control-height-lg);
+    }
+
+    &.#{$base}-round {
+      border-radius: var(--alley-control-height-lg);
+      padding-inline-start: calc(var(--alley-control-height-lg) / 2);
+      padding-inline-end: calc(var(--alley-control-height-lg) / 2);
     }
   }
 
-  &-danger:not(.disabled) {
+  &-danger:not(.#{$base}-disabled) {
     &:not(.plain) {
       color: #fff;
       background-color: var(--alley-color-error);
@@ -97,14 +142,14 @@ $class-name: "alley-button";
     //   color: var(--alley-color-text);
     // }
 
-    &.#{$class-name}-filter:not(.disabled):hover {
+    &.#{$base}-filter:not(.#{$base}-disabled):hover {
       border-color: var(--alley-color-hover-danger);
       background-color: var(--alley-color-hover-danger);
       filter: drop-shadow(0 0 8px var(--alley-color-hover-danger-filter));
       transform: scale(var(--filter-scale));
     }
 
-    &.plain.#{$class-name}-filter:not(.disabled):hover {
+    &.plain.#{$base}-filter:not(.#{$base}-disabled):hover {
       filter: drop-shadow(0 0 10px var(--alley-color-danger));
       transform: scale(var(--filter-scale));
       color: var(--alley-color-danger);
@@ -117,16 +162,29 @@ $class-name: "alley-button";
     }
   }
 
-  &-danger:not(.disabled):hover {
+  &-circle {
+    border-radius: 50%;
+    padding: 0.6rem;
+  }
+
+  &-danger:not(.#{$base}-disabled):hover {
     border-color: var(--alley-color-danger);
     color: #fff;
   }
 
-  &.plain {
+  &-plain {
     border: none;
-    padding: 0;
-    margin: 0;
     background-color: transparent;
+
+    &:not(:disabled):not(.#{$base}-disabled):hover {
+      color: var(--alley-color-text);
+      background: var(--alley-button-plain-hover-bg);
+    }
+
+    &:not(:disabled):not(.#{$base}-disabled):active {
+      color: var(--alley-color-text);
+      background: var(--alley-color-bg-text-active);
+    }
 
     &:focus-visible,
     &:focus {
@@ -145,6 +203,7 @@ $class-name: "alley-button";
       &:hover {
         filter: none;
         transform: none;
+        z-index: 2;
       }
 
       &:focus {
@@ -152,11 +211,22 @@ $class-name: "alley-button";
       }
     }
 
-    &:not(:first-child) {
-      &:last-child {
-        border-start-start-radius: 0;
-        border-end-start-radius: 0;
-      }
+    &:not(:first-child):last-child {
+      border-start-start-radius: 0;
+      border-end-start-radius: 0;
+    }
+
+    &:not(:last-child):first-child {
+      border-start-end-radius: 0;
+      border-end-end-radius: 0;
+    }
+
+    &:not(:first-child):not(:last-child) {
+      border-radius: 0;
+    }
+
+    &:not(:last-child) {
+      margin-inline-end: calc(var(--alley-line-width) * -1);
     }
   }
 
@@ -190,8 +260,13 @@ $class-name: "alley-button";
 }
 
 .dark {
-  .#{$class-name} {
+  .#{$base} {
     --alley-color-button-backgroud: #1a1a1a;
     --alley-color-button-text: var(--alley-color-text);
+    --alley-button-plain-hover-bg: rgba(255, 255, 255, 0.06);
+
+    &:not(.#{$base}-primary, .#{$base}-danger) {
+      --alley-button-ripple-container: #4045a3;
+    }
   }
 }

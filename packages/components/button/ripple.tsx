@@ -5,20 +5,25 @@ import {
   mergeProps,
   onCleanup,
 } from "solid-js";
-import type { JSXElement } from "solid-js";
+import type { JSX, JSXElement } from "solid-js";
 
 interface RippleContainerProps {
   children: JSXElement;
-  color: string;
+  color?: string;
   duration: number;
   onMouseDown: (e: MouseEvent & { currentTarget: HTMLDivElement }) => void;
 }
 
 const RippleContainer = (props: RippleContainerProps) => {
-  const style = () => ({
-    "--alley-button-ripple-container": props.color,
-    "--alley-button-ripple-duration": `${props.duration}ms`,
-  });
+  const style = () => {
+    const stl: JSX.CSSProperties = {
+      "--alley-button-ripple-duration": `${props.duration}ms`,
+    };
+
+    if (props.color) stl["--alley-button-ripple-container"] = props.color;
+
+    return stl;
+  };
 
   return (
     <div
@@ -43,7 +48,7 @@ interface RippleProps {
 }
 
 const Ripple = (props: RippleProps) => {
-  const merged = mergeProps({ duration: 1000 }, props);
+  const merged = mergeProps({ duration: 800 }, props);
 
   const [rippleArray, setRippleArray] = createSignal<RippleItem[]>([]);
 
@@ -82,8 +87,8 @@ const Ripple = (props: RippleProps) => {
 
   return (
     <RippleContainer
-      duration={merged.duration ?? 500}
-      color={merged.color ?? "var(--alley-color-button-ripple)"}
+      duration={merged.duration}
+      color={merged.color}
       onMouseDown={addRipple}
     >
       <For each={rippleArray()}>

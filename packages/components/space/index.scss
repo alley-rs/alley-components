@@ -92,6 +92,9 @@ $base: ".space";
 
   #{$base}-item {
     flex: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   &-compact {
