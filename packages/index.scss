@@ -45,7 +45,7 @@
   --alley-slate-blue-7: #5056cc;
   --alley-slate-blue-8: #4045a3;
   --alley-slate-blue-9: #333782;
-  --alley-slate-blue-10: #292c68;
+  --alley-slate-blue-10: #141533;
 
   --alley-green-1: #f6ffed;
   --alley-green-2: #d9f7be;
@@ -201,11 +201,18 @@
   color-scheme: light dark;
   color: var(--alley-color-text);
   background-color: var(--alley-color-bg);
+
+  /* 桌面端默认禁止文本选择 */
+  user-select: none;
 }
 
 * {
   margin: 0;
   padding: 0;
+}
+
+input[disabled] {
+  pointer-events: none;
 }
 
 .dark {

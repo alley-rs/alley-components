@@ -73,6 +73,9 @@ export { default as Typography } from "~/components/typography";
 export { default as Divider } from "~/components/divider";
 export type { DividerProps } from "~/components/divider";
 
+export { default as Layout } from "~/components/layout";
+export type { LayoutProps } from "~/components/layout";
+
 export { addClassNames } from "~/utils";
 
 export { default as useDark } from "~/hooks/useDark";
