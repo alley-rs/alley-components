@@ -1,4 +1,4 @@
-.flex {
+.alley-flex {
   display: flex;
 
   &-gap-small {
@@ -58,6 +58,20 @@
 
     &-end {
       align-items: end;
+    }
+  }
+
+  &-wrap {
+    &-wrap {
+      flex-wrap: wrap;
+    }
+
+    &-nowrap {
+      flex-wrap: nowrap;
+    }
+
+    &-wrap-reverse {
+      flex-wrap: wrap-reverse;
     }
   }
 }

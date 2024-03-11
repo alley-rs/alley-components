@@ -14,8 +14,10 @@ import {
   FloatButton,
   Typography,
   Card,
+  Divider,
 } from "../packages";
 import DarkSwitch from "./DarkSwitch";
+import AppMenu from "./menu";
 
 const { Title, Text } = Typography;
 
@@ -25,10 +27,13 @@ const App = () => {
 
   return (
     <>
+      <AppMenu />
+
       <Space direction="vertical" gap={16} style={{ padding: "10px" }}>
         <Flex direction="horizontal" justify="between">
           <Space gap={8} align="center">
             <InputNumber value={count()} onChange={setCount} />
+            <Divider type="vertical" />
             <Input value="some words" />
             <Input disabled />
             <Link
@@ -42,6 +47,10 @@ const App = () => {
           <DarkSwitch />
         </Flex>
 
+        <Divider dashed plain>
+          按钮
+        </Divider>
+
         <Space gap={8}>
           <Button danger>取消</Button>
           <Button isLoading>保存</Button>
@@ -50,6 +59,10 @@ const App = () => {
           <Button size="large">大按钮</Button>
           <Button type="plain">文本按钮</Button>
         </Space>
+
+        <Divider dashed orientation="left">
+          块按钮
+        </Divider>
 
         <Button block filter size="small">
           块按钮
@@ -63,6 +76,10 @@ const App = () => {
           块按钮
         </Button>
 
+        <Divider dashed orientation="right">
+          数字输入
+        </Divider>
+
         <Space.Compact>
           <Input />
           <Button>OK</Button>
@@ -72,6 +89,10 @@ const App = () => {
           <Input />
           <Button>OK</Button>
         </Space.Compact>
+
+        <Divider orientation="right" orientationMargin={30}>
+          警告
+        </Divider>
 
         <Alert message="点击也没啥用" type="info" showIcon isClosable />
         <Alert message="点击也没啥用" type="warning" showIcon isClosable />
@@ -85,6 +106,10 @@ const App = () => {
           showIcon
           isClosable
         />
+
+        <Divider orientation="left" orientationMargin={30}>
+          进度条
+        </Divider>
 
         <Progress percent={percent()} />
 
