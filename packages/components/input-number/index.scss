@@ -236,15 +236,15 @@ $base: "alley-input-number";
     appearance: textfield;
   }
 
-  &-compact-item {
+  &-space-compact-item {
     &:hover {
       z-index: 2;
     }
 
-    &:not(.#{$base}-compact-last-item) {
+    &:not(:last-child) {
       margin-inline-end: calc(var(--alley-line-width) * -1);
 
-      &.#{$base}-compact-first-item {
+      &:first-child {
         border-start-end-radius: 0;
         border-end-end-radius: 0;
       }
