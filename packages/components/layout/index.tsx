@@ -31,7 +31,11 @@ const Layout = (props: LayoutProps) => {
   return (
     <LazyFlex class={classes()} style={style()}>
       <div class={`${baseClassName}-menu`}>{resolvedMenu()}</div>
-      <div class={`${baseClassName}-content`}>{resolvedContent()}</div>
+      <div class={`${baseClassName}-content`}>
+        <div class={`${baseClassName}-content-wrapper`}>
+          {resolvedContent()}
+        </div>
+      </div>
     </LazyFlex>
   );
 };

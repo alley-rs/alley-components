@@ -112,6 +112,9 @@
 
   --alley-color-split: rgba(5, 5, 5, 0.06);
 
+  --alley-color-scrollbar: rgba(0, 0, 0, 0.1);
+  --alley-color-scrollbar-hover: rgba(0, 0, 0, 0.4);
+
   --alley-font-size-1: 9px;
   --alley-font-size-2: 10px;
   --alley-font-size-3: 11px;
@@ -211,6 +214,24 @@
   padding: 0;
 }
 
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 10px;
+  background: var(--alley-color-scrollbar);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--alley-color-scrollbar-hover);
+}
+
+::-webkit-scrollbar-track {
+  background-color: #fff0;
+}
+
 input[disabled] {
   pointer-events: none;
 }
@@ -233,6 +254,9 @@ input[disabled] {
   --alley-color-bg-container: rgb(20, 20, 20);
 
   --alley-color-mask: rgba(0, 0, 0, 0.5);
+
+  --alley-color-scrollbar: rgba(255, 255, 255, 0.1);
+  --alley-color-scrollbar-hover: rgba(255, 255, 255, 0.2);
 
   --alley-control-item-bg-hover: rgba(255, 255, 255, 0.08);
   --alley-control-item-text-hover: var(--alley-color-hover-text);
