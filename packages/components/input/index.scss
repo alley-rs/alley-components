@@ -35,7 +35,7 @@ $base: "alley-input";
   display: inline-block;
   min-width: 0;
   border-radius: var(--alley-border-radius);
-  transition: var(--alley-motion-duration-mid);
+  transition: all var(--alley-motion-duration-mid);
   box-sizing: border-box;
 
   &:hover:not([disabled]) {
@@ -74,6 +74,7 @@ $base: "alley-input";
     padding: var(--alley-input-padding-block-lg) var(--alley-input-padding-inline-lg);
     font-size: var(--alley-input-input-font-size-lg);
     border-radius: var(--alley-border-radius-lg);
+    line-height: var(--alley-line-height-lg);
   }
 
   &-space-compact-item {
