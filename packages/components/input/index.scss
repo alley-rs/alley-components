@@ -77,7 +77,10 @@ $base: "alley-input";
   }
 
   &-space-compact-item {
-    &:hover {
+
+    &:hover,
+    &:focus,
+    &:focus-within {
       z-index: 2;
     }
 

@@ -237,7 +237,10 @@ $base: "alley-input-number";
   }
 
   &-space-compact-item {
-    &:hover {
+
+    &:hover,
+    &:focus,
+    &:focus-within {
       z-index: 2;
     }
 

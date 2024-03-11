@@ -55,6 +55,4 @@ const LazyButton = lazy(() => import("alley-components/lib/components/button"))
 pnpm dev
 ```
 
-在任意浏览器中打开`http://127.0.0.1:5173`可查看组件运行效果，如图：
-
-![example](./docs/images/example.avif)
+在任意浏览器中打开`http://127.0.0.1:5173`可查看组件运行效果。
