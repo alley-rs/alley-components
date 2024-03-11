@@ -8,6 +8,7 @@ import MenuItem from "./menu-item";
 export interface MenuItemOption extends BaseNoChildrenComponentProps {
   icon?: JSX.Element;
   children: JSX.Element;
+  onClick?: () => void;
 }
 
 export const baseClassName = "alley-menu";
@@ -27,6 +28,9 @@ const Menu = (props: MenuProps) => {
 
   const onMenuItemClick = (index: number) => {
     if (index === selectedIndex()) return;
+
+    if (typeof props.items[index] === "object")
+      (props.items[index] as MenuItemOption).onClick?.();
 
     setSelectedIndex(index);
   };

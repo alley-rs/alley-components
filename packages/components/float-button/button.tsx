@@ -1,7 +1,7 @@
 import "./index.scss";
 import { TbHome } from "solid-icons/tb";
 import type { FloatButtonProps } from "./interface";
-import { children, lazy, useContext } from "solid-js";
+import { children, createEffect, lazy, useContext } from "solid-js";
 import { FloatGroupContext } from "./group";
 import { addClassNames } from "~/utils";
 
@@ -14,10 +14,11 @@ const FloatButton = (props: FloatButtonProps) => {
   const classes = () =>
     addClassNames("float-button", context?.class, props.class);
 
+  const icon = children(() => props.icon);
+
   const button = children(() => (
     <LazyButton
-      {...props}
-      icon={props.icon ?? <TbHome />}
+      icon={icon() ?? <TbHome />}
       onClick={props.onClick}
       shape="circle"
     />

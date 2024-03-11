@@ -1,0 +1,15 @@
+.alley-layout {
+  width: 100vw;
+  height: 100vh;
+
+  &-menu {
+    .alley-menu {
+      height: 100%;
+    }
+  }
+
+  &-content {
+    padding: var(--alley-layout-content-padding);
+    flex: 1;
+  }
+}
