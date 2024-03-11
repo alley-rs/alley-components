@@ -12,9 +12,10 @@ export interface FlexProps extends BaseComponentProps {
   direction?: "horizontal" | "vertical";
   inline?: boolean;
   gap?: "small" | "middle" | "large" | number;
+  wrap?: "wrap" | "nowrap" | "wrap-reverse";
 }
 
-const baseClassName = "flex";
+const baseClassName = "alley-flex";
 
 const Flex = (props: FlexProps) => {
   const className = () =>
@@ -29,6 +30,7 @@ const Flex = (props: FlexProps) => {
       props.gap !== undefined &&
       typeof props.gap === "string" &&
       `${baseClassName}-gap-${props.gap}`,
+      props.wrap && `${baseClassName}-wrap-${props.wrap}`,
       props.class || "",
     );
 
