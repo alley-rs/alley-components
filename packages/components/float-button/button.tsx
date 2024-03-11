@@ -1,7 +1,7 @@
 import "./index.scss";
 import { TbHome } from "solid-icons/tb";
 import type { FloatButtonProps } from "./interface";
-import { children, createEffect, lazy, useContext } from "solid-js";
+import { children, lazy, useContext } from "solid-js";
 import { FloatGroupContext } from "./group";
 import { addClassNames } from "~/utils";
 
