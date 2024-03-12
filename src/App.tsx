@@ -1,7 +1,8 @@
 import { createSignal, lazy } from "solid-js";
-import { FloatButton, Layout } from "../packages";
+import { Button, FloatButton, Layout, Toast } from "../packages";
 import { Dynamic } from "solid-js/web";
 import DarkSwitchButton from "./DarkSwitch";
+import { AiOutlineClose, AiOutlineDelete } from "solid-icons/ai";
 
 const children = [
   lazy(() => import("./components/buttons")),
@@ -11,14 +12,26 @@ const children = [
   lazy(() => import("./components/spinners")),
   lazy(() => import("./components/alerts")),
   lazy(() => import("./components/typographys")),
+  lazy(() => import("./components/toast")),
 ];
 
 const LazyMenu = lazy(() => import("~/components/menu"));
 
-const menus = ["按钮", "输入", "文字提示", "进度条", "加载中", "警告", "文本"];
+const menus = [
+  "按钮",
+  "输入",
+  "文字提示",
+  "进度条",
+  "加载中",
+  "警告",
+  "文本",
+  "轻提示",
+];
 
 const App = () => {
   const [index, setIndex] = createSignal(0);
+
+  const [toastOpen, setToastOpen] = createSignal(false);
 
   return (
     <>
@@ -36,9 +49,29 @@ const App = () => {
         content={<Dynamic component={children[index()]} />}
       />
 
+      <Toast
+        message="已清空"
+        open={toastOpen()}
+        onClose={() => setToastOpen(false)}
+        action={
+          <Button
+            icon={<AiOutlineClose />}
+            type="plain"
+            shape="circle"
+            onClick={() => setToastOpen(false)}
+            danger
+          />
+        }
+      />
+
       <FloatButton.Group>
         <FloatButton.BackTop visibilityHeight={100} />
         <DarkSwitchButton />
+        <FloatButton
+          danger
+          icon={<AiOutlineDelete />}
+          onClick={() => setToastOpen(true)}
+        />
         <FloatButton />
       </FloatButton.Group>
     </>
