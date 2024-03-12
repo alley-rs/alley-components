@@ -1,6 +1,6 @@
 {
   "name": "alley-components",
-  "version": "0.0.15",
+  "version": "0.1.0",
   "repository": "https://github.com/alley-rs/alley-components",
   "keywords": [
     "solid",
