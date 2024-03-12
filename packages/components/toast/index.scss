@@ -1,0 +1,136 @@
+.alley-toast {
+  --alley-toast-offset: 24px;
+  --alley-toast-color-text: #fff;
+
+  position: fixed;
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  -webkit-box-align: center;
+  align-items: center;
+
+  &-opening {
+    animation: open var(--alley-toast-open-animation-speed) 1;
+  }
+
+  &-closing {
+    animation: close var(--alley-toast-close-animation-speed) 1;
+  }
+
+  &-top-left {
+    left: 20px;
+    top: 20px;
+  }
+
+  &-top {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-top-right {
+    top: 20px;
+    right: 20px;
+  }
+
+  &-bottom-left {
+    left: var(--alley-toast-offset);
+    bottom: var(--alley-toast-offset);
+    right: auto;
+  }
+
+  &-bottom {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  &-bottom-right {
+    right: var(--alley-toast-offset);
+    bottom: var(--alley-toast-offset);
+  }
+
+  &-right {
+    right: var(--alley-toast-offset);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-left {
+    left: var(--alley-toast-offset);
+    top: 50%;
+    transform: translateY(-50%);
+  }
+
+  &-center {
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &-wrapper {
+    transition:
+      opacity 225ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+      transform 150ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+    -webkit-box-flex: initial;
+    flex-grow: initial;
+    min-width: 288px;
+    box-shadow:
+      0px 3px 5px -1px rgba(0, 0, 0, 0.2),
+      0px 6px 10px 0px rgba(0, 0, 0, 0.14),
+      0px 1px 18px 0px rgba(0, 0, 0, 0.12);
+    font-weight: 400;
+    font-size: var(--alley-font-size-sm);
+    line-height: var(--alley-line-height);
+    letter-spacing: 0.01071em;
+    color: var(--alley-toast-color-text);
+    background-color: rgb(50, 50, 50);
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 6px var(--alley-toast-wrapper-padding-right, var(--alley-padding));
+    border-radius: 4px;
+  }
+
+  &-message {
+    padding: var(--alley-toast-message-padding, var(--alley-padding-xs)) 0;
+  }
+
+  &-action {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+    padding-left: var(--alley-toast-action-padding, var(--alley-padding));
+    margin-right: -8px;
+
+    & .alley-button-plain:not(:disabled):not(.alley-button-disabled) {
+      color: var(--alley-toast-color-text);
+
+      &.alley-button-danger:active {
+        background-color: red;
+        color: #fff;
+      }
+    }
+  }
+
+  @keyframes open {
+    from {
+      scale: 0.5;
+    }
+
+    to {
+      scale: 1;
+    }
+  }
+
+  @keyframes close {
+    from {
+      opacity: 1;
+    }
+
+    to {
+      opacity: 0;
+    }
+  }
+}

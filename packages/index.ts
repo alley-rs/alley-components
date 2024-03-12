@@ -73,8 +73,14 @@ export { default as Typography } from "~/components/typography";
 export { default as Divider } from "~/components/divider";
 export type { DividerProps } from "~/components/divider";
 
+export { default as Menu } from "~/components/menu";
+export type { MenuProps } from "~/components/menu";
+
 export { default as Layout } from "~/components/layout";
 export type { LayoutProps } from "~/components/layout";
+
+export { default as Toast } from "~/components/toast";
+export type { ToastProps } from "~/components/toast";
 
 export { addClassNames } from "~/utils";
 
