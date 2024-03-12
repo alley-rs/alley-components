@@ -1,5 +1,11 @@
-.list {
-  width: 100%;
+.alley-list {
+  --alley-list-color-avatar-bg: #b8b8b8;
+  --alley-list-color-avatar: #fff;
+  --alley-list-color-avatar-font-size: 18px;
+  --alley-list-item-padding: 8px;
+  --alley-list-item-margin: 10px;
+  --alley-list-item-shadow-color: #edeef1;
+
   padding: 0 10px;
 
   &-header {
@@ -13,12 +19,12 @@
     list-style-type: none;
     display: flex;
     flex-direction: row;
-    padding: 8px 0;
-    box-shadow: 0 1px 7px 0 var(--alley-color-shadow);
-    border-radius: var(--border-radius-lg);
-    margin: 10px 0;
+    padding: var(--alley-list-item-padding) 0;
+    box-shadow: 0 1px 7px 0 var(--alley-list-item-shadow-color);
+    border-radius: var(--alley-border-radius-lg);
+    margin: var(--alley-list-item-margin) 0;
     flex-wrap: wrap;
-    background-color: var(--alley-color-background);
+    background-color: var(--alley-color-bg);
 
     &__content {
       display: flex;
@@ -30,15 +36,15 @@
         --width: 36px;
         --height: var(--width);
         min-width: var(--width);
-        background-color: var(--alley-color-avatar-backgroud);
+        background-color: var(--alley-list-color-avatar-bg);
         width: var(--width);
         height: var(--height);
         border-radius: 50%;
         display: flex;
         justify-content: center;
         align-items: center;
-        font-size: 18px;
-        color: var(--alley-color-avatar);
+        font-size: var(--alley-list-color-avatar-font-size);
+        color: var(--alley-list-color-avatar);
         margin-left: 5px;
       }
 
@@ -49,15 +55,13 @@
       }
 
       &-title {
-        font-size: 1rem;
-        line-height: calc(1rem + 4px);
-        // font-weight: bold;
+        line-height: var(--alley-line-height);
         word-wrap: break-word;
         word-break: break-all;
       }
 
       &-description {
-        font-size: var(--alley-font-size-3);
+        font-size: var(--alley-font-size-sm);
         color: var(--alley-color-weak);
       }
 
@@ -78,4 +82,10 @@
       justify-content: center;
     }
   }
+}
+
+.dark .alley-list {
+  --alley-list-item-shadow-color: #000;
+  --alley-list-color-avatar: var(--alley-color-light);
+  --alley-list-color-avatar-bg: #6a6a6a;
 }

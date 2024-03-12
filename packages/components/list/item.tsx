@@ -12,7 +12,7 @@ export interface ListItemProps {
 }
 
 const ListItem = (props: ListItemProps) => {
-  const classPrefix = "list-item";
+  const classPrefix = "alley-list-item";
   const classNames = () => addClassNames(classPrefix, props.class);
 
   return (

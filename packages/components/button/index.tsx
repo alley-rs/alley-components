@@ -1,6 +1,7 @@
 import {
   Show,
   children,
+  createEffect,
   createMemo,
   lazy,
   mergeProps,
@@ -48,8 +49,19 @@ const Button = (props: ButtonProps) => {
 
   const merged = mergeProps({ filter: true }, props);
 
+  createEffect(() => {
+    if (merged.shape === "circle") {
+      if (!merged.icon)
+        console.warn("圆形按钮仅适用于显示单图标，传入文字时可能会变形");
+      else if (merged.children)
+        console.warn("圆形按钮仅可显示一个图标，文字将会被省略");
+    }
+  });
+
   const disabled = createMemo(() => merged.isLoading || merged.disabled);
-  const iconOnly = createMemo(() => merged.icon && !merged.children);
+  const iconOnly = createMemo(
+    () => merged.shape === "circle" || (merged.icon && !merged.children),
+  );
 
   const size = () => spaceCompactItemSize ?? props.size;
 
@@ -83,10 +95,12 @@ const Button = (props: ButtonProps) => {
 
   const resolved = children(() =>
     merged.icon && merged.children ? (
-      <LazySpace align="center" gap={spaceGap()}>
-        {merged.isLoading ? null : merged.icon}
-        {merged.children}
-      </LazySpace>
+      <Show when={merged.shape !== "circle"} fallback={merged.icon}>
+        <LazySpace align="center" gap={spaceGap()}>
+          {merged.isLoading ? null : merged.icon}
+          {merged.children}
+        </LazySpace>
+      </Show>
     ) : (
       merged.icon ||
       (typeof merged.children === "string"
