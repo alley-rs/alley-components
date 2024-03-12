@@ -10,9 +10,9 @@ export interface ListProps<T> {
   renderItem: (item: T, index: number) => JSXElement;
 }
 
-const baseClassName = "list";
+const baseClassName = "alley-list";
 
-const List = <T extends object>(props: ListProps<T>) => {
+const List = <T extends any>(props: ListProps<T>) => {
   const classNames = () => addClassNames(baseClassName, props.class);
 
   return (
