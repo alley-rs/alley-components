@@ -81,7 +81,6 @@ const Toast = (props: ToastProps) => {
 
   const handleClose = () => {
     closeTimeout = setTimeout(() => {
-      console.log("关闭");
       setClasses((prev) => ({ ...prev, [`${baseClassName}-closing`]: true }));
       runCloseAnimation();
     }, merged.autoHideDuration); // 默认 1 秒
