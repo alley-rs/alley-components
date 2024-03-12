@@ -18,19 +18,19 @@
   }
 
   &-top-left {
-    left: 20px;
-    top: 20px;
+    left: var(--alley-toast-offset);
+    top: var(--alley-toast-offset);
   }
 
   &-top {
-    top: 20px;
+    top: var(--alley-toast-offset);
     left: 50%;
     transform: translateX(-50%);
   }
 
   &-top-right {
-    top: 20px;
-    right: 20px;
+    top: var(--alley-toast-offset);
+    right: var(--alley-toast-offset);
   }
 
   &-bottom-left {
@@ -40,7 +40,7 @@
   }
 
   &-bottom {
-    bottom: 20px;
+    bottom: var(--alley-toast-offset);
     left: 50%;
     transform: translateX(-50%);
   }
