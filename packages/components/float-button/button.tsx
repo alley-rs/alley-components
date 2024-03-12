@@ -14,14 +14,10 @@ const FloatButton = (props: FloatButtonProps) => {
   const classes = () =>
     addClassNames("float-button", context?.class, props.class);
 
-  const icon = children(() => props.icon);
+  const icon = children(() => props.icon ?? <TbHome />);
 
   const button = children(() => (
-    <LazyButton
-      icon={icon() ?? <TbHome />}
-      onClick={props.onClick}
-      shape="circle"
-    />
+    <LazyButton {...props} icon={icon()} shape="circle" />
   ));
 
   return (
