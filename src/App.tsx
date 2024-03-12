@@ -13,6 +13,7 @@ const children = [
   lazy(() => import("./components/alerts")),
   lazy(() => import("./components/typographys")),
   lazy(() => import("./components/toast")),
+  lazy(() => import("./components/list")),
 ];
 
 const LazyMenu = lazy(() => import("~/components/menu"));
@@ -26,6 +27,7 @@ const menus = [
   "警告",
   "文本",
   "轻提示",
+  "列表",
 ];
 
 const App = () => {
