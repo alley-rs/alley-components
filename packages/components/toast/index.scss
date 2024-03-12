@@ -10,11 +10,11 @@
   align-items: center;
 
   &-opening {
-    animation: open var(--alley-toast-open-animation-speed) 1;
+    animation: alley-animation-toast-open var(--alley-toast-open-animation-speed) 1;
   }
 
   &-closing {
-    animation: close var(--alley-toast-close-animation-speed) 1;
+    animation: alley-animation-toast-close var(--alley-toast-close-animation-speed) 1;
   }
 
   &-top-left {
@@ -114,7 +114,7 @@
     }
   }
 
-  @keyframes open {
+  @keyframes alley-animation-toast-open {
     from {
       scale: 0.5;
     }
@@ -124,7 +124,7 @@
     }
   }
 
-  @keyframes close {
+  @keyframes alley-animation-toast-close {
     from {
       opacity: 1;
     }

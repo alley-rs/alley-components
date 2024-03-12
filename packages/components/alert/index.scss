@@ -27,7 +27,7 @@ $base: "alley-alert";
   }
 
   &-closing {
-    animation: close var(--#{$base}-close-speed) ease-in;
+    animation: alley-animation-alert-close var(--#{$base}-close-speed) ease-in;
   }
 
   &-icon {
@@ -113,7 +113,7 @@ $base: "alley-alert";
     }
   }
 
-  @keyframes close {
+  @keyframes alley-animation-alert-close {
     0% {
       transform: translateX(0);
     }
