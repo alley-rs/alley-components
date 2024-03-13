@@ -45,7 +45,6 @@ $base: "dropdown";
     color: var(--alley-color-text);
     font-weight: normal;
     font-size: 14px;
-    cursor: pointer;
     transition: all var(--alley-motion-duration-mid);
     border-radius: var(--alley-border-radius-sm);
     position: relative;
@@ -62,7 +61,6 @@ $base: "dropdown";
     flex: auto;
     font-weight: normal;
     font-size: 14px;
-    cursor: pointer;
 
     >a {
       cursor: inherit;
