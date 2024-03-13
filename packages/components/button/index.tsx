@@ -112,14 +112,12 @@ const Button = (props: ButtonProps) => {
   );
 
   const ripple = children(() => (
-    <Show when={merged.type !== "plain"}>
-      <Ripple
-        color={
-          merged.danger ? "var(--alley-color-button-ripple-danger)" : undefined
-        }
-        duration={merged.rippleDuration}
-      />
-    </Show>
+    <Ripple
+      color={
+        merged.danger ? "var(--alley-color-button-ripple-danger)" : undefined
+      }
+      duration={merged.rippleDuration}
+    />
   ));
 
   return (
