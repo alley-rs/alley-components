@@ -217,6 +217,25 @@
 * {
   margin: 0;
   padding: 0;
+
+  /* 输入框 cursor 为 text，其他元素使用 default */
+  input.alley-input,
+  .alley-input-number input {
+    cursor: text;
+
+    &:hover {
+      cursor: text;
+    }
+  }
+
+  & [class^="alley-"],
+  & [class*=" alley-"] {
+    cursor: default;
+  }
+
+  &:hover {
+    cursor: default;
+  }
 }
 
 ::-webkit-scrollbar {
