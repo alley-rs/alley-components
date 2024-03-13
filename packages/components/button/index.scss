@@ -25,6 +25,7 @@ $base: "alley-button";
   --alley-button-padding-block-sm: 0;
   --alley-button-padding-block-lg: 7px;
   --alley-button-plain-hover-bg: rgba(0, 0, 0, 0.06);
+  --alley-button-primary-hover: #5056cc;
 
   --alley-button-ripple-container: #d7d9ff;
 
@@ -69,7 +70,7 @@ $base: "alley-button";
     border: 1px solid transparent;
 
     &:hover {
-      background-color: #5056cc;
+      background-color: var(--alley-button-primary-hover);
     }
   }
 
@@ -78,7 +79,6 @@ $base: "alley-button";
   }
 
   &-disabled {
-    cursor: not-allowed;
     color: var(--alley-color-text-disabled);
     background: var(--alley-color-bg-container-disabled);
     box-shadow: none;
@@ -185,11 +185,6 @@ $base: "alley-button";
       background: var(--alley-button-plain-hover-bg);
     }
 
-    &:not(:disabled):not(.#{$base}-disabled):active {
-      color: var(--alley-color-text);
-      background: var(--alley-color-bg-text-active);
-    }
-
     &:focus-visible,
     &:focus {
       outline: none;
@@ -269,7 +264,6 @@ $base: "alley-button";
 
     @keyframes ripple-enter {
       from {
-        opacity: 0.1;
         transform: scale(0);
       }
 
@@ -297,9 +291,16 @@ $base: "alley-button";
     --alley-color-button-backgroud: #1a1a1a;
     --alley-color-button-text: var(--alley-color-text);
     --alley-button-plain-hover-bg: rgba(255, 255, 255, 0.06);
+    --alley-button-primary-hover: #646cff;
+    --alley-color-button-ripple-danger: rgb(0 0 0 / 30%);
+    --alley-button-ripple-container: #4045a3;
 
-    &:not(.#{$base}-primary, .#{$base}-danger) {
-      --alley-button-ripple-container: #4045a3;
+    &-plain {
+      --alley-button-ripple-container: #646cff;
+    }
+
+    &-primary {
+      --alley-button-ripple-container: rgb(0 0 0 / 30%);
     }
   }
 }
