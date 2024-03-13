@@ -74,7 +74,7 @@ const App = () => {
           icon={<AiOutlineDelete />}
           onClick={() => setToastOpen(true)}
         />
-        <FloatButton />
+        <FloatButton onClick={() => setIndex(0)} />
       </FloatButton.Group>
     </>
   );

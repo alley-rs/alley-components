@@ -30,3 +30,5 @@ export interface BaseDirectionComponentProps extends BaseComponentProps {
 export interface BasePlacementComponentProps extends BaseComponentProps {
   placement?: Placement;
 }
+
+export type TimeoutID = ReturnType<typeof setTimeout>;

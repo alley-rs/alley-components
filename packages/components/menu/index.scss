@@ -124,10 +124,6 @@
     white-space: nowrap;
     border-radius: var(--alley-menu-item-border-radius);
 
-    &:not(.alley-menu-item-selected) {
-      cursor: pointer;
-    }
-
     &:hover {
       &:not(.alley-menu-item-selected) {
         background-color: var(--alley-menu-item-hover-bg);
