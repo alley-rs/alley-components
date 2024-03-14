@@ -64,10 +64,10 @@ const Ripple = (props: RippleProps) => {
   createEffect(() => {
     if (rippleArray.length === 0) return;
 
-    if (clickTimeout) {
+    if (clickTimeout.currentId) {
       // 单击使用定时器清理 ripple
       rippleArrayTimeout.start(merged.duration, () => {
-        // setRippleArray([]);
+        setRippleArray([]);
       });
     }
   });
@@ -126,22 +126,24 @@ const Ripple = (props: RippleProps) => {
       duration={merged.duration}
       color={merged.color}
       onMouseDown={(e) => {
+        addRipple(e, "exit");
+
         clickTimeout.start(clickDuration, () => {
           // 清理单击的 rippleArray 定时器，防止长按添加的 ripple 添加后被此定时器清理
-          rippleArrayTimeout.clear();
+          rippleArrayTimeout.reset();
 
           // 超时后清理 clickTimeout
           clickTimeout.reset();
 
+          clearRippleArray();
+
           setLongClickRipple(e);
         });
       }}
-      onMouseUp={(e) => {
+      onMouseUp={() => {
         clickTimeout.clear();
 
-        // 单击在鼠标抬起后添加退出动画
-        if (clickTimeout.currentId) addRipple(e);
-        else clearRippleArray();
+        if (!clickTimeout.currentId) clearRippleArray();
       }}
       onMouseLeave={() => {
         clearRippleArray();
