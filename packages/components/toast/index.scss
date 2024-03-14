@@ -75,7 +75,6 @@
 
     -webkit-box-flex: initial;
     flex-grow: initial;
-    min-width: 288px;
     box-shadow:
       0px 3px 5px -1px rgba(0, 0, 0, 0.2),
       0px 6px 10px 0px rgba(0, 0, 0, 0.14),
@@ -85,12 +84,29 @@
     line-height: var(--alley-line-height);
     letter-spacing: 0.01071em;
     color: var(--alley-toast-color-text);
-    background-color: rgb(50, 50, 50);
     display: flex;
     align-items: center;
     flex-wrap: wrap;
-    padding: 6px var(--alley-toast-wrapper-padding-right, var(--alley-padding));
-    border-radius: 4px;
+
+    &:not(.alley-toast-wrapper-alert) {
+      padding: 6px var(--alley-toast-wrapper-padding-right, var(--alley-padding));
+      background-color: rgb(50, 50, 50);
+      border-radius: 4px;
+      min-width: 288px;
+    }
+
+    &.alley-toast-wrapper-alert {
+      background-color: transparent;
+      border-radius: 4px;
+
+      .alley-alert {
+        padding: 13px 16px;
+        font-size: var(--alley-font-size-sm);
+        width: 100%;
+        border-radius: 4px;
+        min-width: 320px;
+      }
+    }
   }
 
   &-message {
