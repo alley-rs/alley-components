@@ -1,6 +1,25 @@
 import { For, createSignal } from "solid-js";
-import { Alert, Button, Flex, Toast } from "~/index";
+import { Alert, AlertProps, Button, Flex, Toast } from "~/index";
 import { Placement } from "~/interface";
+
+const randomBool = () => Boolean(Math.round(Math.random()));
+
+const alerts: AlertProps[] = [
+  { type: "info", message: "这是信息提示", showIcon: true },
+  { type: "success", message: "这是成功提示", showIcon: true },
+  { type: "warning", message: "这是警告提示", showIcon: true },
+  { type: "error", message: "这是错误提示", showIcon: true },
+];
+
+const randomAlert = (): AlertProps | undefined => {
+  const isAlert = randomBool();
+
+  if (!isAlert) {
+    return;
+  }
+
+  return alerts[Math.floor(Math.random() * alerts.length)];
+};
 
 const placements: { placement: Placement; text: string }[] = [
   { placement: "top-left", text: "左上" },
@@ -61,14 +80,29 @@ const Toasts = () => {
       </Flex>
 
       <For each={signals}>
-        {(item, index) => (
-          <Toast
-            message="已清空"
-            placement={placements[index()].placement}
-            open={item[0]()}
-            onClose={() => item[1]((prev) => !prev)}
-          />
-        )}
+        {(item, index) => {
+          const alert = randomAlert();
+
+          if (alert) {
+            return (
+              <Toast
+                alert={alert}
+                placement={placements[index()].placement}
+                open={item[0]()}
+                onClose={() => item[1]((prev) => !prev)}
+              />
+            );
+          }
+
+          return (
+            <Toast
+              message="已清空"
+              placement={placements[index()].placement}
+              open={item[0]()}
+              onClose={() => item[1]((prev) => !prev)}
+            />
+          );
+        }}
       </For>
     </Flex>
   );

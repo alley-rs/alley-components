@@ -3,24 +3,39 @@ import {
   children,
   createEffect,
   createSignal,
+  lazy,
   mergeProps,
   onCleanup,
 } from "solid-js";
 import type { JSX } from "solid-js";
 import type { BasePlacementComponentProps } from "~/interface";
-import { classList } from "~/utils";
+import { classList, isType } from "~/utils";
 import "./index.scss";
 import { Portal } from "solid-js/web";
+import type { AlertProps } from "../alert";
+
+const LazyAlert = lazy(() => import("~/components/alert"));
 
 const animationSpeed = 150;
 
-export interface ToastProps extends BasePlacementComponentProps {
-  open?: boolean;
-  autoHideDuration?: number;
-  onClose: () => void; // 必需传入 onClose ，以在超时关闭后调用，否则 merged.open 将一直为 true
+interface AlertToastProps {
+  alert: AlertProps;
+}
+
+interface MessageToastProps {
   message: JSX.Element;
   action?: JSX.Element;
 }
+
+interface BaseToastProps extends BasePlacementComponentProps {
+  open?: boolean;
+  autoHideDuration?: number;
+  onClose: () => void; // 必需传入 onClose ，以在超时关闭后调用，否则 merged.open 将一直为 true
+}
+
+export type ToastProps =
+  | (BaseToastProps & AlertToastProps)
+  | (BaseToastProps & MessageToastProps);
 
 const baseClassName = "alley-toast";
 
@@ -40,6 +55,12 @@ const Toast = (props: ToastProps) => {
       },
     }),
   );
+  const wrapperClasses = classList({
+    base: `${baseClassName}-wrapper`,
+    others: {
+      [`${baseClassName}-wrapper-alert`]: "alert" in merged,
+    },
+  });
 
   const [open, setOpen] = createSignal(merged.open);
 
@@ -103,24 +124,24 @@ const Toast = (props: ToastProps) => {
     "--alley-toast-close-animation-speed": `${animationSpeed}ms`,
   });
 
-  const message = children(() => merged.message);
-
-  const action = children(
-    () =>
-      merged.action && (
-        <div class={`${baseClassName}-action`}>{merged.action}</div>
-      ),
+  const resolved = children(() =>
+    isType<MessageToastProps>("message", merged) ? (
+      <>
+        <div class={`${baseClassName}-message`}>{merged.message}</div>
+        <Show when={merged.action}>
+          <div class={`${baseClassName}-action`}>{merged.action}</div>
+        </Show>
+      </>
+    ) : (
+      <LazyAlert class={`${baseClassName}-alert`} {...merged.alert} />
+    ),
   );
 
   return (
     <Show when={open()}>
       <Portal>
         <div classList={classes()} style={style()}>
-          <div class={`${baseClassName}-wrapper`}>
-            <div class={`${baseClassName}-message`}>{message()}</div>
-
-            {action()}
-          </div>
+          <div classList={wrapperClasses}>{resolved()}</div>
         </div>
       </Portal>
     </Show>
