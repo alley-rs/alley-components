@@ -41,7 +41,7 @@ const App = () => {
         menu={
           <LazyMenu
             style={{ width: "160px" }}
-            defaultSelectedIndex={0}
+            index={index()}
             items={menus.map((s, idx) => ({
               children: s,
               onClick: () => setIndex(idx),
