@@ -30,7 +30,7 @@ export interface SegmentedProps<T = SegmentedValue>
 
 const baseClassName = "alley-segmented";
 
-const Segmented = (props: SegmentedProps) => {
+const Segmented = <T extends SegmentedValue>(props: SegmentedProps<T>) => {
   const segmentedOptions = createMemo(() => normalizeOptions(props.options));
 
   const [currentValue, setCurrentValue] = createSignal(
@@ -39,9 +39,10 @@ const Segmented = (props: SegmentedProps) => {
 
   const classes = () => addClassNames(baseClassName, props.class);
 
-  const handleChange = (value: SegmentedValue) => {
+  const handleChange = (value: T) => {
     if (props.disabled) return;
 
+    // @ts-ignore
     setCurrentValue(value);
     props.onChange(value);
   };
@@ -55,6 +56,7 @@ const Segmented = (props: SegmentedProps) => {
               checked={item.value === currentValue()}
               disabled={!!props.disabled || !!item.disabled}
               value={item.value}
+              label={item.label}
               onChange={handleChange}
             />
           )}
@@ -80,14 +82,17 @@ const normalizeOptions = <T extends SegmentedValue>(
   });
 };
 
-interface SegmentedItemProps {
+interface SegmentedItemProps<T> {
   disabled?: boolean;
-  onChange: (value: string | number) => void;
+  onChange: (value: T) => void;
   checked: boolean;
-  value: string | number;
+  value: T;
+  label: JSXElement;
 }
 
-const SegmentedItem = (props: SegmentedItemProps) => {
+const SegmentedItem = <T extends SegmentedValue>(
+  props: SegmentedItemProps<T>,
+) => {
   const handleClick = () => {
     if (props.disabled) return;
 
@@ -105,7 +110,7 @@ const SegmentedItem = (props: SegmentedItemProps) => {
       })}
       onClick={handleClick}
     >
-      <div class={`${baseClassName}-item-label`}>{props.value}</div>
+      <div class={`${baseClassName}-item-label`}>{props.label}</div>
     </label>
   );
 };
