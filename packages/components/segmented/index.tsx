@@ -37,7 +37,7 @@ const Segmented = (props: SegmentedProps) => {
     segmentedOptions()[0].value,
   );
 
-  const classes = () => addClassNames(`${baseClassName}-group`, props.class);
+  const classes = () => addClassNames(baseClassName, props.class);
 
   const handleChange = (value: SegmentedValue) => {
     if (props.disabled) return;
@@ -48,16 +48,18 @@ const Segmented = (props: SegmentedProps) => {
 
   return (
     <div class={classes()}>
-      <For each={segmentedOptions()}>
-        {(item) => (
-          <SegmentedItem
-            checked={item.value === currentValue()}
-            disabled={!!props.disabled || !!item.disabled}
-            value={item.value}
-            onChange={handleChange}
-          />
-        )}
-      </For>
+      <div class={`${baseClassName}-group`}>
+        <For each={segmentedOptions()}>
+          {(item) => (
+            <SegmentedItem
+              checked={item.value === currentValue()}
+              disabled={!!props.disabled || !!item.disabled}
+              value={item.value}
+              onChange={handleChange}
+            />
+          )}
+        </For>
+      </div>
     </div>
   );
 };
@@ -86,7 +88,7 @@ interface SegmentedItemProps {
 }
 
 const SegmentedItem = (props: SegmentedItemProps) => {
-  const handleChange = () => {
+  const handleClick = () => {
     if (props.disabled) return;
 
     props.onChange(props.value);
@@ -96,8 +98,12 @@ const SegmentedItem = (props: SegmentedItemProps) => {
     <label
       classList={classList({
         base: `${baseClassName}-item`,
-        others: { [`${baseClassName}-item-disabled`]: props.disabled },
+        others: {
+          [`${baseClassName}-item-disabled`]: props.disabled,
+          [`${baseClassName}-item-selected`]: props.checked,
+        },
       })}
+      onClick={handleClick}
     >
       <div class={`${baseClassName}-item-label`}>{props.value}</div>
     </label>

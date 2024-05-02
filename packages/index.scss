@@ -150,6 +150,7 @@
   --alley-motion-duration-fast: 0.1s;
   --alley-motion-duration-mid: 0.2s;
   --alley-motion-duration-slow: 0.3s;
+  --alley-motion-ease-in-out: cubic-bezier(0.645, 0.045, 0.355, 1);
 
   --alley-filter: drop-shadow(0 0 1em var(--alley-color-hover-filter));
   --alley-filter-lg: drop-shadow(0 0 0.7em var(--alley-color-hover-filter));

@@ -82,6 +82,9 @@ export type { LayoutProps } from "~/components/layout";
 export { default as Toast } from "~/components/toast";
 export type { ToastProps } from "~/components/toast";
 
+export { default as Segmented } from "~/components/segmented";
+export type { SegmentedProps } from "~/components/segmented";
+
 export { addClassNames } from "~/utils";
 
 export { default as useDark } from "~/hooks/useDark";
