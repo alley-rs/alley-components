@@ -11,7 +11,10 @@ const Demo1 = () => {
       <Space gap={8} align="center" justify="center">
         <Segmented<string>
           options={["日", "周", "月", "季", "年"]}
-          onChange={(value) => setValue(value)}
+          onChange={(value) => {
+            console.log(value);
+            setValue(value);
+          }}
         />
         <span>值：{value()}</span>
       </Space>

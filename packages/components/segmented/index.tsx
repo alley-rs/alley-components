@@ -94,7 +94,7 @@ const SegmentedItem = <T extends SegmentedValue>(
   props: SegmentedItemProps<T>,
 ) => {
   const handleClick = () => {
-    if (props.disabled) return;
+    if (props.disabled || props.checked) return;
 
     props.onChange(props.value);
   };
