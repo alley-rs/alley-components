@@ -14,6 +14,7 @@ const children = [
   lazy(() => import("./components/typographys")),
   lazy(() => import("./components/toast")),
   lazy(() => import("./components/list")),
+  lazy(() => import("./components/segmented.tsx")),
 ];
 
 const LazyMenu = lazy(() => import("~/components/menu"));
@@ -28,6 +29,7 @@ const menus = [
   "文本",
   "轻提示",
   "列表",
+  "分段控制器",
 ];
 
 const App = () => {
@@ -41,7 +43,7 @@ const App = () => {
         menu={
           <LazyMenu
             style={{ width: "160px" }}
-            defaultSelectedIndex={0}
+            index={index()}
             items={menus.map((s, idx) => ({
               children: s,
               onClick: () => setIndex(idx),

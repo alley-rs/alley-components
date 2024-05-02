@@ -1,8 +1,8 @@
-import { For, Show, createSignal } from "solid-js";
+import { For, Show, createEffect, createSignal } from "solid-js";
 import type { JSX } from "solid-js";
 import type { BaseNoChildrenComponentProps } from "~/interface";
 import "./index.scss";
-import { addClassNames } from "~/utils";
+import { addClassNames, isType } from "~/utils";
 import MenuItem from "./menu-item";
 
 export interface MenuItemOption extends BaseNoChildrenComponentProps {
@@ -13,15 +13,32 @@ export interface MenuItemOption extends BaseNoChildrenComponentProps {
 
 export const baseClassName = "alley-menu";
 
-export interface MenuProps extends BaseNoChildrenComponentProps {
-  items: (MenuItemOption | "divider")[];
+interface WithDefaultIndexProps {
   defaultSelectedIndex?: number;
 }
 
+interface WithIndexProps {
+  index: number;
+}
+
+interface BaseMenuProps extends BaseNoChildrenComponentProps {
+  items: (MenuItemOption | "divider")[];
+}
+
+export type MenuProps =
+  | (BaseMenuProps & WithDefaultIndexProps)
+  | (BaseMenuProps & WithIndexProps);
+
 const Menu = (props: MenuProps) => {
-  const [selectedIndex, setSelectedIndex] = createSignal<number | undefined>(
-    props.defaultSelectedIndex,
+  const [selectedIndex, setSelectedIndex] = createSignal<number>(
+    isType<WithDefaultIndexProps>("defaultSelectedIndex", props)
+      ? props.defaultSelectedIndex ?? 0
+      : props.index,
   );
+
+  createEffect(() => {
+    isType<WithIndexProps>("index", props) && setSelectedIndex(props.index);
+  });
 
   const classes = () => addClassNames(baseClassName, props.class);
   const style = () => props.style;
