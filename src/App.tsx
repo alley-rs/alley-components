@@ -15,6 +15,7 @@ const children = [
   lazy(() => import("./components/toast")),
   lazy(() => import("./components/list")),
   lazy(() => import("./components/segmented.tsx")),
+  lazy(() => import("./components/switchs.tsx")),
 ];
 
 const LazyMenu = lazy(() => import("~/components/menu"));
@@ -30,6 +31,7 @@ const menus = [
   "轻提示",
   "列表",
   "分段控制器",
+  "开关",
 ];
 
 const App = () => {
