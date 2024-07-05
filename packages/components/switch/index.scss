@@ -15,7 +15,6 @@ $base: "switch";
   box-sizing: border-box;
   position: relative;
   align-self: center;
-  cursor: pointer;
 
   input {
     display: none;
@@ -112,7 +111,6 @@ $base: "switch";
 
   /* 禁用状态 */
   &.#{$base}-disabled {
-    cursor: not-allowed;
     opacity: 0.4;
   }
 }

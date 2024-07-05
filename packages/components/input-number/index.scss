@@ -68,7 +68,6 @@ $base: "alley-input-number";
     background-color: var(--alley-color-bg-container-disabled);
     border-color: var(--alley-color-border);
     filter: none;
-    cursor: not-allowed;
     opacity: 1;
 
     &:hover:not([disable]) {
@@ -107,8 +106,11 @@ $base: "alley-input-number";
     }
 
     input.#{$base}-input {
-      height: calc(var(--alley-control-height-lg) - var(--alley-line-width) * 2);
-      padding: var(--alley-input-number-padding-block-lg) var(--alley-input-number-padding-inline-lg);
+      height: calc(
+        var(--alley-control-height-lg) - var(--alley-line-width) * 2
+      );
+      padding: var(--alley-input-number-padding-block-lg)
+        var(--alley-input-number-padding-inline-lg);
     }
   }
 
@@ -131,8 +133,11 @@ $base: "alley-input-number";
     }
 
     input.#{$base}-input {
-      height: calc(var(--alley-control-height-sm) - var(--alley-line-width) * 2);
-      padding: var(--alley-input-number-padding-block-sm) var(--alley-input-number-padding-inline-sm);
+      height: calc(
+        var(--alley-control-height-sm) - var(--alley-line-width) * 2
+      );
+      padding: var(--alley-input-number-padding-block-sm)
+        var(--alley-input-number-padding-inline-sm);
 
       &::placeholder {
         font-size: 12px;
@@ -152,7 +157,8 @@ $base: "alley-input-number";
     font-weight: bold;
     line-height: 0;
     text-align: center;
-    border-inline-start: var(--alley-line-width) var(--alley-line-type) var(--alley-input-number-handle-border-color);
+    border-inline-start: var(--alley-line-width) var(--alley-line-type)
+      var(--alley-input-number-handle-border-color);
     transition: all var(--alley-motion-duration-mid) linear;
 
     &:hover {
@@ -179,7 +185,7 @@ $base: "alley-input-number";
       text-rendering: optimizeLegibility;
       transition: all var(--alley-motion-duration-mid) linear;
 
-      >* {
+      > * {
         line-height: 1;
       }
 
@@ -193,7 +199,8 @@ $base: "alley-input-number";
     }
 
     &-down {
-      border-block-start: var(--alley-line-width) var(--alley-line-type) var(--alley-input-number-handle-border-color);
+      border-block-start: var(--alley-line-width) var(--alley-line-type)
+        var(--alley-input-number-handle-border-color);
       border-start-end-radius: 0;
       border-end-end-radius: var(--alley-border-radius);
     }
@@ -213,14 +220,16 @@ $base: "alley-input-number";
     display: flex;
     flex-direction: column;
     align-items: stretch;
-    transition: opacity var(--alley-motion-duration-mid) linear var(--alley-motion-duration-mid);
+    transition: opacity var(--alley-motion-duration-mid) linear
+      var(--alley-motion-duration-mid);
     background-color: var(--alley-input-number-handle-bg);
   }
 
   &-input {
     box-sizing: border-box;
     margin: 0;
-    padding: var(--alley-input-number-padding-block) var(--alley-input-number-padding-inline);
+    padding: var(--alley-input-number-padding-block)
+      var(--alley-input-number-padding-inline);
     color: var(--alley-color-text);
     font-size: inherit;
     line-height: var(--alley-line-height);
@@ -236,7 +245,6 @@ $base: "alley-input-number";
   }
 
   &-space-compact-item {
-
     &:hover,
     &:focus,
     &:focus-within {
@@ -259,7 +267,8 @@ $base: "alley-input-number";
     --alley-input-number-addon-bg: rgba(255, 255, 255, 0.04);
     --alley-input-number-active-shadow: 0 0 0 2px rgba(0, 60, 180, 0.15);
     --alley-input-number-error-active-shadow: 0 0 0 2px rgba(238, 38, 56, 0.11);
-    --alley-input-number-warning-active-shadow: 0 0 0 2px rgba(173, 107, 0, 0.15);
+    --alley-input-number-warning-active-shadow: 0 0 0 2px
+      rgba(173, 107, 0, 0.15);
     --alley-input-number-hover-bg: #141414;
     --alley-input-number-active-bg: #141414;
     --alley-input-number-handle-active-bg: rgba(255, 255, 255, 0.04);
