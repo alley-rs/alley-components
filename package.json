@@ -1,6 +1,6 @@
 {
   "name": "alley-components",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "repository": "https://github.com/alley-rs/alley-components",
   "keywords": [
     "solid",
@@ -35,8 +35,12 @@
     "vite": "^5.3.3",
     "vite-plugin-solid": "^2.10.2"
   },
-  "files": ["lib"],
-  "sideEffects": ["**/*.css"],
+  "files": [
+    "lib"
+  ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "module": "./lib/index.js",
   "typings": "./lib/index.d.ts"
 }
