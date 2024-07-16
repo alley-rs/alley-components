@@ -53,7 +53,7 @@ const Menu = (props: MenuProps) => {
   };
 
   return (
-    <ul class={classes()} style={style()}>
+    <ul id={props.id} class={classes()} style={style()}>
       <For each={props.items}>
         {(item, index) => (
           <Show

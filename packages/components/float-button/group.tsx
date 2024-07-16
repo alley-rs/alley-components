@@ -6,6 +6,7 @@ export const FloatGroupContext = createContext<{ class: string }>();
 const FloatGroup = (props: FloatGroupProps) => {
   return (
     <div
+      id={props.id}
       class="float-button-group"
       style={{
         "--right": `${props.right ?? 20}px`,

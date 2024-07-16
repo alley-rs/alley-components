@@ -14,13 +14,18 @@ const Row = (props: RowProps) => {
   const style = () =>
     props.gutter
       ? {
-          ...props.style,
-          "row-gap": `${props.gutter}px`,
-        }
+        ...props.style,
+        "row-gap": `${props.gutter}px`,
+      }
       : props.style;
 
   return (
-    <div class={className()} style={style()} onClick={props.onClick}>
+    <div
+      id={props.id}
+      class={className()}
+      style={style()}
+      onClick={props.onClick}
+    >
       {props.children}
     </div>
   );

@@ -41,7 +41,11 @@ const Dropdown = (props: DropdownProps) => {
 
   return (
     <>
-      <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+      <div
+        id={props.id}
+        onMouseEnter={handleMouseEnter}
+        onMouseLeave={handleMouseLeave}
+      >
         <div class={className()} style={style()}>
           <div class={`${baseClassName}-menu`}>
             <For each={props.menu}>

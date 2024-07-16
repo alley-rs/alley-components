@@ -22,6 +22,7 @@ const FloatButton = (props: FloatButtonProps) => {
 
   return (
     <div
+      id={props.id}
       class={classes()}
       style={{
         "--right": `${props.right ?? 20}px`,

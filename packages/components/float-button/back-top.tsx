@@ -53,6 +53,7 @@ const BackTop = (props: BackTopProps) => {
   return (
     <Show when={visible()}>
       <FloatButton
+        id={merged.id}
         class={classes()}
         onClick={scrollToTop}
         icon={<AiOutlineVerticalAlignTop />}

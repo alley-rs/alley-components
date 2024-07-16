@@ -13,6 +13,7 @@ interface ButtonLinkProps {
 }
 
 interface BaseLinkProps {
+  id?: string;
   class?: string;
   children: JSXElement;
   wrap?: boolean;
@@ -37,6 +38,7 @@ const Link = (props: LinkProps) => {
 
   return (
     <a
+      id={merged.id}
       class={classNames()}
       href={"href" in merged ? merged.href : undefined}
       onClick={"onClick" in merged ? merged.onClick : undefined}

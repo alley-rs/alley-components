@@ -140,7 +140,7 @@ const Toast = (props: ToastProps) => {
   return (
     <Show when={open()}>
       <Portal>
-        <div classList={classes()} style={style()}>
+        <div id={merged.id} classList={classes()} style={style()}>
           <div classList={wrapperClasses}>{resolved()}</div>
         </div>
       </Portal>

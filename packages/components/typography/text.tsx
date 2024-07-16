@@ -31,7 +31,7 @@ const Text = (props: TextProps) => {
     );
 
   return (
-    <span class={classes()} style={props.style}>
+    <span id={props.id} class={classes()} style={props.style}>
       <Switch fallback={props.children}>
         <Match when={props.mark}>
           <mark>{props.children}</mark>

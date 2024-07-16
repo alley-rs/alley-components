@@ -16,23 +16,33 @@ const Title = (props: TitleProps) => {
   return (
     <Switch>
       <Match when={merged.level === 1}>
-        <h1 class={classes()}>{merged.children}</h1>
+        <h1 id={merged.id} class={classes()}>
+          {merged.children}
+        </h1>
       </Match>
 
       <Match when={merged.level === 2}>
-        <h2 class={classes()}>{merged.children}</h2>
+        <h2 id={merged.id} class={classes()}>
+          {merged.children}
+        </h2>
       </Match>
 
       <Match when={merged.level === 3}>
-        <h3 class={classes()}>{merged.children}</h3>
+        <h3 id={merged.id} class={classes()}>
+          {merged.children}
+        </h3>
       </Match>
 
       <Match when={merged.level === 4}>
-        <h4 class={classes()}>{merged.children}</h4>
+        <h4 id={merged.id} class={classes()}>
+          {merged.children}
+        </h4>
       </Match>
 
       <Match when={merged.level === 5}>
-        <h5 class={classes()}>{merged.children}</h5>
+        <h5 id={merged.id} class={classes()}>
+          {merged.children}
+        </h5>
       </Match>
     </Switch>
   );

@@ -25,6 +25,7 @@ const Input = (props: InputProps) => {
   return (
     <input
       type="text"
+      id={props.id}
       class={className()}
       placeholder={props.placeholder}
       value={props.value ?? ""}

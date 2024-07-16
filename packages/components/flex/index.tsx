@@ -48,7 +48,7 @@ const Flex = (props: FlexProps) => {
   };
 
   return (
-    <div class={className()} style={style()}>
+    <div id={props.id} class={className()} style={style()}>
       {props.children}
     </div>
   );

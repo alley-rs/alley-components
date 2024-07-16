@@ -30,7 +30,7 @@ const Switch = (props: SwitchProps) => {
   };
 
   return (
-    <div class={classNames()} onClick={onClick}>
+    <div id={props.id} class={classNames()} onClick={onClick}>
       <div class={`${baseClassName}-checkbox`}>
         <div class={`${baseClassName}-inner`}>
           {props.checked ? props.checkedChild : props.uncheckedChild}

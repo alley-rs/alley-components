@@ -56,8 +56,8 @@ const clickDuration = 160;
 const Ripple = (props: RippleProps) => {
   const merged = mergeProps({ duration: 550 }, props);
 
-  let clickTimeout = useTimeout();
-  let rippleArrayTimeout = useTimeout();
+  const clickTimeout = useTimeout();
+  const rippleArrayTimeout = useTimeout();
 
   const [rippleArray, setRippleArray] = createStore<RippleItem[]>([]);
 
