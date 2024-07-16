@@ -3,7 +3,7 @@ import "./index.scss";
 import type { BaseComponentProps } from "~/interface";
 import { addClassNames } from "~/utils";
 
-export interface CardProps extends BaseComponentProps {
+export interface CardProps extends BaseComponentProps<HTMLDivElement> {
   title: JSXElement;
   extra?: JSXElement;
   onHeaderClick?: () => void;
@@ -25,7 +25,7 @@ const Card = (props: CardProps) => {
   const classes = () => addClassNames(baseClassName, props.class);
 
   return (
-    <div id={props.id} class={classes()} style={style()}>
+    <div ref={props.ref} id={props.id} class={classes()} style={style()}>
       <div class={`${baseClassName}-head`}>
         <div class={`${baseClassName}-head-wrapper`}>
           <Show

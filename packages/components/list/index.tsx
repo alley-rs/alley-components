@@ -4,6 +4,7 @@ import "./index.scss";
 import { addClassNames } from "~/utils";
 
 export interface ListProps<T> {
+  ref?: HTMLDivElement | ((e: HTMLDivElement) => void);
   id?: string;
   header?: JSXElement;
   class?: string;

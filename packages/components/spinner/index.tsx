@@ -6,7 +6,7 @@ import "./index.scss";
 
 const baseClassName = "alley-spinner";
 
-export interface SpinnerProps extends BaseSizeComponentProps {
+export interface SpinnerProps extends BaseSizeComponentProps<HTMLDivElement> {
   label?: string;
   emptyColor?: string; // 空区域颜色
   color?: string; // 标识颜色
@@ -40,7 +40,9 @@ const Spinner = (props: SpinnerProps) => {
     "--alley-spinner-animation-speed": merged.speed,
   });
 
-  return <div id={merged.id} class={classes()} style={style()} />;
+  return (
+    <div ref={merged.ref} id={merged.id} class={classes()} style={style()} />
+  );
 };
 
 export default Spinner;

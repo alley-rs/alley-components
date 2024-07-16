@@ -4,7 +4,7 @@ import { baseClassName } from ".";
 import "./text.scss";
 import { Match, Switch } from "solid-js";
 
-export interface TextProps extends BaseComponentProps {
+export interface TextProps extends BaseComponentProps<HTMLSpanElement> {
   type?: "secondary" | "success" | "warning" | "danger";
   disabled?: boolean;
   mark?: boolean;
@@ -31,7 +31,7 @@ const Text = (props: TextProps) => {
     );
 
   return (
-    <span id={props.id} class={classes()} style={props.style}>
+    <span ref={props.ref} id={props.id} class={classes()} style={props.style}>
       <Switch fallback={props.children}>
         <Match when={props.mark}>
           <mark>{props.children}</mark>

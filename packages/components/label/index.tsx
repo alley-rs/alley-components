@@ -3,7 +3,7 @@ import type { BaseComponentProps } from "~/interface";
 import { addClassNames } from "~/utils";
 import "./index.scss";
 
-export interface LabelProps extends BaseComponentProps {
+export interface LabelProps extends BaseComponentProps<HTMLLabelElement> {
   colon?: boolean;
 }
 
@@ -14,7 +14,7 @@ const Label = (props: LabelProps) => {
   const style = () => ({ ...props.style });
 
   return (
-    <label id={props.id} class={classes()} style={style()}>
+    <label ref={props.ref} id={props.id} class={classes()} style={style()}>
       {props.children}
       <Show when={props.colon}>：</Show>
     </label>

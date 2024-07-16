@@ -3,7 +3,7 @@ import { addClassNames } from "~/utils/class";
 import "./index.scss";
 import type { BaseSizeComponentProps } from "~/interface";
 
-export interface SwitchProps extends BaseSizeComponentProps {
+export interface SwitchProps extends BaseSizeComponentProps<HTMLDivElement> {
   checked?: boolean;
   setChecked: (checked: boolean) => void;
   disabled?: boolean;
@@ -30,7 +30,7 @@ const Switch = (props: SwitchProps) => {
   };
 
   return (
-    <div id={props.id} class={classNames()} onClick={onClick}>
+    <div ref={props.ref} id={props.id} class={classNames()} onClick={onClick}>
       <div class={`${baseClassName}-checkbox`}>
         <div class={`${baseClassName}-inner`}>
           {props.checked ? props.checkedChild : props.uncheckedChild}

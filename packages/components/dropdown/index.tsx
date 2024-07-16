@@ -3,7 +3,7 @@ import "./index.scss";
 import { addClassNames } from "~/utils/class";
 import type { BaseComponentProps } from "~/interface";
 
-export interface DropdownProps extends BaseComponentProps {
+export interface DropdownProps extends BaseComponentProps<HTMLDivElement> {
   open?: boolean;
   menu: MenuItemProps[];
   top?: number;
@@ -40,30 +40,29 @@ const Dropdown = (props: DropdownProps) => {
   };
 
   return (
-    <>
-      <div
-        id={props.id}
-        onMouseEnter={handleMouseEnter}
-        onMouseLeave={handleMouseLeave}
-      >
-        <div class={className()} style={style()}>
-          <div class={`${baseClassName}-menu`}>
-            <For each={props.menu}>
-              {(item) => (
-                <MenuItem
-                  {...item}
-                  onClick={() => {
-                    item.onClick();
-                    setOpen(false);
-                  }}
-                />
-              )}
-            </For>
-          </div>
+    <div
+      ref={props.ref}
+      id={props.id}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
+      <div class={className()} style={style()}>
+        <div class={`${baseClassName}-menu`}>
+          <For each={props.menu}>
+            {(item) => (
+              <MenuItem
+                {...item}
+                onClick={() => {
+                  item.onClick();
+                  setOpen(false);
+                }}
+              />
+            )}
+          </For>
         </div>
-        {props.children}
       </div>
-    </>
+      {props.children}
+    </div>
   );
 };
 

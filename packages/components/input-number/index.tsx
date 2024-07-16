@@ -5,7 +5,8 @@ import type { BaseSizeComponentProps } from "~/interface";
 import { useContext } from "solid-js";
 import { SpaceCompactContext } from "../space/compact";
 
-export interface InputNumberProps extends BaseSizeComponentProps {
+export interface InputNumberProps
+  extends BaseSizeComponentProps<HTMLInputElement> {
   max?: number;
   min?: number;
   value?: number;
@@ -34,7 +35,7 @@ const InputNumber = (props: InputNumberProps) => {
   };
 
   return (
-    <div id={props.id} class={className()}>
+    <div class={className()}>
       <div class={`${baseClassName}-handler-wrap`}>
         <span
           class={`${baseClassName}-handler ${baseClassName}-handler-up`}
@@ -67,6 +68,8 @@ const InputNumber = (props: InputNumberProps) => {
       </div>
       <div class={`${baseClassName}-input-wrap`}>
         <input
+          id={props.id}
+          ref={props.ref}
           class={`${baseClassName}-input`}
           value={props.value ?? ""}
           placeholder={props.placeholder}

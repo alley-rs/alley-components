@@ -6,7 +6,8 @@ export type Placement =
   | ("top-left" | "top-right" | "bottom-left" | "bottom-right")
   | Direction;
 
-export interface BaseComponentProps {
+export interface BaseComponentProps<T extends HTMLElement> {
+  ref?: T | ((e: T) => void);
   id?: string;
   class?: string;
   style?: JSX.CSSProperties;
@@ -14,21 +15,27 @@ export interface BaseComponentProps {
 }
 
 export interface BaseOnClickComponentProps<T extends HTMLElement>
-  extends BaseComponentProps {
+  extends BaseComponentProps<T> {
   onClick?: (event: MouseEvent & { currentTarget: T }) => void;
 }
 
-export type BaseNoChildrenComponentProps = Omit<BaseComponentProps, "children">;
+export type BaseNoChildrenComponentProps<T extends HTMLElement> = Omit<
+  BaseComponentProps<T>,
+  "children"
+>;
 
-export interface BaseSizeComponentProps extends BaseComponentProps {
+export interface BaseSizeComponentProps<T extends HTMLElement>
+  extends BaseComponentProps<T> {
   size?: SizeType;
 }
 
-export interface BaseDirectionComponentProps extends BaseComponentProps {
+export interface BaseDirectionComponentProps<T extends HTMLElement>
+  extends BaseComponentProps<T> {
   direction?: Direction;
 }
 
-export interface BasePlacementComponentProps extends BaseComponentProps {
+export interface BasePlacementComponentProps<T extends HTMLElement>
+  extends BaseComponentProps<T> {
   placement?: Placement;
 }
 

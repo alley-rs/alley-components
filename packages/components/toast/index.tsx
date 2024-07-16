@@ -27,7 +27,7 @@ interface MessageToastProps {
   action?: JSX.Element;
 }
 
-interface BaseToastProps extends BasePlacementComponentProps {
+interface BaseToastProps extends BasePlacementComponentProps<HTMLDivElement> {
   open?: boolean;
   autoHideDuration?: number;
   onClose: () => void; // 必需传入 onClose ，以在超时关闭后调用，否则 merged.open 将一直为 true
@@ -140,7 +140,12 @@ const Toast = (props: ToastProps) => {
   return (
     <Show when={open()}>
       <Portal>
-        <div id={merged.id} classList={classes()} style={style()}>
+        <div
+          ref={merged.ref}
+          id={merged.id}
+          classList={classes()}
+          style={style()}
+        >
           <div classList={wrapperClasses}>{resolved()}</div>
         </div>
       </Portal>

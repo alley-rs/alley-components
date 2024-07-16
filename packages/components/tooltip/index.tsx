@@ -19,7 +19,7 @@ export type TooltipPlacement = "top" | "left" | "right" | "bottom";
 // | "right-top"
 // | "right-bottom";
 
-export interface TooltipProps extends BaseComponentProps {
+export interface TooltipProps extends BaseComponentProps<HTMLDivElement> {
   text: string;
   disabled?: boolean;
   placement?: TooltipPlacement;
@@ -31,15 +31,12 @@ const classPrefix = "tooltip";
 const gap = 4;
 
 const Tooltip = (props: TooltipProps) => {
-  const mergedProps = mergeProps(
-    { size: "middle", placement: "left" },
-    props,
-  ) as {
+  const merged = mergeProps({ size: "middle", placement: "left" }, props) as {
     text: string;
     disabled?: boolean;
     placement: TooltipPlacement;
     size: SizeType;
-  } & BaseComponentProps;
+  } & BaseComponentProps<HTMLDivElement>;
 
   let tooltipRef: HTMLDivElement | undefined;
 
@@ -47,10 +44,10 @@ const Tooltip = (props: TooltipProps) => {
 
   const [positionStyles, setPositionStyles] = createSignal<JSX.CSSProperties>();
 
-  const resolved = children(() => mergedProps.children);
+  const resolved = children(() => merged.children);
 
   createEffect(() => {
-    mergedProps.text && updatePostion();
+    merged.text && updatePostion();
   });
 
   const setPostion = (
@@ -118,22 +115,18 @@ const Tooltip = (props: TooltipProps) => {
   };
 
   const className = () =>
-    addClassNames(
-      classPrefix,
-      mergedProps.class,
-      `tooltip-${mergedProps.size}`,
-    );
+    addClassNames(classPrefix, merged.class, `tooltip-${merged.size}`);
 
   const popoverClassName = () =>
     addClassNames(
       `${classPrefix}-popover`,
-      `${classPrefix}-popover-${mergedProps.placement}`,
+      `${classPrefix}-popover-${merged.placement}`,
     );
 
   const arrowClassName = () =>
     addClassNames(
       `${classPrefix}-popover-arrow`,
-      `${classPrefix}-popover-arrow-${mergedProps.placement}`,
+      `${classPrefix}-popover-arrow-${merged.placement}`,
     );
 
   const updatePostion = () => {
@@ -148,11 +141,7 @@ const Tooltip = (props: TooltipProps) => {
 
     if (!childRect || !tooltipRect) return;
 
-    const positionStyle = setPostion(
-      mergedProps.placement,
-      childRect,
-      tooltipRect,
-    );
+    const positionStyle = setPostion(merged.placement, childRect, tooltipRect);
 
     setPositionStyles(positionStyle);
   };
@@ -160,7 +149,7 @@ const Tooltip = (props: TooltipProps) => {
   const showTooltip = () => {
     updatePostion();
 
-    !mergedProps.disabled && setIsVisible(true);
+    !merged.disabled && setIsVisible(true);
   };
 
   const hideTooltip = () => {
@@ -168,16 +157,21 @@ const Tooltip = (props: TooltipProps) => {
   };
 
   const visibleStyle = () => ({
-    ...mergedProps.style,
+    ...merged.style,
     "--visibility": isVisible() ? "visible" : "hidden",
   });
 
   const resolvedTextChild = children(() => (
-    <div class={`${classPrefix}-text`}>{mergedProps.text}</div>
+    <div class={`${classPrefix}-text`}>{merged.text}</div>
   ));
 
   return (
-    <div id={mergedProps.id} class={className()} style={visibleStyle()}>
+    <div
+      ref={merged.ref}
+      id={merged.id}
+      class={className()}
+      style={visibleStyle()}
+    >
       <div
         style={{ display: "inline" }}
         onMouseEnter={showTooltip}

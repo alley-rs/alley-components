@@ -4,6 +4,7 @@ import { addClassNames } from "~/utils";
 import "./index.scss";
 
 export interface ProgressProps {
+  ref?: HTMLDivElement | ((e: HTMLDivElement) => void);
   id?: string;
   class?: string;
   percent?: number;
@@ -25,7 +26,7 @@ const Progress = (props: ProgressProps) => {
   });
 
   return (
-    <div id={props.id} class={classNames()}>
+    <div ref={props.ref} id={props.id} class={classNames()}>
       <div class={`${baseClassName}-trail`}>
         <Show when={props.percent}>
           <div

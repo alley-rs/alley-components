@@ -22,7 +22,7 @@ export type SegmentedOptions<T = SegmentedValue> = (
 )[];
 
 export interface SegmentedProps<T = SegmentedValue>
-  extends BaseNoChildrenComponentProps {
+  extends BaseNoChildrenComponentProps<HTMLDivElement> {
   options: SegmentedOptions<T>;
   onChange: (value: T) => void;
   disabled?: boolean;
@@ -48,7 +48,7 @@ const Segmented = <T extends SegmentedValue>(props: SegmentedProps<T>) => {
   };
 
   return (
-    <div id={props.id} class={classes()}>
+    <div ref={props.ref} id={props.id} class={classes()}>
       <div class={`${baseClassName}-group`}>
         <For each={segmentedOptions()}>
           {(item) => (

@@ -4,7 +4,7 @@ import { addClassNames } from "~/utils";
 import { baseClassName } from ".";
 import "./title.scss";
 
-export interface TitleProps extends BaseComponentProps {
+export interface TitleProps extends BaseComponentProps<HTMLHeadingElement> {
   level?: 1 | 2 | 3 | 4 | 5;
 }
 
@@ -16,31 +16,31 @@ const Title = (props: TitleProps) => {
   return (
     <Switch>
       <Match when={merged.level === 1}>
-        <h1 id={merged.id} class={classes()}>
+        <h1 ref={merged.ref} id={merged.id} class={classes()}>
           {merged.children}
         </h1>
       </Match>
 
       <Match when={merged.level === 2}>
-        <h2 id={merged.id} class={classes()}>
+        <h2 ref={merged.ref} id={merged.id} class={classes()}>
           {merged.children}
         </h2>
       </Match>
 
       <Match when={merged.level === 3}>
-        <h3 id={merged.id} class={classes()}>
+        <h3 ref={merged.ref} id={merged.id} class={classes()}>
           {merged.children}
         </h3>
       </Match>
 
       <Match when={merged.level === 4}>
-        <h4 id={merged.id} class={classes()}>
+        <h4 ref={merged.ref} id={merged.id} class={classes()}>
           {merged.children}
         </h4>
       </Match>
 
       <Match when={merged.level === 5}>
-        <h5 id={merged.id} class={classes()}>
+        <h5 ref={merged.ref} id={merged.id} class={classes()}>
           {merged.children}
         </h5>
       </Match>
