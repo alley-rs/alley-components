@@ -1,6 +1,6 @@
 import { For, createSignal } from "solid-js";
 import { Button, Divider, Flex, Space } from "../../packages";
-import { SizeType } from "~/interface";
+import type { SizeType } from "~/interface";
 import { AiOutlineDownload, AiOutlineSearch } from "solid-icons/ai";
 
 const Types = () => {

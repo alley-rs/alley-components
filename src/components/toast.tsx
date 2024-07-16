@@ -1,6 +1,6 @@
 import { For, createSignal } from "solid-js";
-import { Alert, AlertProps, Button, Flex, Toast } from "~/index";
-import { Placement } from "~/interface";
+import { Alert, type AlertProps, Button, Flex, Toast } from "~/index";
+import type { Placement } from "~/interface";
 
 const randomBool = () => Boolean(Math.round(Math.random()));
 

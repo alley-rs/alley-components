@@ -38,7 +38,7 @@ const List = () => {
           <LazyListItem
             avatar={<AiFillFilePdf />}
             title={item}
-            description={item + "的描述文字"}
+            description={`${item}的描述文字`}
             extra={<Button type="plain" shape="circle" icon={<AiFillHdd />} />}
           />
         )}
