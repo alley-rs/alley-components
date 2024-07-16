@@ -9,7 +9,7 @@ const Tooltips = () => (
       message="本页面演示了圆形按钮的错误用法，不可将文字传入圆形按钮。可在控制台中查看警告信息。"
     />
     <Flex gap={16} style={{ "margin-top": "40px" }} justify="round">
-      <Tooltip text="这是一条文字提示" placement="top">
+      <Tooltip text="这是一条文字提示" placement="top" size="small">
         <Button shape="circle" icon={<AiOutlineUp />}>
           上
         </Button>
@@ -21,7 +21,7 @@ const Tooltips = () => (
         </Button>
       </Tooltip>
 
-      <Tooltip text="这是一条文字提示" placement="left">
+      <Tooltip text="这是一条文字提示" placement="left" size="large">
         <Button shape="circle" size="large">
           左
         </Button>
