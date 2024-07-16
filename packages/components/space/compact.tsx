@@ -34,7 +34,7 @@ const Compact = (props: SpaceCompactProps) => {
   });
 
   return (
-    <div class={classes()} style={style()}>
+    <div id={props.id} class={classes()} style={style()}>
       <SpaceCompactContext.Provider
         value={{ childClass: `${baseClassName}-item`, size: props.size }}
       >

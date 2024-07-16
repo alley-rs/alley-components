@@ -1,5 +1,5 @@
 import { Show, children, createSignal, mergeProps, lazy } from "solid-js";
-import { type JSX } from "solid-js";
+import type { JSX } from "solid-js";
 import type { BaseNoChildrenComponentProps } from "~/interface";
 import { addClassNames } from "~/utils";
 import {
@@ -112,7 +112,7 @@ const Alert = (props: AlertProps) => {
 
   return (
     <Show when={!closed()}>
-      <div class={classes()} style={style()}>
+      <div id={merged.id} class={classes()} style={style()}>
         <Show when={merged.showIcon || merged.icon}>
           <IconNode
             type={merged.type}

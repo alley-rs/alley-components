@@ -7,7 +7,7 @@ import {
   mergeProps,
   useContext,
 } from "solid-js";
-import type { JSXElement } from "solid-js";
+import type { JSXElement, JSX } from "solid-js";
 import { addClassNames } from "~/utils/class";
 import "./index.scss";
 import Ripple from "./ripple";
@@ -22,6 +22,7 @@ const LazySpinner = lazy(() => import("~/components/spinner"));
 
 type ButtonType = "default" | "plain" | "primary";
 type ButtonShape = "square" | "circle" | "round";
+type ButtonElementType = "submit" | "reset" | "button";
 
 interface Filter {
   scale: number;
@@ -29,12 +30,13 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-    BaseSizeComponentProps {
+  BaseSizeComponentProps {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
   shape?: ButtonShape;
   type?: ButtonType;
+  elementType?: ButtonElementType;
   filter?: boolean | Filter;
   danger?: boolean;
   isLoading?: boolean;
@@ -47,7 +49,7 @@ const Button = (props: ButtonProps) => {
   const { childClass: spaceCompactItemClass, size: spaceCompactItemSize } =
     useContext(SpaceCompactContext) ?? {};
 
-  const merged = mergeProps({ filter: true }, props);
+  const merged = mergeProps({ filter: true, elementType: "button" }, props);
 
   createEffect(() => {
     if (merged.shape === "circle") {
@@ -63,7 +65,7 @@ const Button = (props: ButtonProps) => {
     () => merged.shape === "circle" || (merged.icon && !merged.children),
   );
 
-  const size = () => spaceCompactItemSize ?? props.size;
+  const size = () => spaceCompactItemSize ?? merged.size;
 
   const spaceGap = createMemo(() =>
     size() === "small" ? 4 : size() === "large" ? 8 : 6,
@@ -73,9 +75,9 @@ const Button = (props: ButtonProps) => {
     !merged.filter || merged.filter === true
       ? merged.style
       : {
-          "--filter-scale": merged.filter.scale,
-          ...merged.style,
-        };
+        "--filter-scale": merged.filter.scale,
+        ...merged.style,
+      };
 
   const className = () =>
     addClassNames(
@@ -122,10 +124,12 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
+      id={merged.id}
       class={className()}
       onClick={merged.onClick}
       disabled={disabled()}
       style={style()}
+      type={merged.elementType as JSX.HTMLElementTags["button"]["type"]}
     >
       <Show
         when={!merged.isLoading}
@@ -161,7 +165,7 @@ const Loading = (props: LoadingProps) => {
   );
 };
 
-const addSpace = (text: string): string => text[0] + " " + text[1];
+const addSpace = (text: string): string => `${text[0]} ${text[1]}`;
 
 const isChineseChars = (text: string): boolean => {
   const regex = /^[\u4E00-\u9FA5]+$/;

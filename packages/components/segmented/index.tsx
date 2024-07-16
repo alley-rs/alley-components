@@ -1,6 +1,6 @@
 import { For, createMemo, createSignal, type JSXElement } from "solid-js";
 import "./index.scss";
-import { BaseNoChildrenComponentProps } from "~/interface";
+import type { BaseNoChildrenComponentProps } from "~/interface";
 import { addClassNames, classList } from "~/utils";
 
 export type SegmentedValue = string | number;
@@ -48,7 +48,7 @@ const Segmented = <T extends SegmentedValue>(props: SegmentedProps<T>) => {
   };
 
   return (
-    <div class={classes()}>
+    <div id={props.id} class={classes()}>
       <div class={`${baseClassName}-group`}>
         <For each={segmentedOptions()}>
           {(item) => (

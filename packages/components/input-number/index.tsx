@@ -34,7 +34,7 @@ const InputNumber = (props: InputNumberProps) => {
   };
 
   return (
-    <div class={className()}>
+    <div id={props.id} class={className()}>
       <div class={`${baseClassName}-handler-wrap`}>
         <span
           class={`${baseClassName}-handler ${baseClassName}-handler-up`}
@@ -88,7 +88,7 @@ const InputNumber = (props: InputNumberProps) => {
 };
 
 const validNumber = (value: string): number => {
-  const n = parseInt(value);
+  const n = Number.parseInt(value);
 
   return n;
 };

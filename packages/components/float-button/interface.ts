@@ -8,6 +8,7 @@ export interface FloatButtonProps extends ButtonProps {
 }
 
 export interface FloatGroupProps {
+  id?: string;
   right?: number;
   bottom?: number;
   children: JSX.Element;

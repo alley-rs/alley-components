@@ -4,6 +4,7 @@ import "./index.scss";
 import { addClassNames } from "~/utils";
 
 export interface ListProps<T> {
+  id?: string;
   header?: JSXElement;
   class?: string;
   dataSource: T[];
@@ -16,7 +17,7 @@ const List = <T extends any>(props: ListProps<T>) => {
   const classNames = () => addClassNames(baseClassName, props.class);
 
   return (
-    <div class={classNames()}>
+    <div id={props.id} class={classNames()}>
       <Show when={props.header}>
         <div class={`${baseClassName}-header`}>{props.header}</div>
       </Show>

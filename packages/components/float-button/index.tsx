@@ -1,4 +1,4 @@
-import { Component } from "solid-js";
+import type { Component } from "solid-js";
 import Button from "./button";
 import Group from "./group";
 import type { FloatButtonProps } from "./interface";
