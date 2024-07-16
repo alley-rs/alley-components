@@ -1,6 +1,6 @@
 import { addClassNames } from "~/utils/class";
 import "./index.scss";
-import Flex, { FlexProps } from "../flex";
+import Flex, { type FlexProps } from "../flex";
 import type { BaseComponentProps } from "~/interface";
 
 type Span =
@@ -50,13 +50,13 @@ const Col = (props: ColProps) => {
     props.gutter
       ? {
         ...props.style,
-        "padding-left": props.gutter + "px",
-        "padding-right": props.gutter + "px",
+        "padding-left": `${props.gutter}px`,
+        "padding-right": `${props.gutter}px`,
       }
       : props.style;
 
   return (
-    <div class={className()} style={style()}>
+    <div id={props.id} class={className()} style={style()}>
       <Flex
         inline
         style={{ height: "100%", "max-width": "100%", width: "100%" }}

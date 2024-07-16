@@ -7,7 +7,7 @@ const LazyButton = lazy(() => import("../button"));
 
 const baseClassName = "alley-input";
 
-interface PasswordProps extends InputProps {}
+interface PasswordProps extends InputProps { }
 
 const Password = (props: PasswordProps) => {
   const [showPassword, setShowPassword] = createSignal(false);
@@ -40,6 +40,7 @@ const Password = (props: PasswordProps) => {
 
       <input
         type={showPassword() ? "text" : "password"}
+        id={props.id}
         class={classes()}
         placeholder={props.placeholder}
         value={props.value ?? ""}

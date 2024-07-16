@@ -52,7 +52,7 @@ const Divider = (props: DividerProps) => {
   };
 
   return (
-    <div class={classes()} style={style()}>
+    <div id={merged.id} class={classes()} style={style()}>
       <Show when={merged.children}>
         <span class={`${baseClassName}-inner-text`} style={textStyle()}>
           {merged.children}

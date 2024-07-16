@@ -7,6 +7,7 @@ export type Placement =
   | Direction;
 
 export interface BaseComponentProps {
+  id?: string;
   class?: string;
   style?: JSX.CSSProperties;
   children?: JSX.Element;

@@ -177,7 +177,7 @@ const Tooltip = (props: TooltipProps) => {
   ));
 
   return (
-    <div class={className()} style={visibleStyle()}>
+    <div id={mergedProps.id} class={className()} style={visibleStyle()}>
       <div
         style={{ display: "inline" }}
         onMouseEnter={showTooltip}

@@ -1,6 +1,7 @@
 import { Show, type JSXElement } from "solid-js";
 import "./index.scss";
 import type { BaseComponentProps } from "~/interface";
+import { addClassNames } from "~/utils";
 
 export interface CardProps extends BaseComponentProps {
   title: JSXElement;
@@ -21,11 +22,10 @@ const Card = (props: CardProps) => {
       : "var(--alley-padding-lg)",
   });
 
+  const classes = () => addClassNames(baseClassName, props.class);
+
   return (
-    <div
-      class={props.class ? `${baseClassName} ${props.class}` : baseClassName}
-      style={style()}
-    >
+    <div id={props.id} class={classes()} style={style()}>
       <div class={`${baseClassName}-head`}>
         <div class={`${baseClassName}-head-wrapper`}>
           <Show

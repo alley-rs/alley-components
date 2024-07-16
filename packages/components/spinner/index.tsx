@@ -40,7 +40,7 @@ const Spinner = (props: SpinnerProps) => {
     "--alley-spinner-animation-speed": merged.speed,
   });
 
-  return <div class={classes()} style={style()} />;
+  return <div id={merged.id} class={classes()} style={style()} />;
 };
 
 export default Spinner;

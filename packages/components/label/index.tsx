@@ -14,7 +14,7 @@ const Label = (props: LabelProps) => {
   const style = () => ({ ...props.style });
 
   return (
-    <label class={classes()} style={style()}>
+    <label id={props.id} class={classes()} style={style()}>
       {props.children}
       <Show when={props.colon}>：</Show>
     </label>

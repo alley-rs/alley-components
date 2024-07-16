@@ -4,6 +4,7 @@ import { addClassNames } from "~/utils";
 import type { SizeType } from "~/interface";
 
 export interface CircleProgressProps {
+  id?: string;
   percent: number;
   trackWidth?: number;
   trackColor?: string;
@@ -52,7 +53,7 @@ const CircleProgress = (props: CircleProgressProps) => {
       case "large":
         return {
           "--size": "140px",
-          "--track-width": `16px`,
+          "--track-width": "16px",
           "--font-size": "24px",
         };
       default:
@@ -73,7 +74,7 @@ const CircleProgress = (props: CircleProgressProps) => {
   });
 
   return (
-    <div class={classes()} style={style()}>
+    <div id={merged.id} class={classes()} style={style()}>
       <div class={`${baseClassName}-content`}>
         <svg class={`${baseClassName}-svg`}>
           <circle class={`${baseClassName}-track`} fill="transparent" />

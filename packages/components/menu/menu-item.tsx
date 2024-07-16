@@ -22,7 +22,7 @@ const MenuItem = (props: MenuItemProps) => {
   const style = () => props.style;
 
   return (
-    <li class={classes()} style={style()} onClick={props.onClick}>
+    <li id={props.id} class={classes()} style={style()} onClick={props.onClick}>
       <Show when={props.icon} fallback={props.children}>
         <LazyFlex>
           {props.icon}

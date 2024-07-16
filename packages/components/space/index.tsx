@@ -14,13 +14,13 @@ export interface SpaceProps extends BaseOnClickComponentProps<HTMLDivElement> {
   block?: boolean;
   align?: "start" | "end" | "center" | "baseline";
   justify?:
-    | "start"
-    | "end"
-    | "center"
-    | "between"
-    | "around"
-    | "evenly"
-    | "stretch";
+  | "start"
+  | "end"
+  | "center"
+  | "between"
+  | "around"
+  | "evenly"
+  | "stretch";
 }
 
 const Space = (props: SpaceProps) => {
@@ -45,7 +45,12 @@ const Space = (props: SpaceProps) => {
   });
 
   return (
-    <div class={classNames()} style={style()} onClick={props.onClick}>
+    <div
+      id={props.id}
+      class={classNames()}
+      style={style()}
+      onClick={props.onClick}
+    >
       <For
         each={Array.isArray(props.children) ? props.children : [props.children]}
       >

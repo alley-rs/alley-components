@@ -29,7 +29,7 @@ const Layout = (props: LayoutProps) => {
   const resolvedContent = children(() => props.content);
 
   return (
-    <LazyFlex class={classes()} style={style()}>
+    <LazyFlex id={props.id} class={classes()} style={style()}>
       <div class={`${baseClassName}-menu`}>{resolvedMenu()}</div>
       <div class={`${baseClassName}-content`}>{resolvedContent()}</div>
     </LazyFlex>

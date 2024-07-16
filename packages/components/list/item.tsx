@@ -3,6 +3,7 @@ import { addClassNames } from "~/utils";
 import "./index.scss";
 
 export interface ListItemProps {
+  id?: string;
   class?: string;
   avatar?: JSXElement;
   title: JSXElement;
@@ -16,7 +17,7 @@ const ListItem = (props: ListItemProps) => {
   const classNames = () => addClassNames(classPrefix, props.class);
 
   return (
-    <li class={classNames()}>
+    <li id={props.id} class={classNames()}>
       <div class={`${classPrefix}__content`}>
         <Show when={props.avatar}>
           <div class={`${classPrefix}__content-avatar`}>{props.avatar}</div>
