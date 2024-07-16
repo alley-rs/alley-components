@@ -15,9 +15,9 @@ $base: "alley-input";
   --alley-input-warning-active-shadow: 0 0 0 2px rgba(255, 215, 5, 0.1);
   --alley-input-hover-bg: #ffffff;
   --alley-input-active-bg: #ffffff;
+  --alley-input-input-font-size-sm: 12px;
   --alley-input-input-font-size: 14px;
   --alley-input-input-font-size-lg: 16px;
-  --alley-input-input-font-size-sm: 14px;
 
   width: 100%;
   text-overflow: ellipsis;
@@ -61,24 +61,21 @@ $base: "alley-input";
   }
 
   &-small {
-    padding: var(--alley-input-padding-block-sm) var(--alley-input-padding-inline-sm);
+    padding: var(--alley-input-padding-block-sm)
+      var(--alley-input-padding-inline-sm);
     font-size: var(--alley-input-input-font-size-sm);
     border-radius: var(--alley-border-radius-sm);
-
-    &::placeholder {
-      font-size: 12px;
-    }
   }
 
   &-large {
-    padding: var(--alley-input-padding-block-lg) var(--alley-input-padding-inline-lg);
+    padding: var(--alley-input-padding-block-lg)
+      var(--alley-input-padding-inline-lg);
     font-size: var(--alley-input-input-font-size-lg);
     border-radius: var(--alley-border-radius-lg);
     line-height: var(--alley-line-height-lg);
   }
 
   &-space-compact-item {
-
     &:hover,
     &:focus,
     &:focus-within {
