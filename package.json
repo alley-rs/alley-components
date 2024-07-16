@@ -17,28 +17,26 @@
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check": "biome check --write src"
   },
   "peerDependencies": {
     "solid-icons": "^1.1.0",
     "solid-js": "^1.8.15"
   },
   "devDependencies": {
+    "@biomejs/biome": "^1.8.3",
     "@rollup/plugin-typescript": "^11.1.6",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "rollup-plugin-external-globals": "^0.10.0",
-    "sass": "^1.77.6",
+    "sass": "^1.77.8",
     "tslib": "^2.6.3",
     "typescript": "^5.5.3",
     "vite": "^5.3.3",
     "vite-plugin-solid": "^2.10.2"
   },
-  "files": [
-    "lib"
-  ],
-  "sideEffects": [
-    "**/*.css"
-  ],
+  "files": ["lib"],
+  "sideEffects": ["**/*.css"],
   "module": "./lib/index.js",
   "typings": "./lib/index.d.ts"
 }

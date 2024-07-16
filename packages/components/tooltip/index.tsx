@@ -1,7 +1,13 @@
-import { children, createEffect, createSignal, type JSX } from "solid-js";
+import {
+  children,
+  createEffect,
+  createSignal,
+  mergeProps,
+  type JSX,
+} from "solid-js";
 import { addClassNames } from "~/utils/class";
 import "./index.scss";
-import type { BaseComponentProps } from "~/interface";
+import type { BaseComponentProps, SizeType } from "~/interface";
 
 export type TooltipPlacement = "top" | "left" | "right" | "bottom";
 // | "top-left"
@@ -17,6 +23,7 @@ export interface TooltipProps extends BaseComponentProps {
   text: string;
   disabled?: boolean;
   placement?: TooltipPlacement;
+  size?: SizeType;
   // destroy?: boolean; // 隐藏时是否删除 tooltip
 }
 
@@ -24,16 +31,26 @@ const classPrefix = "tooltip";
 const gap = 4;
 
 const Tooltip = (props: TooltipProps) => {
+  const mergedProps = mergeProps(
+    { size: "middle", placement: "left" },
+    props,
+  ) as {
+    text: string;
+    disabled?: boolean;
+    placement: TooltipPlacement;
+    size: SizeType;
+  } & BaseComponentProps;
+
   let tooltipRef: HTMLDivElement | undefined;
 
   const [isVisible, setIsVisible] = createSignal(false);
 
   const [positionStyles, setPositionStyles] = createSignal<JSX.CSSProperties>();
 
-  const resolved = children(() => props.children);
+  const resolved = children(() => mergedProps.children);
 
   createEffect(() => {
-    props.text && updatePostion();
+    mergedProps.text && updatePostion();
   });
 
   const setPostion = (
@@ -43,7 +60,9 @@ const Tooltip = (props: TooltipProps) => {
   ): JSX.CSSProperties => {
     const popoverHalfWidth = tooltipRect.width / 2;
 
-    let arrowCenterX: number, popoverLeft: number, offsetX: number;
+    let arrowCenterX: number;
+    let popoverLeft: number;
+    let offsetX: number;
 
     switch (placement) {
       case "top":
@@ -98,18 +117,23 @@ const Tooltip = (props: TooltipProps) => {
     }
   };
 
-  const className = () => addClassNames(classPrefix, props.class);
+  const className = () =>
+    addClassNames(
+      classPrefix,
+      mergedProps.class,
+      `tooltip-${mergedProps.size}`,
+    );
 
   const popoverClassName = () =>
     addClassNames(
       `${classPrefix}-popover`,
-      `${classPrefix}-popover-${props.placement ?? "left"}`,
+      `${classPrefix}-popover-${mergedProps.placement}`,
     );
 
   const arrowClassName = () =>
     addClassNames(
       `${classPrefix}-popover-arrow`,
-      `${classPrefix}-popover-arrow-${props.placement ?? "left"}`,
+      `${classPrefix}-popover-arrow-${mergedProps.placement}`,
     );
 
   const updatePostion = () => {
@@ -125,7 +149,7 @@ const Tooltip = (props: TooltipProps) => {
     if (!childRect || !tooltipRect) return;
 
     const positionStyle = setPostion(
-      props.placement ?? "left",
+      mergedProps.placement,
       childRect,
       tooltipRect,
     );
@@ -136,7 +160,7 @@ const Tooltip = (props: TooltipProps) => {
   const showTooltip = () => {
     updatePostion();
 
-    !props.disabled && setIsVisible(true);
+    !mergedProps.disabled && setIsVisible(true);
   };
 
   const hideTooltip = () => {
@@ -144,11 +168,12 @@ const Tooltip = (props: TooltipProps) => {
   };
 
   const visibleStyle = () => ({
+    ...mergedProps.style,
     "--visibility": isVisible() ? "visible" : "hidden",
   });
 
   const resolvedTextChild = children(() => (
-    <div class={`${classPrefix}-text`}>{props.text}</div>
+    <div class={`${classPrefix}-text`}>{mergedProps.text}</div>
   ));
 
   return (
