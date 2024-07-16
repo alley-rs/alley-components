@@ -7,7 +7,8 @@ const LazyFlex = lazy(() => import("~/components/flex"));
 
 const baseClassName = "alley-layout";
 
-export interface LayoutProps extends BaseNoChildrenComponentProps {
+export interface LayoutProps
+  extends BaseNoChildrenComponentProps<HTMLDivElement> {
   menu: JSX.Element;
   content: JSX.Element;
   contentPadding?: string | number;
@@ -29,7 +30,7 @@ const Layout = (props: LayoutProps) => {
   const resolvedContent = children(() => props.content);
 
   return (
-    <LazyFlex id={props.id} class={classes()} style={style()}>
+    <LazyFlex ref={props.ref} id={props.id} class={classes()} style={style()}>
       <div class={`${baseClassName}-menu`}>{resolvedMenu()}</div>
       <div class={`${baseClassName}-content`}>{resolvedContent()}</div>
     </LazyFlex>

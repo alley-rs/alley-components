@@ -46,6 +46,7 @@ const Space = (props: SpaceProps) => {
 
   return (
     <div
+      ref={props.ref}
       id={props.id}
       class={classNames()}
       style={style()}

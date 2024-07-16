@@ -24,6 +24,7 @@ const Input = (props: InputProps) => {
 
   return (
     <input
+      ref={props.ref}
       type="text"
       id={props.id}
       class={className()}

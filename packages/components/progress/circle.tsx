@@ -4,6 +4,7 @@ import { addClassNames } from "~/utils";
 import type { SizeType } from "~/interface";
 
 export interface CircleProgressProps {
+  ref?: HTMLDivElement | ((e: HTMLDivElement) => void);
   id?: string;
   percent: number;
   trackWidth?: number;
@@ -74,7 +75,7 @@ const CircleProgress = (props: CircleProgressProps) => {
   });
 
   return (
-    <div id={merged.id} class={classes()} style={style()}>
+    <div ref={merged.ref} id={merged.id} class={classes()} style={style()}>
       <div class={`${baseClassName}-content`}>
         <svg class={`${baseClassName}-svg`}>
           <circle class={`${baseClassName}-track`} fill="transparent" />

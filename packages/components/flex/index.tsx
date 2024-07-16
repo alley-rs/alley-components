@@ -5,7 +5,7 @@ import type { BaseComponentProps } from "~/interface";
 
 type Position = "center" | "start" | "end";
 
-export interface FlexProps extends BaseComponentProps {
+export interface FlexProps extends BaseComponentProps<HTMLDivElement> {
   justify?: Position | "round" | "between";
   align?: Position;
   flex?: number;
@@ -48,7 +48,7 @@ const Flex = (props: FlexProps) => {
   };
 
   return (
-    <div id={props.id} class={className()} style={style()}>
+    <div ref={props.ref} id={props.id} class={className()} style={style()}>
       {props.children}
     </div>
   );

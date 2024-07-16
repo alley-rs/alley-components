@@ -5,7 +5,7 @@ import type { BaseComponentProps } from "~/interface";
 
 const baseClassName = "alley-divider";
 
-export interface DividerProps extends BaseComponentProps {
+export interface DividerProps extends BaseComponentProps<HTMLDivElement> {
   type?: "vertical" | "horizontal";
   dashed?: boolean;
   orientation?: "left" | "right" | "center";
@@ -52,7 +52,7 @@ const Divider = (props: DividerProps) => {
   };
 
   return (
-    <div id={merged.id} class={classes()} style={style()}>
+    <div ref={merged.ref} id={merged.id} class={classes()} style={style()}>
       <Show when={merged.children}>
         <span class={`${baseClassName}-inner-text`} style={textStyle()}>
           {merged.children}

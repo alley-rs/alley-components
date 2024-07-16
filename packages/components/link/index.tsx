@@ -13,6 +13,7 @@ interface ButtonLinkProps {
 }
 
 interface BaseLinkProps {
+  ref?: HTMLAnchorElement | ((e: HTMLAnchorElement) => void);
   id?: string;
   class?: string;
   children: JSXElement;
@@ -38,6 +39,7 @@ const Link = (props: LinkProps) => {
 
   return (
     <a
+      ref={merged.ref}
       id={merged.id}
       class={classNames()}
       href={"href" in merged ? merged.href : undefined}

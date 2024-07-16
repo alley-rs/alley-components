@@ -12,7 +12,8 @@ export const SpaceCompactContext = createContext<SpaceCompactContextType>();
 
 const baseClassName = "space-compact";
 
-export interface SpaceCompactProps extends BaseSizeComponentProps {
+export interface SpaceCompactProps
+  extends BaseSizeComponentProps<HTMLDivElement> {
   prefixCls?: string;
   direction?: "horizontal" | "vertical";
   block?: boolean;
@@ -34,7 +35,7 @@ const Compact = (props: SpaceCompactProps) => {
   });
 
   return (
-    <div id={props.id} class={classes()} style={style()}>
+    <div ref={props.ref} id={props.id} class={classes()} style={style()}>
       <SpaceCompactContext.Provider
         value={{ childClass: `${baseClassName}-item`, size: props.size }}
       >

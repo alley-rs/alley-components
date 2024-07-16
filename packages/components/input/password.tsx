@@ -39,6 +39,7 @@ const Password = (props: PasswordProps) => {
       />
 
       <input
+        ref={props.ref}
         type={showPassword() ? "text" : "password"}
         id={props.id}
         class={classes()}

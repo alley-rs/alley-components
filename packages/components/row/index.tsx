@@ -21,6 +21,7 @@ const Row = (props: RowProps) => {
 
   return (
     <div
+      ref={props.ref}
       id={props.id}
       class={className()}
       style={style()}

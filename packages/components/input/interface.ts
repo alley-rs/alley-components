@@ -1,7 +1,7 @@
 import type { JSXElement } from "solid-js";
 import type { BaseSizeComponentProps } from "~/interface";
 
-export interface InputProps extends BaseSizeComponentProps {
+export interface InputProps extends BaseSizeComponentProps<HTMLInputElement> {
   placeholder?: string;
   disabled?: boolean;
   value?: string | number;
