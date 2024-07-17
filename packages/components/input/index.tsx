@@ -14,7 +14,7 @@ const Input = (props: InputProps) => {
 
   const size = () => spaceCompactItemSize ?? merged.size;
 
-  const className = () => {
+  const containerClassName = () => {
     return addClassNames(
       baseClassName,
       size() && `${baseClassName}-${size()}`,
@@ -25,13 +25,15 @@ const Input = (props: InputProps) => {
   };
 
   return (
-    <input
-      {...merged}
-      type="text"
-      class={className()}
-      onChange={(e) => merged.onChange?.(e.target.value)}
-      onInput={(e) => merged.onInput?.(e.target.value)}
-    />
+    <span class={containerClassName()}>
+      <input
+        {...merged}
+        type="text"
+        class={`${baseClassName}-input`}
+        onChange={(e) => merged.onChange?.(e.target.value)}
+        onInput={(e) => merged.onInput?.(e.target.value)}
+      />
+    </span>
   );
 };
 

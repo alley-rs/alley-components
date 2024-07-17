@@ -6,6 +6,7 @@ import {
   Divider,
   Button,
   Label,
+  InputPassword,
 } from "../../packages";
 import { createSignal } from "solid-js";
 
@@ -109,6 +110,13 @@ const Inputs = () => {
           </Space.Compact>
         </Space>
       </Flex>
+
+      <Divider>密码输入框</Divider>
+
+      <Space>
+        <Label>正常</Label>
+        <InputPassword />
+      </Space>
     </Flex>
   );
 };

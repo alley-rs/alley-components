@@ -18,27 +18,46 @@ $base: "alley-input";
   --alley-input-input-font-size-sm: 12px;
   --alley-input-input-font-size: 14px;
   --alley-input-input-font-size-lg: 16px;
+  --alley-input-line-height: var(--alley-line-height);
 
+  position: relative;
+  display: inline-flex;
   width: 100%;
+  min-width: 0;
+  padding: var(--alley-input-padding-block) var(--alley-input-padding-inline);
+  color: var(--alley-color-text);
+  font-size: var(--alley-input-input-font-size);
+  line-height: var(--alley-input-line-height);
+  border-radius: var(--alley-border-radius);
+  transition: all var(--alley-motion-duration-mid);
   text-overflow: ellipsis;
   background: var(--alley-color-bg-container);
   border-width: var(--alley-line-width);
   border-style: var(--alley-line-type);
   border-color: var(--alley-color-border);
   margin: 0;
-  padding: var(--alley-input-padding-block) var(--alley-input-padding-inline);
-  color: var(--alley-color-text);
-  font-size: var(--alley-input-input-font-size);
-  line-height: var(--alley-line-height);
   list-style: none;
-  position: relative;
-  display: inline-block;
-  min-width: 0;
-  border-radius: var(--alley-border-radius);
-  transition: all var(--alley-motion-duration-mid);
   box-sizing: border-box;
 
-  &:hover:not([disabled]) {
+  .#{$base}-input {
+    font-size: inherit;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    background-color: transparent;
+    color: inherit;
+    outline: none;
+    cursor: text;
+    box-sizing: border-box;
+    line-height: var(--alley-input-line-height);
+
+    &:hover,
+    &:focus-visible {
+      outline: none;
+    }
+  }
+
+  &:hover:not(.#{$base}-disabled) {
     border-color: var(--alley-input-hover-border-color);
     background-color: var(--alley-input-hover-bg);
   }
@@ -58,21 +77,22 @@ $base: "alley-input";
     filter: none;
     cursor: not-allowed;
     opacity: 1;
+    border-color: var(--alley-color-border);
   }
 
   &-small {
     padding: var(--alley-input-padding-block-sm)
       var(--alley-input-padding-inline-sm);
-    font-size: var(--alley-input-input-font-size-sm);
     border-radius: var(--alley-border-radius-sm);
   }
 
   &-large {
+    --alley-input-line-height: var(--alley-line-height-lg);
+
     padding: var(--alley-input-padding-block-lg)
       var(--alley-input-padding-inline-lg);
     font-size: var(--alley-input-input-font-size-lg);
     border-radius: var(--alley-border-radius-lg);
-    line-height: var(--alley-line-height-lg);
   }
 
   &-space-compact-item {
