@@ -1,17 +1,15 @@
-import type { JSXElement } from "solid-js";
+import type { JSX } from "solid-js";
 import type { BaseSizeComponentProps } from "~/interface";
 
-export interface InputProps extends BaseSizeComponentProps<HTMLInputElement> {
-  placeholder?: string;
-  disabled?: boolean;
-  value?: string | number;
+type InputTag = Omit<
+  JSX.HTMLElementTags["input"],
+  "size" | "style" | "onChange" | "onInput"
+>;
+
+export interface InputProps
+  extends BaseSizeComponentProps<HTMLInputElement>,
+    InputTag {
   onChange?: (value: string) => void;
-  autofocus?: boolean;
-  onFocus?: (e: FocusEvent & { target: HTMLInputElement }) => void;
-  onClick?: (
-    e: MouseEvent & {
-      currentTarget: HTMLInputElement;
-      target: JSXElement;
-    },
-  ) => void;
+  onInput?: (value: string) => void;
+  autocomplete?: "on" | "off";
 }
