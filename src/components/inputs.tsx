@@ -1,3 +1,4 @@
+import { AiOutlineSearch } from "solid-icons/ai";
 import {
   Space,
   Flex,
@@ -68,7 +69,12 @@ const Inputs = () => {
       <Flex wrap="wrap" gap={16} align="center">
         <Space align="center">
           <Label>正常</Label>
-          <Input value="some words" />
+          <Input
+            value="some words"
+            suffix={
+              <Button icon={<AiOutlineSearch />} size="small" type="plain" />
+            }
+          />
         </Space>
 
         <Space align="center">

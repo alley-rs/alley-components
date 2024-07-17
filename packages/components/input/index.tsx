@@ -1,7 +1,7 @@
 import { addClassNames } from "~/utils";
 import "./index.scss";
 import type { InputProps } from "./interface";
-import { mergeProps, useContext } from "solid-js";
+import { mergeProps, Show, splitProps, useContext } from "solid-js";
 import { SpaceCompactContext } from "../space/compact";
 
 const baseClassName = "alley-input";
@@ -11,28 +11,37 @@ const Input = (props: InputProps) => {
     useContext(SpaceCompactContext) ?? {};
 
   const merged = mergeProps({ autocomplete: "off" }, props);
+  const [extraProps, inputProps] = splitProps(merged, [
+    "prefix",
+    "suffix",
+    "style",
+  ]);
 
-  const size = () => spaceCompactItemSize ?? merged.size;
+  const size = () => spaceCompactItemSize ?? inputProps.size;
 
   const containerClassName = () => {
     return addClassNames(
       baseClassName,
       size() && `${baseClassName}-${size()}`,
-      merged.disabled && `${baseClassName}-disabled`,
+      inputProps.disabled && `${baseClassName}-disabled`,
       spaceCompactItemClass,
       spaceCompactItemClass && `${baseClassName}-${spaceCompactItemClass}`,
     );
   };
 
   return (
-    <span class={containerClassName()}>
+    <span class={containerClassName()} style={extraProps.style}>
       <input
-        {...merged}
+        {...inputProps}
         type="text"
         class={`${baseClassName}-input`}
-        onChange={(e) => merged.onChange?.(e.target.value)}
-        onInput={(e) => merged.onInput?.(e.target.value)}
+        onChange={(e) => inputProps.onChange?.(e.target.value)}
+        onInput={(e) => inputProps.onInput?.(e.target.value)}
       />
+
+      <Show when={extraProps.suffix}>
+        <span class={`${baseClassName}-suffix`}>{extraProps.suffix}</span>
+      </Show>
     </span>
   );
 };

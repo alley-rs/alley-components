@@ -39,8 +39,13 @@ $base: "alley-input";
   list-style: none;
   box-sizing: border-box;
 
+  [class^="alley-input"] {
+    box-sizing: border-box;
+  }
+
   .#{$base}-input {
     font-size: inherit;
+    margin: 0;
     padding: 0;
     border: none;
     border-radius: 0;
@@ -48,13 +53,28 @@ $base: "alley-input";
     color: inherit;
     outline: none;
     cursor: text;
-    box-sizing: border-box;
     line-height: var(--alley-input-line-height);
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    min-width: 0;
+    transition: all var(--alley-motion-duration-mid);
 
     &:hover,
     &:focus-visible {
       outline: none;
     }
+  }
+
+  &-suffix,
+  &-prefix {
+    display: flex;
+    flex: none;
+    align-items: center;
+  }
+
+  &-suffix {
+    margin-inline-start: var(--alley-padding-xxs);
   }
 
   &:hover:not(.#{$base}-disabled) {
