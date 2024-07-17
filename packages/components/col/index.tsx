@@ -29,7 +29,7 @@ type Span =
   | 23
   | 24;
 
-export interface ColProps extends BaseComponentProps {
+export interface ColProps extends BaseComponentProps<HTMLDivElement> {
   gutter?: number;
   span?: Span;
   align?: FlexProps["align"];
@@ -56,7 +56,7 @@ const Col = (props: ColProps) => {
       : props.style;
 
   return (
-    <div id={props.id} class={className()} style={style()}>
+    <div ref={props.ref} id={props.id} class={className()} style={style()}>
       <Flex
         inline
         style={{ height: "100%", "max-width": "100%", width: "100%" }}

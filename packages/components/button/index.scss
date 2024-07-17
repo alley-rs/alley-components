@@ -104,7 +104,8 @@ $base: "alley-button";
     font-size: var(--alley-button-content-font-size-sm);
     line-height: var(--alley-button-content-line-height-sm);
     height: var(--alley-control-height-sm);
-    padding: var(--alley-button-padding-block-sm) var(--alley-button-padding-inline-sm);
+    padding: var(--alley-button-padding-block-sm)
+      var(--alley-button-padding-inline-sm);
     border-radius: var(--alley-border-radius-sm);
 
     &.#{$base}-icon-only {
@@ -122,7 +123,8 @@ $base: "alley-button";
     font-size: var(--alley-button-content-font-size-lg);
     line-height: var(--alley-button-content-line-height-lg);
     height: var(--alley-control-height-lg);
-    padding: var(--alley-button-padding-block-lg) var(--alley-button-padding-inline-lg);
+    padding: var(--alley-button-padding-block-lg)
+      var(--alley-button-padding-inline-lg);
     border-radius: var(--alley-border-radius-lg);
 
     &.#{$base}-icon-only {
@@ -196,7 +198,8 @@ $base: "alley-button";
   }
 
   &-space-compact-item {
-    border: var(--alley-line-width) var(--alley-line-type) var(--alley-color-border);
+    border: var(--alley-line-width) var(--alley-line-type)
+      var(--alley-color-border);
 
     &:not([disabled]) {
       &:hover {

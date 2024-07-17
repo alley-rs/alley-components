@@ -30,7 +30,7 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-  BaseSizeComponentProps {
+  BaseSizeComponentProps<HTMLButtonElement> {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
@@ -124,6 +124,7 @@ const Button = (props: ButtonProps) => {
 
   return (
     <button
+      ref={merged.ref}
       id={merged.id}
       class={className()}
       onClick={merged.onClick}
@@ -147,7 +148,7 @@ const Button = (props: ButtonProps) => {
   );
 };
 
-interface LoadingProps extends BaseSizeComponentProps {
+interface LoadingProps extends BaseSizeComponentProps<HTMLDivElement> {
   iconOnly: boolean;
   gap: number;
 }
@@ -157,7 +158,7 @@ const Loading = (props: LoadingProps) => {
 
   return (
     <Show when={!props.iconOnly} fallback={<LazySpinner size={props.size} />}>
-      <LazySpace gap={props.gap} align="center">
+      <LazySpace ref={props.ref} gap={props.gap} align="center">
         <LazySpinner size={props.size} />
         {resolved()}
       </LazySpace>

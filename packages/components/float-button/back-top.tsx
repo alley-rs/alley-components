@@ -53,6 +53,7 @@ const BackTop = (props: BackTopProps) => {
   return (
     <Show when={visible()}>
       <FloatButton
+        ref={merged.ref}
         id={merged.id}
         class={classes()}
         onClick={scrollToTop}

@@ -5,7 +5,8 @@ import "./index.scss";
 import { addClassNames, isType } from "~/utils";
 import MenuItem from "./menu-item";
 
-export interface MenuItemOption extends BaseNoChildrenComponentProps {
+export interface MenuItemOption
+  extends Omit<BaseNoChildrenComponentProps<HTMLLIElement>, "ref"> {
   icon?: JSX.Element;
   children: JSX.Element;
   onClick?: () => void;
@@ -21,7 +22,7 @@ interface WithIndexProps {
   index: number;
 }
 
-interface BaseMenuProps extends BaseNoChildrenComponentProps {
+interface BaseMenuProps extends BaseNoChildrenComponentProps<HTMLUListElement> {
   items: (MenuItemOption | "divider")[];
 }
 
@@ -53,7 +54,7 @@ const Menu = (props: MenuProps) => {
   };
 
   return (
-    <ul id={props.id} class={classes()} style={style()}>
+    <ul ref={props.ref} id={props.id} class={classes()} style={style()}>
       <For each={props.items}>
         {(item, index) => (
           <Show

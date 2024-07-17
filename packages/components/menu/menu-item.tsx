@@ -5,7 +5,8 @@ import { baseClassName } from ".";
 
 const LazyFlex = lazy(() => import("~/components/flex"));
 
-export interface MenuItemProps extends BaseNoChildrenComponentProps {
+export interface MenuItemProps
+  extends BaseNoChildrenComponentProps<HTMLLIElement> {
   icon?: JSX.Element;
   children: JSX.Element;
   selected?: boolean;
@@ -22,7 +23,13 @@ const MenuItem = (props: MenuItemProps) => {
   const style = () => props.style;
 
   return (
-    <li id={props.id} class={classes()} style={style()} onClick={props.onClick}>
+    <li
+      ref={props.ref}
+      id={props.id}
+      class={classes()}
+      style={style()}
+      onClick={props.onClick}
+    >
       <Show when={props.icon} fallback={props.children}>
         <LazyFlex>
           {props.icon}

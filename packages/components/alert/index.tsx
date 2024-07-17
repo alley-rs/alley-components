@@ -68,7 +68,7 @@ const CloseIconNode = (props: CloseIconProps) => {
 };
 
 export interface AlertProps
-  extends Omit<BaseNoChildrenComponentProps, "onClick"> {
+  extends Omit<BaseNoChildrenComponentProps<HTMLDivElement>, "onClick"> {
   afterClose?: () => void;
   description?: JSX.Element;
   icon?: JSX.Element;
@@ -112,7 +112,7 @@ const Alert = (props: AlertProps) => {
 
   return (
     <Show when={!closed()}>
-      <div id={merged.id} class={classes()} style={style()}>
+      <div id={merged.id} ref={merged.ref} class={classes()} style={style()}>
         <Show when={merged.showIcon || merged.icon}>
           <IconNode
             type={merged.type}
