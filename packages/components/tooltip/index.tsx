@@ -13,7 +13,7 @@ import "./index.scss";
 type TooltipPlacement = "top" | "bottom" | "left" | "right";
 type SizeType = "small" | "medium" | "large";
 
-interface TooltipProps {
+export interface TooltipProps {
   class?: string;
   style?: JSX.CSSProperties;
   children?: JSX.Element;
