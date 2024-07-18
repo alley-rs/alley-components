@@ -165,7 +165,7 @@ const Tooltip = (props: TooltipProps) => {
                 position: "fixed",
                 top: `${position().top}px`,
                 left: `${position().left}px`,
-                [`${classPrefix}-font-size`]:
+                [`--${classPrefix}-font-size`]:
                   merged.fontSize &&
                   (typeof merged.fontSize === "number"
                     ? `${merged.fontSize}px`
