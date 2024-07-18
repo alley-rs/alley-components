@@ -1,189 +1,187 @@
 import {
-  children,
-  createEffect,
   createSignal,
-  mergeProps,
+  createEffect,
+  onCleanup,
+  Show,
   type JSX,
+  mergeProps,
 } from "solid-js";
-import { addClassNames } from "~/utils/class";
+import { Portal } from "solid-js/web";
+import { addClassNames } from "~/utils";
 import "./index.scss";
-import type { BaseComponentProps, SizeType } from "~/interface";
 
-export type TooltipPlacement = "top" | "left" | "right" | "bottom";
-// | "top-left"
-// | "top-right"
-// | "bottom-left"
-// | "bottom-right"
-// | "left-top"
-// | "left-bottom"
-// | "right-top"
-// | "right-bottom";
+type TooltipPlacement = "top" | "bottom" | "left" | "right";
+type SizeType = "small" | "medium" | "large";
 
-export interface TooltipProps extends BaseComponentProps<HTMLDivElement> {
+interface TooltipProps {
+  class?: string;
+  style?: JSX.CSSProperties;
+  children?: JSX.Element;
   text: string;
   disabled?: boolean;
   placement?: TooltipPlacement;
   size?: SizeType;
-  // destroy?: boolean; // 隐藏时是否删除 tooltip
+  delay?: number;
+  gap?: number;
+  showArrow?: boolean;
+  fontSize?: number | string;
 }
 
-const classPrefix = "tooltip";
-const gap = 4;
+const classPrefix = "alley-tooltip";
 
 const Tooltip = (props: TooltipProps) => {
-  const merged = mergeProps({ size: "middle", placement: "left" }, props) as {
-    text: string;
-    disabled?: boolean;
-    placement: TooltipPlacement;
-    size: SizeType;
-  } & BaseComponentProps<HTMLDivElement>;
-
-  let tooltipRef: HTMLDivElement | undefined;
+  const merged = mergeProps({ gap: 4, placement: "left", delay: 0 }, props);
 
   const [isVisible, setIsVisible] = createSignal(false);
+  const [position, setPosition] = createSignal({ top: 0, left: 0 });
 
-  const [positionStyles, setPositionStyles] = createSignal<JSX.CSSProperties>();
+  const [actualPlacement, setActualPlacement] = createSignal<TooltipPlacement>(
+    merged.placement as TooltipPlacement,
+  );
 
-  const resolved = children(() => merged.children);
-
-  createEffect(() => {
-    merged.text && updatePostion();
-  });
-
-  const setPostion = (
-    placement: TooltipPlacement,
-    childRect: DOMRect,
-    tooltipRect: DOMRect,
-  ): JSX.CSSProperties => {
-    const popoverHalfWidth = tooltipRect.width / 2;
-
-    let arrowCenterX: number;
-    let popoverLeft: number;
-    let offsetX: number;
-
-    switch (placement) {
-      case "top":
-        arrowCenterX = childRect.width / 2 + childRect.left;
-
-        popoverLeft =
-          arrowCenterX < popoverHalfWidth ? popoverHalfWidth : arrowCenterX;
-
-        return {
-          "--top": `${childRect.top - 2 * gap}px`,
-          "--left": `${popoverLeft}px`,
-        };
-
-      case "bottom":
-        arrowCenterX = childRect.width / 2 + childRect.left;
-
-        if (arrowCenterX < popoverHalfWidth) {
-          // 左侧溢出
-          offsetX = popoverHalfWidth - arrowCenterX;
-          popoverLeft = popoverHalfWidth;
-        } else if (arrowCenterX + popoverHalfWidth > window.innerWidth) {
-          // 右侧溢出
-          offsetX = window.innerWidth - arrowCenterX - popoverHalfWidth;
-          popoverLeft =
-            offsetX > 0
-              ? arrowCenterX
-              : window.innerWidth - tooltipRect.width / 2;
-          offsetX = offsetX < 0 ? offsetX : 0;
-        } else {
-          // 未溢出
-          popoverLeft = arrowCenterX;
-          offsetX = 0;
-        }
-
-        return {
-          "--top": `${childRect.bottom + tooltipRect.height + 2 * gap}px`,
-          "--left": `${popoverLeft}px`,
-          "--offset-x": `${offsetX}px`,
-        };
-
-      case "left":
-        return {
-          "--left": `${childRect.left - tooltipRect.width - 5 - gap}px`,
-          "--top": `${childRect.top + childRect.height / 2}px`,
-        };
-
-      case "right":
-        return {
-          "--left": `${childRect.right + gap + 5}px`,
-          "--top": `${childRect.top + childRect.height / 2}px`,
-        };
-    }
-  };
-
-  const className = () =>
-    addClassNames(classPrefix, merged.class, `tooltip-${merged.size}`);
-
-  const popoverClassName = () =>
-    addClassNames(
-      `${classPrefix}-popover`,
-      `${classPrefix}-popover-${merged.placement}`,
-    );
-
-  const arrowClassName = () =>
-    addClassNames(
-      `${classPrefix}-popover-arrow`,
-      `${classPrefix}-popover-arrow-${merged.placement}`,
-    );
-
-  const updatePostion = () => {
-    // TODO: 下面的状态处理不是最佳方式，有待改进
-    const child = resolved() as HTMLElement;
-
-    if (!child) return;
-
-    const childRect = child.getBoundingClientRect();
-
-    const tooltipRect = tooltipRef?.getBoundingClientRect();
-
-    if (!childRect || !tooltipRect) return;
-
-    const positionStyle = setPostion(merged.placement, childRect, tooltipRect);
-
-    setPositionStyles(positionStyle);
-  };
+  let containerRef: HTMLDivElement | undefined;
+  let tooltipRef: HTMLDivElement | undefined;
+  let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
   const showTooltip = () => {
-    updatePostion();
-
-    !merged.disabled && setIsVisible(true);
+    if (merged.disabled) return;
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => setIsVisible(true), merged.delay);
   };
 
   const hideTooltip = () => {
+    clearTimeout(timeoutId);
     setIsVisible(false);
   };
 
-  const visibleStyle = () => ({
-    ...merged.style,
-    "--visibility": isVisible() ? "visible" : "hidden",
+  const updatePosition = () => {
+    if (!containerRef || !tooltipRef) return;
+
+    const triggerRect = containerRef.getBoundingClientRect();
+    const tooltipRect = tooltipRef.getBoundingClientRect();
+    const viewportWidth = window.innerWidth;
+    const viewportHeight = window.innerHeight;
+
+    let placement = merged.placement;
+    let top = 0;
+    let left = 0;
+
+    const calculatePosition = () => {
+      switch (placement) {
+        case "top":
+          top = triggerRect.top - tooltipRect.height - merged.gap;
+          left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+          if (top < 0) placement = "bottom";
+          break;
+        case "bottom":
+          top = triggerRect.bottom + merged.gap;
+          left = triggerRect.left + (triggerRect.width - tooltipRect.width) / 2;
+          if (top + tooltipRect.height > viewportHeight) placement = "top";
+          break;
+        case "left":
+          top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
+          left = triggerRect.left - tooltipRect.width - merged.gap;
+          if (left < 0) placement = "right";
+          break;
+        case "right":
+          top = triggerRect.top + (triggerRect.height - tooltipRect.height) / 2;
+          left = triggerRect.right + merged.gap;
+          if (left + tooltipRect.width > viewportWidth) placement = "left";
+          break;
+      }
+    };
+
+    calculatePosition();
+    // 如果位置改变，重新计算
+    if (placement !== merged.placement) {
+      calculatePosition();
+    }
+
+    // 水平方向的边界检查
+    if (left < 0) left = 0;
+    if (left + tooltipRect.width > viewportWidth)
+      left = viewportWidth - tooltipRect.width;
+
+    // 垂直方向的边界检查
+    if (top < 0) top = 0;
+    if (top + tooltipRect.height > viewportHeight)
+      top = viewportHeight - tooltipRect.height;
+
+    setPosition({ top, left });
+    // 更新实际的 placement
+    setActualPlacement(placement as TooltipPlacement);
+  };
+
+  createEffect(() => {
+    if (isVisible()) {
+      updatePosition();
+      window.addEventListener("resize", updatePosition);
+      window.addEventListener("scroll", updatePosition);
+    } else {
+      window.removeEventListener("resize", updatePosition);
+      window.removeEventListener("scroll", updatePosition);
+    }
   });
 
-  const resolvedTextChild = children(() => (
-    <div class={`${classPrefix}-text`}>{merged.text}</div>
-  ));
+  onCleanup(() => {
+    clearTimeout(timeoutId);
+    window.removeEventListener("resize", updatePosition);
+    window.removeEventListener("scroll", updatePosition);
+  });
+
+  const tooltipClass = () =>
+    addClassNames(
+      classPrefix,
+      merged.size ?? `${classPrefix}-${merged.size}`,
+      `${classPrefix}-${actualPlacement()}`,
+    );
+
+  const arrowClass = () =>
+    addClassNames(
+      `${classPrefix}-arrow`,
+      `${classPrefix}-arrow-${actualPlacement()}`,
+    );
 
   return (
-    <div
-      ref={merged.ref}
-      id={merged.id}
-      class={className()}
-      style={visibleStyle()}
-    >
+    <>
       <div
-        style={{ display: "inline" }}
         onMouseEnter={showTooltip}
         onMouseLeave={hideTooltip}
+        style={{ display: "inline-block" }}
       >
-        {resolved()}
+        <div class={`${classPrefix}-container`} ref={containerRef}>
+          {merged.children}
+        </div>
       </div>
-      <div ref={tooltipRef} class={popoverClassName()} style={positionStyles()}>
-        <div class={arrowClassName()} />
-        {resolvedTextChild()}
-      </div>
-    </div>
+
+      <Show when={isVisible()}>
+        <Portal>
+          <div
+            ref={tooltipRef}
+            class={tooltipClass()}
+            style={
+              {
+                ...merged.style,
+                position: "fixed",
+                top: `${position().top}px`,
+                left: `${position().left}px`,
+                [`${classPrefix}-font-size`]:
+                  merged.fontSize &&
+                  (typeof merged.fontSize === "number"
+                    ? `${merged.fontSize}px`
+                    : merged.fontSize),
+              } as JSX.CSSProperties
+            }
+          >
+            <Show when={merged.showArrow}>
+              <div class={arrowClass()} />
+            </Show>
+
+            {merged.text}
+          </div>
+        </Portal>
+      </Show>
+    </>
   );
 };
 
