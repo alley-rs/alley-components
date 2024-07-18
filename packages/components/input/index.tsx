@@ -15,6 +15,7 @@ const Input = (props: InputProps) => {
     "prefix",
     "suffix",
     "style",
+    "classList",
   ]);
 
   const size = () => spaceCompactItemSize ?? inputProps.size;
@@ -30,7 +31,11 @@ const Input = (props: InputProps) => {
   };
 
   return (
-    <span class={containerClassName()} style={extraProps.style}>
+    <span
+      class={containerClassName()}
+      classList={extraProps.classList}
+      style={extraProps.style}
+    >
       <input
         {...inputProps}
         type="text"
