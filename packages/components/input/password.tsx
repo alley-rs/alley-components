@@ -33,7 +33,6 @@ const Password = (props: PasswordProps) => {
         style={{
           position: "absolute",
           right: "6px",
-          top: "8px",
           "z-index": 10,
         }}
       />
