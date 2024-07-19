@@ -1,3 +1,4 @@
+import { AiOutlineSearch } from "solid-icons/ai";
 import {
   Space,
   Flex,
@@ -6,6 +7,7 @@ import {
   Divider,
   Button,
   Label,
+  InputPassword,
 } from "../../packages";
 import { createSignal } from "solid-js";
 
@@ -67,7 +69,12 @@ const Inputs = () => {
       <Flex wrap="wrap" gap={16} align="center">
         <Space align="center">
           <Label>正常</Label>
-          <Input value="some words" />
+          <Input
+            value="some words"
+            suffix={
+              <Button icon={<AiOutlineSearch />} size="small" type="plain" />
+            }
+          />
         </Space>
 
         <Space align="center">
@@ -109,6 +116,13 @@ const Inputs = () => {
           </Space.Compact>
         </Space>
       </Flex>
+
+      <Divider>密码输入框</Divider>
+
+      <Space>
+        <Label>正常</Label>
+        <InputPassword />
+      </Space>
     </Flex>
   );
 };

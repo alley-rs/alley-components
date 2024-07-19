@@ -78,7 +78,7 @@ const App = () => {
           icon={<AiOutlineDelete />}
           onClick={() => setToastOpen(true)}
         />
-        <FloatButton onClick={() => setIndex(0)} />
+        <FloatButton onClick={() => setIndex(0)} tooltip="回到主页" />
       </FloatButton.Group>
     </>
   );
