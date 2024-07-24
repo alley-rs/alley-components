@@ -5,6 +5,7 @@ import {
   Show,
   type JSX,
   mergeProps,
+  children,
 } from "solid-js";
 import { Portal } from "solid-js/web";
 import { addClassNames } from "~/utils";
@@ -43,6 +44,8 @@ const Tooltip = (props: TooltipProps) => {
   let tooltipRef: HTMLDivElement | undefined;
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
 
+  const resolved = children(() => merged.children);
+
   const showTooltip = () => {
     if (merged.disabled) return;
     clearTimeout(timeoutId);
@@ -57,7 +60,11 @@ const Tooltip = (props: TooltipProps) => {
   const updatePosition = () => {
     if (!containerRef || !tooltipRef) return;
 
-    const triggerRect = containerRef.getBoundingClientRect();
+    const childElement = containerRef.firstElementChild as HTMLElement;
+    // NOTE: 子元素只能是一个元素, 不能是一个数组
+    const triggerRect = childElement
+      ? childElement.getBoundingClientRect()
+      : containerRef.getBoundingClientRect();
     const tooltipRect = tooltipRef.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -113,6 +120,9 @@ const Tooltip = (props: TooltipProps) => {
   };
 
   createEffect(() => {
+    // NOTE: 子元素未渲染时不计算位置, 避免因懒加载可能导致计算错误
+    if (!resolved()) return;
+
     if (isVisible()) {
       updatePosition();
       window.addEventListener("resize", updatePosition);
@@ -150,7 +160,7 @@ const Tooltip = (props: TooltipProps) => {
         style={{ display: "inline-block" }}
       >
         <div class={`${classPrefix}-container`} ref={containerRef}>
-          {merged.children}
+          {resolved()}
         </div>
       </div>
 
