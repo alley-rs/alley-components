@@ -1,6 +1,7 @@
 .alley-tooltip {
   --alley-tooltip-visibility: hidden;
   --alley-tooltip-arrow-gap: 5px;
+  --alley-tooltip-arrow-width: 5px;
 
   display: inline-block;
   width: max-content;
@@ -33,35 +34,35 @@
     height: 0;
 
     &-left {
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-left: 5px solid #333;
+      border-top: var(--alley-tooltip-arrow-width) solid transparent;
+      border-bottom: var(--alley-tooltip-arrow-width) solid transparent;
+      border-left: var(--alley-tooltip-arrow-width) solid #333;
       top: 50%;
       left: 100%;
       transform: translateY(-50%);
     }
 
     &-right {
-      border-top: 5px solid transparent;
-      border-bottom: 5px solid transparent;
-      border-right: 5px solid #333;
+      border-top: var(--alley-tooltip-arrow-width) solid transparent;
+      border-bottom: var(--alley-tooltip-arrow-width) solid transparent;
+      border-right: var(--alley-tooltip-arrow-width) solid #333;
       top: 50%;
       left: calc(var(--alley-tooltip-arrow-gap) * -1);
       transform: translateY(-50%);
     }
 
     &-top {
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-top: 5px solid #333;
+      border-left: var(--alley-tooltip-arrow-width) solid transparent;
+      border-right: var(--alley-tooltip-arrow-width) solid transparent;
+      border-top: var(--alley-tooltip-arrow-width) solid #333;
       top: 100%;
       left: calc(50% - var(--alley-tooltip-arrow-gap));
     }
 
     &-bottom {
-      border-left: 5px solid transparent;
-      border-right: 5px solid transparent;
-      border-bottom: 5px solid #333;
+      border-left: var(--alley-tooltip-arrow-width) solid transparent;
+      border-right: var(--alley-tooltip-arrow-width) solid transparent;
+      border-bottom: var(--alley-tooltip-arrow-width) solid #333;
       top: calc(var(--alley-tooltip-arrow-gap) * -1);
       left: calc(50% - var(--alley-tooltip-arrow-gap));
     }

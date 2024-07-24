@@ -31,7 +31,11 @@ export interface TooltipProps {
 const classPrefix = "alley-tooltip";
 
 const Tooltip = (props: TooltipProps) => {
-  const merged = mergeProps({ gap: 4, placement: "left", delay: 0 }, props);
+  // 显示箭头时, 默认 gap 应加上 arrow width, 即 5px
+  const merged = mergeProps(
+    { gap: props.showArrow ? 9 : 4, placement: "left", delay: 0 },
+    props,
+  );
 
   const [isVisible, setIsVisible] = createSignal(false);
   const [position, setPosition] = createSignal({ top: 0, left: 0 });
