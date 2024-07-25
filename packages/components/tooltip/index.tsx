@@ -5,6 +5,7 @@ import {
   Show,
   type JSX,
   mergeProps,
+  children,
 } from "solid-js";
 import { Portal } from "solid-js/web";
 import { addClassNames } from "~/utils";
@@ -30,7 +31,11 @@ export interface TooltipProps {
 const classPrefix = "alley-tooltip";
 
 const Tooltip = (props: TooltipProps) => {
-  const merged = mergeProps({ gap: 4, placement: "left", delay: 0 }, props);
+  // 显示箭头时, 默认 gap 应加上 arrow width, 即 5px
+  const merged = mergeProps(
+    { gap: props.showArrow ? 9 : 4, placement: "left", delay: 0 },
+    props,
+  );
 
   const [isVisible, setIsVisible] = createSignal(false);
   const [position, setPosition] = createSignal({ top: 0, left: 0 });
@@ -42,6 +47,8 @@ const Tooltip = (props: TooltipProps) => {
   let containerRef: HTMLDivElement | undefined;
   let tooltipRef: HTMLDivElement | undefined;
   let timeoutId: ReturnType<typeof setTimeout> | undefined;
+
+  const resolved = children(() => merged.children);
 
   const showTooltip = () => {
     if (merged.disabled) return;
@@ -57,7 +64,11 @@ const Tooltip = (props: TooltipProps) => {
   const updatePosition = () => {
     if (!containerRef || !tooltipRef) return;
 
-    const triggerRect = containerRef.getBoundingClientRect();
+    const childElement = containerRef.firstElementChild as HTMLElement;
+    // NOTE: 子元素只能是一个元素, 不能是一个数组
+    const triggerRect = childElement
+      ? childElement.getBoundingClientRect()
+      : containerRef.getBoundingClientRect();
     const tooltipRect = tooltipRef.getBoundingClientRect();
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
@@ -113,6 +124,9 @@ const Tooltip = (props: TooltipProps) => {
   };
 
   createEffect(() => {
+    // NOTE: 子元素未渲染时不计算位置, 避免因懒加载可能导致计算错误
+    if (!resolved()) return;
+
     if (isVisible()) {
       updatePosition();
       window.addEventListener("resize", updatePosition);
@@ -150,7 +164,7 @@ const Tooltip = (props: TooltipProps) => {
         style={{ display: "inline-block" }}
       >
         <div class={`${classPrefix}-container`} ref={containerRef}>
-          {merged.children}
+          {resolved()}
         </div>
       </div>
 
