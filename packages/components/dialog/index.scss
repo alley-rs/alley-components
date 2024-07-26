@@ -1,0 +1,41 @@
+.alley-dialog {
+  position: fixed;
+  z-index: 9999;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+
+  &-mask {
+    background-color: var(--alley-color-mask);
+    width: 100vw;
+    height: 100vh;
+  }
+
+  &-wrapper {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background-color: var(--alley-color-bg);
+    border-radius: var(--alley-border-radius);
+    padding: var(--alley-padding);
+    min-width: 160px;
+    min-height: 80px;
+  }
+
+  &-header {
+    position: relative;
+    // height: 32px;
+  }
+
+  &-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}
+
+body:has(.alley-dialog-hide-scrollbar) {
+  overflow: hidden;
+}
