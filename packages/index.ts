@@ -85,6 +85,9 @@ export type { ToastProps } from "~/components/toast";
 export { default as Segmented } from "~/components/segmented";
 export type { SegmentedProps } from "~/components/segmented";
 
+export { default as Tag } from "~/components/tag";
+export type { TagProps } from "~/components/tag";
+
 export { addClassNames } from "~/utils";
 
 export { default as useDark } from "~/hooks/useDark";
