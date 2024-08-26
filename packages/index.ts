@@ -88,6 +88,9 @@ export type { SegmentedProps } from "~/components/segmented";
 export { default as Tag } from "~/components/tag";
 export type { TagProps } from "~/components/tag";
 
+export { default as Dialog } from "~/components/dialog";
+export type { DialogProps } from "~/components/dialog";
+
 export { addClassNames } from "~/utils";
 
 export { default as useDark } from "~/hooks/useDark";
