@@ -40,3 +40,5 @@ export interface BasePlacementComponentProps<T extends HTMLElement>
 }
 
 export type TimeoutID = ReturnType<typeof setTimeout>;
+
+export type MessageLevel = "info" | "success" | "warning" | "error";

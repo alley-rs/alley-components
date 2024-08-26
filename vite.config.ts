@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import path from "path";
+import path from "node:path";
 import solid from "vite-plugin-solid";
 import typescript from "@rollup/plugin-typescript";
 import { exec } from "node:child_process";
@@ -96,6 +96,7 @@ export default defineConfig({
       external: [
         "solid-js",
         "solid-js/web",
+        "solid-js/store",
         "solid-icons/ai",
         "solid-icons/vs",
         "solid-icons/tb",

@@ -11,9 +11,9 @@ export const classList = ({
     classes[base] = true;
   }
 
-  Object.keys(others).forEach((k) => {
+  for (const k of Object.keys(others)) {
     classes[k] = !!others[k];
-  });
+  }
 
   return classes;
 };
