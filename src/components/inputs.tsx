@@ -10,6 +10,7 @@ import {
   InputPassword,
 } from "../../packages";
 import { createSignal } from "solid-js";
+import TextArea from "~/components/input/text-area";
 
 const Inputs = () => {
   const [count, setCount] = createSignal(10);
@@ -123,6 +124,10 @@ const Inputs = () => {
         <Label>正常</Label>
         <InputPassword />
       </Space>
+
+      <Divider>本文域</Divider>
+
+      <TextArea />
     </Flex>
   );
 };
