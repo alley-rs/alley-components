@@ -3,6 +3,7 @@ import "./index.scss";
 import type { InputProps } from "./interface";
 import { mergeProps, Show, splitProps, useContext } from "solid-js";
 import { SpaceCompactContext } from "../space/compact";
+import TextArea from "./text-area";
 
 const baseClassName = "alley-input";
 
@@ -50,5 +51,7 @@ const Input = (props: InputProps) => {
     </span>
   );
 };
+
+Input.TextArea = TextArea;
 
 export default Input;

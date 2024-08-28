@@ -28,6 +28,12 @@
     position: relative;
     // height: 32px;
   }
+
+  &-close-button {
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
 }
 
 body:has(.alley-dialog-hide-scrollbar) {
