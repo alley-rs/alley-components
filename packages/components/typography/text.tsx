@@ -1,8 +1,8 @@
+import { Match, Switch } from "solid-js";
 import type { BaseComponentProps } from "~/interface";
 import { addClassNames } from "~/utils";
 import { baseClassName } from ".";
 import "./text.scss";
-import { Match, Switch } from "solid-js";
 
 export interface TextProps extends BaseComponentProps<HTMLSpanElement> {
   type?: "secondary" | "success" | "warning" | "danger";
@@ -19,6 +19,7 @@ export interface TextProps extends BaseComponentProps<HTMLSpanElement> {
 const Text = (props: TextProps) => {
   const classes = () =>
     addClassNames(
+      props.class,
       baseClassName,
       props.type && `${baseClassName}-${props.type}`,
       props.disabled && `${baseClassName}-disabled`,
@@ -31,7 +32,13 @@ const Text = (props: TextProps) => {
     );
 
   return (
-    <span ref={props.ref} id={props.id} class={classes()} style={props.style}>
+    <span
+      ref={props.ref}
+      id={props.id}
+      class={classes()}
+      style={props.style}
+      classList={props.classList}
+    >
       <Switch fallback={props.children}>
         <Match when={props.mark}>
           <mark>{props.children}</mark>
