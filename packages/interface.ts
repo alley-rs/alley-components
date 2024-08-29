@@ -10,6 +10,7 @@ export interface BaseComponentProps<T extends HTMLElement> {
   ref?: T | ((e: T) => void);
   id?: string;
   class?: string;
+  classList?: Record<string, boolean>;
   style?: JSX.CSSProperties;
   children?: JSX.Element;
 }
