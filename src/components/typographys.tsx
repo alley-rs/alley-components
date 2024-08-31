@@ -22,6 +22,27 @@ const Typographys = () => (
     <Text delete>删除线文本</Text>
     <Text strong>加粗文本</Text>
     <Text italic>斜体文本</Text>
+    <Text ellipsis={{ rows: 2 }}>
+      In the process of internal desktop applications development, many
+      different design specs and implementations would be involved, which might
+      cause designers and developers difficulties and duplication and reduce the
+      efficiency of development.
+    </Text>
+    <Text
+      ellipsis={{
+        rows: 2,
+        tooltip: {
+          text: "可以将原文本放到提示文字里",
+          placement: "top",
+          showArrow: true,
+        },
+      }}
+    >
+      In the process of internal desktop applications development, many
+      different design specs and implementations would be involved, which might
+      cause designers and developers difficulties and duplication and reduce the
+      efficiency of development.
+    </Text>
   </Space>
 );
 
