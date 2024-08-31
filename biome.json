@@ -14,6 +14,7 @@
       "correctness": {
         "useJsxKeyInIterable": "off"
       },
+      "style": { "noNonNullAssertion": "off" },
       "a11y": { "useKeyWithClickEvents": "off" }
     }
   }
