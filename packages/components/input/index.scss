@@ -43,6 +43,10 @@ $base: "alley-input";
     box-sizing: border-box;
   }
 
+  &::placeholder {
+    font-family: var(--alley-font-family);
+  }
+
   .#{$base}-input {
     font-size: inherit;
     margin: 0;
