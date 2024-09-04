@@ -2,7 +2,7 @@ import { mergeProps, type JSX } from "solid-js";
 
 type TextAreaTag = Omit<
   JSX.HTMLElementTags["textarea"],
-  "size" | "style" | "onChange" | "onInput" | "prefix"
+  "size" | "onChange" | "onInput" | "prefix"
 >;
 
 export interface TextAreaProps extends TextAreaTag {
