@@ -3,6 +3,14 @@ import type { Accessor, Setter } from "solid-js";
 
 type DarkMode = "dark" | "light" | "system";
 
+/**
+ * A custom hook that manages the dark mode state based on user preference or system setting.
+ * It returns an accessor to the current dark mode state and a setter to change it.
+ *
+ * @param {DarkMode} [mode="system"] - The initial mode to start with, either 'dark', 'light', or 'system'.
+ * @returns {[Accessor<boolean>, Setter<boolean>]} A tuple where the first element is an accessor that returns whether dark mode is active,
+ * and the second element is a setter that can be used to manually toggle dark mode.
+ */
 const useDark = (
   mode: DarkMode = "system",
 ): [Accessor<boolean>, Setter<boolean>] => {
