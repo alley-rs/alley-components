@@ -96,7 +96,7 @@ const Alert = (props: AlertProps) => {
 
   const style = () => ({
     ...merged.style,
-    [`--${baseClassName}-close-speed`]: `${merged.closeSpeed}ms` ?? "500ms",
+    [`--${baseClassName}-close-speed`]: `${merged.closeSpeed ?? 500}ms`,
   });
 
   const handleClose = (
