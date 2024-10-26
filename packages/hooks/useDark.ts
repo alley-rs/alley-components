@@ -1,10 +1,17 @@
 import { createSignal, createEffect, onMount } from "solid-js";
 import type { Accessor, Setter } from "solid-js";
 
-const useDark = (): [Accessor<boolean>, Setter<boolean>] => {
-  const [isDark, setIsDark] = createSignal(false);
+type DarkMode = "dark" | "light" | "system";
+
+const useDark = (
+  mode: DarkMode = "system",
+): [Accessor<boolean>, Setter<boolean>] => {
+  const [isDark, setIsDark] = createSignal(mode === "dark");
 
   onMount(() => {
+    // 只有system模式才执行下面的监听
+    if (mode !== "system") return;
+
     // 设置默认主题色
     if (matchMedia("(prefers-color-scheme: dark)").matches) {
       setIsDark(true);
