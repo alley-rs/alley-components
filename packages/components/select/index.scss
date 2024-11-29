@@ -1,0 +1,139 @@
+.alley-select {
+  --alley-select-selector-bg: #fff;
+  --alley-select-select-affix-padding: 4px;
+
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: var(--alley-color-text);
+  font-size: var(--alley-font-size);
+  line-height: var(--alley-line-height);
+  list-style: none;
+  font-family: var(--alley-font-family);
+  position: relative;
+  display: inline-flex;
+  height: 32px;
+
+  &-selector {
+    border: var(--alley-line-width) var(--alley-line-type)
+      var(--alley-color-border);
+    background: var(--alley-select-selector-bg);
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    margin: 0;
+    padding: 0 calc(var(--alley-padding-l) - 1px);
+    position: relative;
+    transition: all var(--alley-motion-duration-mid)
+      var(--alley-motion-ease-in-out);
+    box-sizing: border-box;
+    color: var(--alley-color-text);
+    font-size: var(--alley-font-size);
+    line-height: var(--alley-line-height);
+    list-style: none;
+    font-family: inherit;
+    display: flex;
+    border-radius: var(--alley-border-radius);
+    flex: 1 1 auto;
+  }
+
+  &-prefix {
+    flex: none;
+    margin-inline-end: var(--alley-select-select-affix-padding);
+  }
+
+  &-placeholder {
+    color: var(--alley-color-weak);
+  }
+
+  &-arrow {
+    user-select: none;
+    display: flex;
+    align-items: center;
+    color: var(--alley-color-text-quaternary);
+    font-style: normal;
+    line-height: 1;
+    text-align: center;
+    text-transform: none;
+    vertical-align: -0.125em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    position: absolute;
+    top: 50%;
+    inset-inline-start: auto;
+    inset-inline-end: calc(var(--alley-padding-l) - 1px);
+    height: var(--alley-font-size-icon);
+    margin-top: calc(var(--alley-font-size-icon) * -1 / 2);
+    font-size: var(--alley-font-size-icon);
+    pointer-events: none;
+    transition: opacity var(--alley-motion-duration-slow) ease;
+  }
+
+  &-item {
+    &-option {
+      --alley-select-option-height: 32px;
+      --alley-select-option-padding: 5px 12px;
+      --alley-select-option-font-size: 14px;
+      --alley-select-option-line-height: 1.5714285714285714;
+      --alley-select-option-selected-font-weight: 600;
+      --alley-select-option-selected-color: rgba(0, 0, 0, 0.88);
+      --alley-select-option-selected-bg: var(--alley-slate-blue-1);
+      --alley-select-option-hover-bg: rgba(0, 0, 0, 0.04);
+
+      position: relative;
+      display: block;
+      min-height: var(--alley-select-option-height);
+      padding: var(--alley-select-option-padding);
+      color: var(--alley-color-text);
+      font-weight: normal;
+      font-size: var(--alley-select-option-font-size);
+      line-height: var(--alley-select-option-line-height);
+      box-sizing: border-box;
+      transition: background var(--alley-motion-duration-slow) ease;
+      border-radius: var(--alley-border-radius-sm);
+
+      &-selected:not(.alley-select-item-option-disabled) {
+        color: var(--alley-select-option-selected-color);
+        font-weight: var(--alley-select-option-selected-font-weight);
+        background-color: var(--alley-select-option-selected-bg);
+      }
+
+      &:not(.alley-select-item-option-selected):hover {
+        background-color: var(--alley-select-option-hover-bg);
+      }
+    }
+  }
+}
+
+.alley-select-dropdown {
+  box-sizing: border-box;
+  margin: 0;
+  padding: var(--alley-padding-xxs);
+  color: var(--alley-color-text);
+  font-size: var(--alley-font-size);
+  line-height: var(--alley-line-height);
+  list-style: none;
+  font-family: var(--alley-font-family);
+  position: fixed;
+  top: 0;
+  z-index: var(--alley-select-z-index-popup);
+  overflow: hidden;
+  font-variant: initial;
+  background-color: var(--alley-color-bg-elevated);
+  border-radius: var(--alley-border-radius-lg);
+  outline: none;
+  box-shadow: var(--alley-box-shadow-secondary);
+}
+
+.dark .alley-select {
+  --alley-select-selector-bg: #141414;
+
+  &-item {
+    &-option {
+      --alley-select-option-selected-color: rgba(255, 255, 255, 0.85);
+      --alley-select-option-selected-bg: var(--alley-slate-blue-2);
+      --alley-select-option-hover-bg: rgba(255, 255, 255, 0.08);
+    }
+  }
+}
