@@ -90,9 +90,9 @@ const Select = (props: SelectProps) => {
     );
     return selectedOption ? (
       <span>{selectedOption.label}</span>
-    ) : (
-      <span class={`${baseClass}-placeholder`}>{merged.placeholder}</span> || ""
-    );
+    ) : merged.placeholder ? (
+      <span class={`${baseClass}-placeholder`}>{merged.placeholder}</span>
+    ) : null;
   });
 
   return (
