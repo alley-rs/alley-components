@@ -91,9 +91,8 @@ const InputNumber = (props: InputNumberProps) => {
 };
 
 const validNumber = (value: string): number => {
-  const n = Number.parseInt(value);
-
-  return n;
+  const n = Number.parseFloat(value);
+  return Number.isNaN(n) ? 0 : n;
 };
 
 export default InputNumber;
