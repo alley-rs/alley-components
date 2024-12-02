@@ -2,8 +2,8 @@ import { addClassNames } from "~/utils";
 import "./index.scss";
 import type { InputProps } from "./interface";
 import { mergeProps, Show, splitProps, useContext } from "solid-js";
-import { SpaceCompactContext } from "../space/compact";
 import TextArea from "./text-area";
+import { SpaceCompactContext } from "../space/context";
 
 const baseClassName = "alley-input";
 
