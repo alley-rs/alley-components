@@ -3,7 +3,7 @@ import { addClassNames } from "~/utils";
 import "./index.scss";
 import type { BaseSizeComponentProps } from "~/interface";
 import { useContext } from "solid-js";
-import { SpaceCompactContext } from "../space/compact";
+import { SpaceCompactContext } from "../space/context";
 
 export interface InputNumberProps
   extends BaseSizeComponentProps<HTMLInputElement> {

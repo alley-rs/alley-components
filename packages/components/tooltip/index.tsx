@@ -159,13 +159,12 @@ const Tooltip = (props: TooltipProps) => {
   return (
     <>
       <div
+        class={`${classPrefix}-container`}
+        ref={containerRef}
         onMouseEnter={showTooltip}
         onMouseLeave={hideTooltip}
-        style={{ display: "inline-block" }}
       >
-        <div class={`${classPrefix}-container`} ref={containerRef}>
-          {resolved()}
-        </div>
+        {resolved()}
       </div>
 
       <Show when={isVisible()}>
