@@ -2,7 +2,7 @@ import { VsChevronDown, VsChevronUp } from "solid-icons/vs";
 import { addClassNames } from "~/utils";
 import "./index.scss";
 import type { BaseSizeComponentProps } from "~/interface";
-import { useContext } from "solid-js";
+import { children, type JSX, Show, useContext } from "solid-js";
 import { SpaceCompactContext } from "../space/context";
 
 export interface InputNumberProps
@@ -13,6 +13,10 @@ export interface InputNumberProps
   onChange?: (value: number) => void;
   placeholder?: string;
   disabled?: boolean;
+  addonBefore?: JSX.Element;
+  addonAfter?: JSX.Element;
+  prefix?: JSX.Element;
+  suffix?: JSX.Element;
 }
 
 const baseClassName = "alley-input-number";
@@ -26,6 +30,7 @@ const InputNumber = (props: InputNumberProps) => {
   const className = () => {
     return addClassNames(
       baseClassName,
+      `${baseClassName}-css-var`,
       size() && `${baseClassName}-${size()}`,
       props.disabled && `${baseClassName}-disabled`,
       spaceCompactItemClass,
@@ -34,7 +39,7 @@ const InputNumber = (props: InputNumberProps) => {
     );
   };
 
-  return (
+  const single = children(() => (
     <div class={className()}>
       <div class={`${baseClassName}-handler-wrap`}>
         <span
@@ -54,7 +59,7 @@ const InputNumber = (props: InputNumberProps) => {
         <span
           class={`${baseClassName}-handler ${baseClassName}-handler-down`}
           onClick={() => {
-            const val = props.value ? props.value - 1 : 0;
+            const val = props.value !== undefined ? props.value - 1 : 0;
 
             if (props.min !== undefined)
               props.onChange?.(val < props.min ? props.min : val);
@@ -87,6 +92,26 @@ const InputNumber = (props: InputNumberProps) => {
         />
       </div>
     </div>
+  ));
+
+  return (
+    <Show when={props.addonBefore || props.addonAfter} fallback={single()}>
+      <div
+        class={`${baseClassName}-group-wrapper ${baseClassName}-group-wrapper-outlined ${baseClassName}-css-var`}
+      >
+        <div class={`${baseClassName}-wrapper ${baseClassName}-group`}>
+          <Show when={props.addonBefore}>
+            <div class={`${baseClassName}ant-input-number-group-addon`}>
+              {props.addonBefore}
+            </div>
+          </Show>
+          {single()}
+          <Show when={props.addonAfter}>
+            <div class={`${baseClassName}-group-addon`}>{props.addonAfter}</div>
+          </Show>
+        </div>
+      </div>
+    </Show>
   );
 };
 

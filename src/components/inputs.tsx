@@ -62,6 +62,16 @@ const Inputs = () => {
         </Space>
 
         <Space align="center">
+          <Label>后缀</Label>
+          <InputNumber
+            value={count()}
+            onChange={setCount}
+            min={-100}
+            addonAfter="$"
+          />
+        </Space>
+
+        <Space align="center">
           <Label>紧凑模式（大）</Label>
           <Space.Compact size="large">
             <InputNumber value={count()} onChange={setCount} />
