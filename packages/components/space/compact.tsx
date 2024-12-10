@@ -1,14 +1,7 @@
-import { createContext } from "solid-js";
 import { addClassNames } from "~/utils";
-import type { BaseSizeComponentProps, SizeType } from "~/interface";
+import type { BaseSizeComponentProps } from "~/interface";
 import "./index.scss";
-
-interface SpaceCompactContextType {
-  childClass: string;
-  size?: SizeType;
-}
-
-export const SpaceCompactContext = createContext<SpaceCompactContextType>();
+import { SpaceCompactContext } from "./context";
 
 const baseClassName = "space-compact";
 

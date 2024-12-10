@@ -15,7 +15,7 @@ import type {
   BaseOnClickComponentProps,
   BaseSizeComponentProps,
 } from "~/interface";
-import { SpaceCompactContext } from "../space/compact";
+import { SpaceCompactContext } from "~/components/space/context";
 
 const LazySpace = lazy(() => import("~/components/space"));
 const LazySpinner = lazy(() => import("~/components/spinner"));
@@ -30,7 +30,7 @@ interface Filter {
 
 export interface ButtonProps
   extends BaseOnClickComponentProps<HTMLButtonElement>,
-  BaseSizeComponentProps<HTMLButtonElement> {
+    BaseSizeComponentProps<HTMLButtonElement> {
   icon?: JSXElement;
   block?: boolean;
   disabled?: boolean;
@@ -75,9 +75,9 @@ const Button = (props: ButtonProps) => {
     !merged.filter || merged.filter === true
       ? merged.style
       : {
-        "--filter-scale": merged.filter.scale,
-        ...merged.style,
-      };
+          "--filter-scale": merged.filter.scale,
+          ...merged.style,
+        };
 
   const className = () =>
     addClassNames(
