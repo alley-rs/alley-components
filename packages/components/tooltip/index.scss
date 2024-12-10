@@ -18,6 +18,10 @@
   box-shadow: var(--alley-box-shadow-secondary);
   position: absolute;
 
+  &-container {
+    display: inline-flex;
+  }
+
   &-small {
     --alley-tooltip-font-size: 0.6rem;
     --alley-tooltip-padding: 0.15rem;
